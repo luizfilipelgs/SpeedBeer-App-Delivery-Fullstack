@@ -1,23 +1,49 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class sales extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  }
-  sales.init({
-    nomeDoAtributo: DataTypes.STRING
-  }, {
-    sequelize,
+
+const SalesModel = (sequelize, DataTypes) => {
+  const Sales = sequelize.define('Sales', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    sellerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    totalPrice: {
+      type: DataTypes.DECIMAL(9, 2),
+      allowNull: false,
+    },
+    deliveryAddress: {
+      type: DataTypes.STRING(100),
+      allowNull: false,
+    },
+    deliveryNumber: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+    saleDate: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+      allowNull: false,
+    },
+    status: {
+      type: DataTypes.STRING(50),
+      allowNull: false,
+    },
+  },{
+    underscored: true,
+    sequelize: db,
+    timestamps: false,
     modelName: 'sales',
   });
-  return sales;
+  return Sales;
 };
+
+module.exports = SalesModel;
