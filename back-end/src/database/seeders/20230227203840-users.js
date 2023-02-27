@@ -1,5 +1,4 @@
 const md5 = require('md5');
-// const UserModel = require('../models/users');
 
 const saltRounds = 10;
 
@@ -30,9 +29,6 @@ module.exports = {
     ];
 
     await queryInterface.bulkInsert('users', usersData, {timestamps: false});
-
-    // Atualizar as sequências de ID após inserção manual
-    // await queryInterface.sequelize.query("SELECT setval('users_id_seq', (SELECT MAX(id) FROM users))");
   },
 
   down: async (queryInterface, Sequelize) => {
