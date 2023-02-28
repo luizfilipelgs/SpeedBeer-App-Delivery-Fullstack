@@ -1,5 +1,4 @@
-'use strict';
-const UserModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     id: {
       allowNull: false,
@@ -26,11 +25,15 @@ const UserModel = (sequelize, DataTypes) => {
     },
   }, {
     underscored: true,
-    sequelize: db,
     modelName: 'users',
     timestamps: false,
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Sales, { foreignKey: 'userId', as: 'userSales' });
+    User.hasMany(models.Sales, { foreignKey: 'sellerId', as: 'sellerSales' });
+  };
+
   return User;
 };
 
-module.exports = UserModel;
