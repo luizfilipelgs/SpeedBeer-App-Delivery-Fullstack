@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ROUTE = 'common_login';
 const EMAIL = 'input-email';
@@ -7,7 +8,67 @@ const NAME = 'input-name';
 const REGISTER = 'button-register';
 const ERROR = 'element-invalid-register';
 
+const MIN_NUMERO_PASSWORD = 6;
+const MIN_NUMERO_NAME = 12;
+
+const routesLogin = {
+  customer: 'customer/products',
+  seller: 'seller/orders',
+  administrator: 'admin/manage',
+};
+
 function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [registerError, setRegisterError] = useState('');
+
+  const navigate = useNavigate();
+
+  const handleEmailChange = ({ target: { value } }) => {
+    setEmail(value);
+  };
+
+  const handlePasswordChange = ({ target: { value } }) => {
+    setPassword(value);
+  };
+
+  const handleNameChange = ({ target: { value } }) => {
+    setName(value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3001/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, name }),
+      });
+      const data = await response.json();
+      if (data.role) {
+        navigate(`/${routesLogin[data.role]}`);
+      } else {
+        setLoginError('Você já tem uma conta');
+      }
+    } catch (error) {
+      console.error(error);
+      setRegisterError('Ocorreu um erro ao tentar fazer registro');
+    }
+  };
+
+  const isValidEmail = (validEmail) => /\S+@\S+\.\S+/.test(validEmail);
+
+  const isValidPassword = (validPassword) => validPassword.length >= MIN_NUMERO_PASSWORD;
+
+  const isValidName = (validName) => validName.length >= MIN_NUMERO_NAME;
+
+  const isRegisterFormValid = () => {
+    const valid = isValidEmail(email) && isValidPassword(password) && isValidName(name);
+    return valid;
+  };
+
   return (
     <div>
       Cadastro
@@ -18,9 +79,10 @@ function Register() {
             <input
               type="text"
               name="nameInput"
-              // value={ name }
+              value={ name }
               placeholder="Seu nome"
               data-testid={ `${ROUTE}__${NAME}` }
+              onChange={ handleNameChange }
               required
             />
           </label>
@@ -32,6 +94,7 @@ function Register() {
               value={ email }
               placeholder="email@dominio.com"
               data-testid={ `${ROUTE}__${EMAIL}` }
+              onChange={ handleEmailChange }
               required
             />
           </label>
@@ -43,17 +106,19 @@ function Register() {
               value={ password }
               placeholder="******"
               data-testid={ `${ROUTE}__${PASSWORD}` }
+              onChange={ handlePasswordChange }
               required
             />
           </label>
           <button
             type="submit"
             data-testid={ `${ROUTE}__${REGISTER}` }
+            disabled={ !isRegisterFormValid }
           >
-            LOGIN
+            CADASTRAR
           </button>
         </form>
-        <p data-testid={ `${ROUTE}__${ERROR}` }>{loginError}</p>
+        { registerError && <p data-testid={ `${ROUTE}__${ERROR}` }>{registerError}</p> }
       </fieldset>
     </div>
   );
