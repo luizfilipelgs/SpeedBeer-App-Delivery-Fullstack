@@ -95,7 +95,7 @@ function Login() {
         <button
           type="button"
           data-testid={ `${ROUTE}__${REGISTER}` }
-          onClick={ () => navigate('/cadastro') }
+          onClick={ () => navigate('/register') }
         >
           Ainda não tenho conta
         </button>
