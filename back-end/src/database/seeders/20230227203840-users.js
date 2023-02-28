@@ -10,7 +10,7 @@ module.exports = {
         name: 'Delivery App Admin',
         email: 'adm@deliveryapp.com',
         password: md5('--adm2@21!!--', saltRounds),
-        role: 'admin',
+        role: 'administrator',
       },
       {
         id: 2,
