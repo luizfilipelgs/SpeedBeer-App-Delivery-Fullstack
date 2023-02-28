@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginProvider from './context/LoginProvider';
+import Login from './pages/login';
 
 function App() {
   return (
