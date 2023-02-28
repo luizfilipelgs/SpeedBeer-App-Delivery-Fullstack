@@ -1,5 +1,5 @@
 'use strict';
-const ProductsModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Products = sequelize.define('Products', {
     id: {
       allowNull: false,
@@ -22,11 +22,8 @@ const ProductsModel = (sequelize, DataTypes) => {
     },
   }, {
     underscored: true,
-    sequelize: db,
     timestamps: false,
     modelName: 'products',
   });
   return Products;
 };
-
-module.exports = ProductsModel;
