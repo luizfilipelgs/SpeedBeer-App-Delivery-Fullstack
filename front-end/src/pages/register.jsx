@@ -66,6 +66,7 @@ function Register() {
 
   const isRegisterFormValid = () => {
     const valid = isValidEmail(email) && isValidPassword(password) && isValidName(name);
+    console.log(valid);
     return valid;
   };
 
@@ -113,7 +114,7 @@ function Register() {
           <button
             type="submit"
             data-testid={ `${ROUTE}__${REGISTER}` }
-            disabled={ !isRegisterFormValid }
+            disabled={ !isRegisterFormValid() }
           >
             CADASTRAR
           </button>
