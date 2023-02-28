@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const ROUTE = 'common_login';
+const ROUTE = 'common_register';
 const EMAIL = 'input-email';
 const PASSWORD = 'input-password';
 const NAME = 'input-name';
