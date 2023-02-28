@@ -41,7 +41,7 @@ function Login() {
         body: JSON.stringify({ email, password }),
       });
       const data = await response.json();
-      if (data.success) {
+      if (data.role) {
         navigate(`/${routesLogin[data.role]}`);
       } else {
         setLoginError('Você não tem uma conta');
