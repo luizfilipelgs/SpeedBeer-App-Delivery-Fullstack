@@ -21,7 +21,7 @@ const UserModel = (sequelize, DataTypes) => {
       allowNull: false,
     },
     role: {
-      type: DataTypes.ENUM('admin', 'customer', 'seller'),
+      type: DataTypes.STRING,
       allowNull: false,
     },
   }, {
