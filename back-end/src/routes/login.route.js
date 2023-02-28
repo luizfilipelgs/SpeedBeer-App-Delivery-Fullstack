@@ -1,4 +1,4 @@
-const express  = require('express');
+const express = require('express');
 const loginController = require('../controllers/login.controller');
 const { validateLogin } = require('../middlewares/login.middlewares');
 
