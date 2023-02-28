@@ -1,6 +1,6 @@
 'use strict';
 
-const SalesModel = (sequelize, DataTypes) => {
+module.exports = (sequelize, DataTypes) => {
   const Sales = sequelize.define('Sales', {
     id: {
       allowNull: false,
@@ -39,11 +39,15 @@ const SalesModel = (sequelize, DataTypes) => {
     },
   },{
     underscored: true,
-    sequelize: db,
     timestamps: false,
     modelName: 'sales',
   });
+
+  Sales.associate = (models) => {
+    Sales.belongsTo(models.User, { foreignKey: 'sallerId', as: 'seller' });
+    Sales.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+  }
+
   return Sales;
 };
 
-module.exports = SalesModel;
