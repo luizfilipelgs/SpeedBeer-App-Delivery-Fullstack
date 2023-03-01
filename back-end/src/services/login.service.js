@@ -1,10 +1,11 @@
 const md5 = require('md5');
+import mapError from '../utils/mapError';
 const { User } = require('../database/models');
 
 const postLogin = async (email, password) => {
   try {
     const result = await User.findOne({ where: { email } });
-    if (!result) { return { message: 'Usuario não cadastrado', type: 'NOT_FOUND' }; }
+    if (!result) { return { message: 'Usuario não cadastrado', type: mapError.NOT_FOUND }; }
     const { dataValues } = result;
 
     const passwordDecoded = md5(password);
@@ -14,7 +15,7 @@ const postLogin = async (email, password) => {
       return { message: dataValues };
     }
 
-    return { message: 'Email ou senha Incorretos', type: 'UNAUTHORIZED' };
+    return { message: 'Email ou senha Incorretos', type: mapError.UNAUTHORIZED };
   } catch (error) {
     console.log(error);
   }

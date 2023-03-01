@@ -1,10 +1,11 @@
 const md5 = require('md5');
+import mapError from '../utils/mapError';
 const { User } = require('../database/models');
 
 const createUser = async (name, email, password) => {
   try {
     const result = await User.findAll({ where: { name } });
-    if (result.length > 0) { return { message: 'Nome de usuário ja existe', type: 'CONFLICT' }; }
+    if (result.length > 0) { return { message: 'Nome de usuário ja existe', type: mapError.CONFLICT }; }
 
     const newUser = await User.create({
       name, email, password: md5(password), role: 'customer',
@@ -16,10 +17,10 @@ const createUser = async (name, email, password) => {
       return { message: dataValues };
     }
 
-    return { message: 'Erro ao cadastrar usuário', type: 'UNAUTHORIZED' };
+    return { message: 'Erro ao cadastrar usuário', type: mapError.UNAUTHORIZED };
   } catch (error) {
     console.log(error);
-    return { message: 'Email ja está cadastrado', type: 'CONFLICT' };
+    return { message: 'Email ja está cadastrado', type: mapError.CONFLICT };
   }
 };
 
