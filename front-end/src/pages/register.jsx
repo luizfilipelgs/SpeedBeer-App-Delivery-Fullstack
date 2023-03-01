@@ -6,7 +6,7 @@ const EMAIL = 'input-email';
 const PASSWORD = 'input-password';
 const NAME = 'input-name';
 const REGISTER = 'button-register';
-const ERROR = 'element-invalid-register';
+const ERROR = 'element-invalid_register';
 
 const MIN_NUMERO_PASSWORD = 6;
 const MIN_NUMERO_NAME = 12;
@@ -44,13 +44,13 @@ function Register() {
       const response = await fetch('http://localhost:3001/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password, name }),
+        body: JSON.stringify({ name, email, password }),
       });
       const data = await response.json();
       if (data.role) {
         navigate(`/${routesLogin[data.role]}`);
       } else {
-        setLoginError('Você já tem uma conta');
+        setRegisterError(data.message);
       }
     } catch (error) {
       console.error(error);
@@ -113,7 +113,7 @@ function Register() {
           <button
             type="submit"
             data-testid={ `${ROUTE}__${REGISTER}` }
-            disabled={ !isRegisterFormValid }
+            disabled={ !isRegisterFormValid() }
           >
             CADASTRAR
           </button>
