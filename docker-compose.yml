@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql:8.0.21
+    container_name: mysql
+    platform: linux/x86_64
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DB_NAME: delivery-app
+      MYSQL_HOST: localhost
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_PORT: 3306
+      EVAL_ALWAYS_RESTORE_DEV_DB: true
+    restart: always
+
+  backend:
+    container_name: backend
+    platform: linux/x86_64
+    build:
+      context: ./back-end
+    ports:
+      - "3001:3001"
+    working_dir: /app-backend
+    depends_on:
+      - db
+    environment:
+      NODE_ENV: development
+      API_PORT: 3001
+      HOSTNAME: db
+      JWT_SECRET: jwt_secret
+    restart: always
+    volumes:
+      - ./back-end:/app-backend
+
+  frontend:
+    container_name: frontend
+    platform: linux/x86_64
+    build:
+      context: ./front-end
+    ports:
+      - "3000:3000"
+    working_dir: /app-frontend
+    depends_on:
+      - backend
+    restart: always
+    volumes:
+      - ./front-end:/app-frontend
