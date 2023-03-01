@@ -1,5 +1,6 @@
-const md5 = require('md5');
 import mapError from '../utils/mapError';
+
+const md5 = require('md5');
 const { User } = require('../database/models');
 
 const postLogin = async (email, password) => {

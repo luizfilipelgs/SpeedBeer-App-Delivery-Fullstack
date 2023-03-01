@@ -1,11 +1,14 @@
-const md5 = require('md5');
 import mapError from '../utils/mapError';
+
+const md5 = require('md5');
 const { User } = require('../database/models');
 
 const createUser = async (name, email, password) => {
   try {
     const result = await User.findAll({ where: { name } });
-    if (result.length > 0) { return { message: 'Nome de usuário ja existe', type: mapError.CONFLICT }; }
+    if (result.length > 0) { 
+      return { message: 'Nome de usuário ja existe', type: mapError.CONFLICT };
+    }
 
     const newUser = await User.create({
       name, email, password: md5(password), role: 'customer',
