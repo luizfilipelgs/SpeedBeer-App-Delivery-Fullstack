@@ -1,7 +1,6 @@
-import mapError from '../utils/mapError';
-
 const md5 = require('md5');
 const { User } = require('../database/models');
+const { mapError } = require('../utils/mapError');
 
 const postLogin = async (email, password) => {
   try {
