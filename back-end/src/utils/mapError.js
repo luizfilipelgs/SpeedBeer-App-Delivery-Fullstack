@@ -6,4 +6,4 @@ const mapError = {
   UNAUTHORIZED: 401,
 };
 
-export default mapError;
+module.exports = mapError;
