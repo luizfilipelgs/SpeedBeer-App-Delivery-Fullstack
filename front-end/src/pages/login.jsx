@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoginContext from '../context/LoginContext';
+import { setLocalStorage } from '../services/localStorage';
 
 const ROUTE = 'common_login';
 const EMAIL = 'input-email';
@@ -17,6 +19,7 @@ const routesLogin = {
 };
 
 function Login() {
+  const { setUser } = useContext(LoginContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -42,6 +45,8 @@ function Login() {
       });
       const data = await response.json();
       if (data.role) {
+        setUser(data);
+        setLocalStorage('user', data);
         navigate(`/${routesLogin[data.role]}`);
       } else {
         setLoginError('Você não tem uma conta');

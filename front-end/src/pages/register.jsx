@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import LoginContext from '../context/LoginContext';
+import { setLocalStorage } from '../services/localStorage';
 
 const ROUTE = 'common_register';
 const EMAIL = 'input-email';
@@ -18,6 +20,7 @@ const routesLogin = {
 };
 
 function Register() {
+  const { setUser } = useContext(LoginContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -48,6 +51,8 @@ function Register() {
       });
       const data = await response.json();
       if (data.role) {
+        setUser(data);
+        setLocalStorage('user', data);
         navigate(`/${routesLogin[data.role]}`);
       } else {
         setRegisterError(data.message);
