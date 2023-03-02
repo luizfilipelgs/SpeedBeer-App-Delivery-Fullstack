@@ -5,7 +5,6 @@ import ProductCard from '../components/productCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 
 const ROUTE = 'customer_products';
-const CART = 'button-cart';
 const PRICE = 'checkout-bottom-value';
 
 function Products() {

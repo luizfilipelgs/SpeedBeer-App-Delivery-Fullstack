@@ -134,7 +134,6 @@ ProductCard.propTypes = {
     urlImage: PropTypes.string.isRequired,
   }).isRequired,
   sumTotalPrice: PropTypes.func.isRequired,
-  quantSave: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

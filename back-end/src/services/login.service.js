@@ -15,7 +15,7 @@ const postLogin = async (email, password) => {
     if (dataValues && passwordDecoded === dataValues.password) {
       delete dataValues.password;
       const token = createToken(dataValues);
-      const user = { ...dataValues, token }
+      const user = { ...dataValues, token };
       return { message: user };
     }
 
