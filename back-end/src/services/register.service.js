@@ -1,7 +1,7 @@
-import mapError from '../utils/mapError';
-
 const md5 = require('md5');
 const { User } = require('../database/models');
+const mapError = require('../utils/mapError');
+const { createToken } = require('../auth/jsonWebToken');
 
 const createUser = async (name, email, password) => {
   try {
@@ -17,7 +17,9 @@ const createUser = async (name, email, password) => {
     if (newUser) {
       const { dataValues } = newUser;
       delete dataValues.password;
-      return { message: dataValues };
+      const token = createToken(dataValues);
+      const user = { ...dataValues, token }
+      return { message: user };
     }
 
     return { message: 'Erro ao cadastrar usuário', type: mapError.UNAUTHORIZED };
