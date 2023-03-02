@@ -6,7 +6,6 @@ const postLogin = async (req, res) => {
     const { message, type } = await loginService.postLogin(email, password);
     
     if (type) return res.status(type).json({ message });
-    console.log('login controller', type);
     return res.status(200).json(message);
   } catch (error) {
     console.log(error);

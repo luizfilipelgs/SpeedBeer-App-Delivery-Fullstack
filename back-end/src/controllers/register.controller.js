@@ -6,7 +6,6 @@ const createUser = async (req, res) => {
     const { message, type } = await registerService.createUser(name, email, password);
     
     if (type) return res.status(type).json({ message });
-    console.log('login controller', type);
     return res.status(201).json(message);
   } catch (error) {
     console.log(error);
