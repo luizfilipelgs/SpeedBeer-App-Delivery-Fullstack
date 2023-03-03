@@ -24,7 +24,17 @@ function CustomerOrder() {
 
       <NavBar />
 
-      <div>
+      <article
+        style={ {
+          display: 'flex',
+          margin: '24px auto',
+          padding: '8px',
+          flexFlow: 'row wrap',
+          justifyContent: 'center',
+          minWidth: '448px',
+          maxWidth: '1344px',
+        } }
+      >
 
         { ListOrder.map((order) => (
           <OrderCard
@@ -35,7 +45,7 @@ function CustomerOrder() {
             totalPrice={ order.totalPrice }
           />
         )) }
-      </div>
+      </article>
     </div>
   );
 }

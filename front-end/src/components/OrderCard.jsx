@@ -7,53 +7,109 @@ const ORDER_ID = 'element-order-id';
 const ORDER_DATE = 'element-order-date';
 const ORDER_STATUS = 'element-order-delivery-status';
 const ORDER_CARD_PRICE = 'element-order-card-price';
+const QUATRO = 4;
 
 function OrderCard({ id, status, date, totalPrice }) {
-  const QUATRO = 4;
   const formattedDate = new Date(Date.parse(date)).toLocaleDateString('pt-BR');
   const formattedPrice = formatPrice(totalPrice);
   const formattedNum = id.toString().padStart(QUATRO, 0);
 
   return (
-    <Link to={ `/customer/orders/${id}` } className="OrderContainer">
-      <div className="id-content">
-        <span
-          style={ {
-            fontSize: '1.5rem',
-          } }
-        >
-          Pedido
-        </span>
+    <section
+      style={ {
+        border: '1px solid black',
+        margin: '8px',
+      } }
+    >
 
-        <span
-          style={ {
-            alignSelf: 'center',
-          } }
-          data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}${id}` }
-        >
-          {formattedNum}
-        </span>
-      </div>
-
-      <span
-        className="status-content"
-        data-testid={ `${ROUTE_ORDERS}__${ORDER_STATUS}-${id}` }
+      <Link
+        to={ `/customer/orders/${id}` }
+        className="order-container"
+        style={ {
+          color: '#000',
+          display: 'flex',
+          justifyContent: 'space-around',
+          maxWidth: '40px',
+          minHeight: '100px',
+          minWidth: '400px',
+          padding: '8px',
+          textDecoration: 'none',
+        } }
       >
-        {status}
-      </span>
+        <div
+          className="id-content"
+          style={ {
+            display: 'flex',
+            margin: '4px auto',
+            padding: '8px',
+            justifyContent: 'center',
+            textAlign: 'center',
+            flexDirection: 'column',
+            minWidth: '100px',
+          } }
+        >
+          <span
+            style={ {
+              fontSize: '1.5rem',
+            } }
+          >
+            Pedido
+          </span>
 
-      <div className="info-content">
-        <span data-testid={ `${ROUTE_ORDERS}__${ORDER_DATE}-${id}` }>
-          {formattedDate}
-        </span>
-        <div>
-          <span>R$: </span>
-          <span data-testid={ `${ROUTE_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
-            {formattedPrice}
+          <span
+            data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}${id}` }
+            style={ {
+              alignSelf: 'center',
+            } }
+          >
+            {formattedNum}
           </span>
         </div>
-      </div>
-    </Link>
+
+        <span
+          data-testid={ `${ROUTE_ORDERS}__${ORDER_STATUS}-${id}` }
+          className="status-content"
+          style={ {
+            display: 'flex',
+            margin: '4px auto',
+            padding: '8px',
+            flexDirection: 'column',
+            textAlign: 'center',
+            justifyContent: 'center',
+            fontSize: '1.5rem',
+            minWidth: '100px',
+          } }
+        >
+          {status}
+        </span>
+
+        <div
+          className="info-content"
+          style={ {
+            display: 'flex',
+            margin: '4px auto',
+            padding: '8px',
+            textAlign: 'center',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            minWidth: '100px',
+          } }
+        >
+          <span data-testid={ `${ROUTE_ORDERS}__${ORDER_DATE}-${id}` }>
+            {formattedDate}
+          </span>
+          <div>
+            <span>R$: </span>
+            <span data-testid={ `${ROUTE_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
+              {formattedPrice}
+            </span>
+          </div>
+        </div>
+
+      </Link>
+
+    </section>
+
   );
 }
 
