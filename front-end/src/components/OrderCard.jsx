@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import formatPrice from '../utils/formatPrice';
 
 const ROUTE_ORDERS = 'customer_orders';
@@ -7,78 +8,49 @@ const ORDER_DATE = 'element-order-date';
 const ORDER_STATUS = 'element-order-delivery-status';
 const ORDER_CARD_PRICE = 'element-order-card-price';
 
-function OrderCard({ id, status, date }) {
+function OrderCard({ id, status, date, totalPrice }) {
   const formattedDate = new Date(Date.parse(date)).toLocaleDateString('pt-BR');
   const formattedPrice = formatPrice(totalPrice);
 
   return (
-    <div
-      style={ {
-        display: 'flex',
-        border: '1.5px solid black',
-        width: '30%',
-        margin: 20,
-        flexWrap: 'nowrap',
-        justifyContent: 'center',
-        alignContent: 'space-between',
+    <Link to={ `/customer/orders/${id}` } className="OrderContainer">
+      <div className="id-content">
+        <span
+          style={ {
+            fontSize: '1.5rem',
+          } }
+        >
+          Pedido
+        </span>
 
-        alignItems: 'stretch',
-      } }
-    >
-      <div
-        className="id-content"
-        style={ {
-          display: 'flex',
-          border: '1.2px solid black',
-          margin: 5,
-          justifyContent: 'center',
-          textAlign: 'center',
-          flexDirection: 'column',
-        } }
-      >
-        <h3>Pedido</h3>
-        <p data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}${id}` }>{id}</p>
+        <span
+          style={ {
+            alignSelf: 'center',
+          } }
+          data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}${id}` }
+        >
+          {id}
+        </span>
       </div>
 
-      <h3
+      <span
         className="status-content"
-        style={ {
-          display: 'flex',
-          border: '1.1px solid black',
-          margin: 5,
-          alignContent: 'center',
-
-        } }
         data-testid={ `${ROUTE_ORDERS}__${ORDER_STATUS}-${id}` }
       >
         {status}
-      </h3>
+      </span>
 
-      <div
-        className="info-content"
-        style={ {
-          display: 'flex',
-          border: '1.1px solid black',
-          margin: 5,
-          textAlign: 'center',
-          flexDirection: 'column',
-
-        } }
-      >
-        <h4
-          className="date-content"
-          data-testid={ `${ROUTE_ORDERS}__${ORDER_DATE}-${id}` }
-        >
+      <div className="info-content">
+        <span data-testid={ `${ROUTE_ORDERS}__${ORDER_DATE}-${id}` }>
           {formattedDate}
-        </h4>
-        <h4
-          className="date-content"
-          data-testid={ `${ROUTE_ORDERS}__${ORDER_CARD_PRICE}-${id}` }
-        >
-          {formattedPrice}
-        </h4>
+        </span>
+        <div>
+          <span data-testid={ `${ROUTE_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
+            {formattedPrice}
+          </span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
