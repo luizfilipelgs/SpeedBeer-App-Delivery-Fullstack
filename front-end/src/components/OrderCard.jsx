@@ -9,8 +9,10 @@ const ORDER_STATUS = 'element-order-delivery-status';
 const ORDER_CARD_PRICE = 'element-order-card-price';
 
 function OrderCard({ id, status, date, totalPrice }) {
+  const QUATRO = 4;
   const formattedDate = new Date(Date.parse(date)).toLocaleDateString('pt-BR');
   const formattedPrice = formatPrice(totalPrice);
+  const formattedNum = id.toString().padStart(QUATRO, 0);
 
   return (
     <Link to={ `/customer/orders/${id}` } className="OrderContainer">
@@ -29,7 +31,7 @@ function OrderCard({ id, status, date, totalPrice }) {
           } }
           data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}${id}` }
         >
-          {id}
+          {formattedNum}
         </span>
       </div>
 
@@ -45,6 +47,7 @@ function OrderCard({ id, status, date, totalPrice }) {
           {formattedDate}
         </span>
         <div>
+          <span>R$: </span>
           <span data-testid={ `${ROUTE_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
             {formattedPrice}
           </span>
