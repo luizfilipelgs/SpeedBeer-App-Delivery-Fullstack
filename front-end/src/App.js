@@ -5,6 +5,7 @@ import LoginProvider from './context/LoginProvider';
 import Login from './pages/login';
 import Register from './pages/register';
 import Products from './pages/products';
+import Checkout from './pages/checkout';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Route path="/login" element={ <Login /> } />
         <Route path="/register" element={ <Register /> } />
         <Route path="/customer/products" element={ <Products /> } />
-        <Route path="/customer/checkout" />
+        <Route path="/customer/checkout" element={ <Checkout /> } />
       </Routes>
     </LoginProvider>
   );
