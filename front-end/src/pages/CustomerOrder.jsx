@@ -9,7 +9,8 @@ function CustomerOrder() {
   // const [orders, setOrders] = useState([]);
 
   // useEffect(() => {
-  //   axios.get('http://localhost:3001/sales')
+  //   const id = localStorage.getItem('user'); // obter o ID do LocalStorage
+  //   axios.get(`http://localhost:3001/sales/orders/${id}`)
   //     .then((response) => {
   //       setOrders(response.data);
   //       console.log(response.data);
