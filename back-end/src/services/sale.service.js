@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { Product, Sale, SalesProduct, User } = require('../database/models');
+const { Products, Sale, SalesProducts, User } = require('../database/models');
 const config = require('../database/config/config');
 const mapError = require('../utils/mapError');
 
