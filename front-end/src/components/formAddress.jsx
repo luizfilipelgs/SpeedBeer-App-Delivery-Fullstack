@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import { getLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
@@ -13,7 +14,8 @@ function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
   const [number, setNumber] = useState(0);
   const [address, setAddress] = useState('');
-  const [seller, setSeller] = useState('');
+  const [sellers, setSellers] = useState([]);
+  const [selectedSeller, setSelectedSeller] = useState('');
 
   const navigate = useNavigate();
 
@@ -26,8 +28,11 @@ function FormAddress({ products }) {
   };
 
   const handleSellerChange = ({ target: { value } }) => {
-    setSeller(value);
+    setSelectedSeller(value);
   };
+
+  console.log(selectedSeller);
+  const { token } = getLocalStorage('user');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -35,32 +40,36 @@ function FormAddress({ products }) {
 
     const sale = {
       userId: id,
-      sellerId: 1,
+      sellerId: selectedSeller,
       totalPrice: Number(price),
       deliveryAddress: address,
-      deliveryNumber: number,
+      deliveryNumber: parseInt(number, 10),
       products,
     };
-
     console.log(sale);
-
     try {
-      const response = await fetch('http://localhost:3001/sales', {
+      const response = await fetch('http://localhost:3001/sales/register', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', Authorization: `${token}` },
         body: JSON.stringify(sale),
       });
       const data = await response.json();
       if (data.id) {
         navigate(`/customer/orders/${data.id}`);
-      } else {
-        setRegisterError(data.message);
       }
     } catch (error) {
       console.error(error);
-      setRegisterError('Ocorreu um erro ao tentar fazer registro');
     }
   };
+
+  useEffect(() => {
+    fetch('http://localhost:3001/sales/seller')
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setSellers(data);
+      });
+  }, []);
 
   const isRegisterFormValid = () => {
     const isValid = address && number;
@@ -76,12 +85,15 @@ function FormAddress({ products }) {
           <select
             type="select"
             name="sellerInput"
-            value={ seller }
             data-testid={ `${ROUTE}__${SELLER}` }
             onChange={ handleSellerChange }
+            value={ selectedSeller }
             required
           >
-            <option value={ 1 }>Opção 1</option>
+            <option>Selecione</option>
+            {sellers.map((seller) => (
+              <option key={ seller.id } value={ seller.id }>{ seller.name }</option>
+            ))}
           </select>
         </label>
 
