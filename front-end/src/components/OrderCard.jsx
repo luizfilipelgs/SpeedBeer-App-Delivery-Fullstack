@@ -4,9 +4,9 @@ import formatPrice from '../utils/formatPrice';
 
 const ROUTE_ORDERS = 'customer_orders';
 const ORDER_ID = 'element-order-id';
-const ORDER_DATE = 'element-order-date';
-const ORDER_STATUS = 'element-order-delivery-status';
-const ORDER_CARD_PRICE = 'element-order-card-price';
+const ORDER_DATE = 'element-order-date-';
+const ORDER_STATUS = 'element-delivery-status';
+const ORDER_CARD_PRICE = 'element-card-price';
 const QUATRO = 4;
 
 function OrderCard({ id, status, date, totalPrice }) {
@@ -58,7 +58,7 @@ function OrderCard({ id, status, date, totalPrice }) {
           </span>
 
           <span
-            data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}${id}` }
+            data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}-${id}` }
             style={ {
               alignSelf: 'center',
             } }
