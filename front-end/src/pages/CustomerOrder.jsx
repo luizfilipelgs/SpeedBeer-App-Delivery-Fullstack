@@ -32,9 +32,9 @@ function CustomerOrder() {
         style={ {
           display: 'flex',
           margin: '24px auto',
+          justifyContent: 'center',
           padding: '8px',
           flexFlow: 'row wrap',
-          justifyContent: 'center',
           minWidth: '448px',
           maxWidth: '1344px',
         } }

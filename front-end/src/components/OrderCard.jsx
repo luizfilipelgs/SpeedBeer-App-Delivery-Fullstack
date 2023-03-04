@@ -17,11 +17,12 @@ function OrderCard({ id, status, date, totalPrice }) {
   return (
     <section
       style={ {
+        display: 'flex',
         border: '1px solid black',
         margin: '8px',
+        justifyContent: 'flex-start',
       } }
     >
-
       <Link
         to={ `/customer/orders/${id}` }
         className="order-container"
@@ -105,11 +106,8 @@ function OrderCard({ id, status, date, totalPrice }) {
             </span>
           </div>
         </div>
-
       </Link>
-
     </section>
-
   );
 }
 
