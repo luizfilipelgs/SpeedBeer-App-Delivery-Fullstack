@@ -34,11 +34,9 @@ function TableOrder({ products }) {
   };
 
   const sumTotalPrice = () => {
-    console.log(listProducts);
     const total = listProducts?.reduce((acc, curr) => (
       curr.totalPrice ? curr.totalPrice + acc : curr.price + acc
     ), 0);
-    console.log(`total: ${total}`);
     setTotalPrice(total.toFixed(2));
     setPrice(total.toFixed(2));
   };

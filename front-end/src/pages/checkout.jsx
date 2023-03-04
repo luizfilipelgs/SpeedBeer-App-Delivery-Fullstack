@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import FormAddress from '../components/formAdress';
+import FormAddress from '../components/formAddress';
 import NavBar from '../components/navbar';
 import TableOrder from '../components/tableOrder';
 import { getLocalStorage } from '../services/localStorage';

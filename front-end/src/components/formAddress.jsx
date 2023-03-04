@@ -44,7 +44,7 @@ function FormAddress({ products }) {
 
     console.log(sale);
 
-    /* try {
+    try {
       const response = await fetch('http://localhost:3001/sales', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -59,7 +59,7 @@ function FormAddress({ products }) {
     } catch (error) {
       console.error(error);
       setRegisterError('Ocorreu um erro ao tentar fazer registro');
-    } */
+    }
   };
 
   const isRegisterFormValid = () => {
@@ -120,5 +120,17 @@ function FormAddress({ products }) {
     </div>
   );
 }
+
+FormAddress.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      quantity: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      totalPrice: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+};
 
 export default FormAddress;
