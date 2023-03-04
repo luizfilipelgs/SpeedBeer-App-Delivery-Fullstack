@@ -14,7 +14,7 @@ app.use('/images', express.static('public'));
 app.use('/login', loginRoute);
 app.use('/register', registerRoute);
 app.use('/products', productsRoute);
-app.use('/sale', saleRoute);
+app.use('/sales', saleRoute);
 app.get('/coffee', (_req, res) => res.status(418).end());
 
 module.exports = app;
