@@ -1,28 +1,31 @@
-import React from 'react';
-// import React, { useEffect, useState } from 'react';
-// import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import OrderCard from '../components/OrderCard';
 import NavBar from '../components/navbar';
-import ListOrder from '../utils/Mock/ListOrder';
 
 function CustomerOrder() {
-  // const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]);
 
-  // useEffect(() => {
-  //   const id = localStorage.getItem('user'); // obter o ID do LocalStorage
-  //   axios.get(`http://localhost:3001/sales/orders/${id}`)
-  //     .then((response) => {
-  //       setOrders(response.data);
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user'));
+
+    if (!userData) {
+      console.error('Dados do usuário não encontrados no Local Storage');
+    } else {
+      const userId = userData.id;
+      axios
+        .get(`http://localhost:3001/sales/orders/${userId}`)
+        .then((response) => {
+          setOrders(response.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
 
   return (
     <div>
-
       <NavBar />
 
       <article
@@ -36,16 +39,15 @@ function CustomerOrder() {
           maxWidth: '1344px',
         } }
       >
-
-        { ListOrder.map((order) => (
+        {orders.map((order) => (
           <OrderCard
             key={ order.id }
             id={ order.id }
             status={ order.status }
-            date={ new Date((order.saleDate)) }
+            date={ new Date(order.saleDate) }
             totalPrice={ order.totalPrice }
           />
-        )) }
+        ))}
       </article>
     </div>
   );
