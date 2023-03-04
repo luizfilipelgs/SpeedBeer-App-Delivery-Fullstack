@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import LoginContext from '../context/LoginContext';
 import { setLocalStorage } from '../services/localStorage';
 
@@ -38,16 +39,12 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
+      const response = await axios.post('http://localhost:3001/login', { email, password });
+      const { data } = response;
       if (data.role) {
         setUser(data);
         setLocalStorage('user', data);
-        navigate(`/${routesLogin[data.role]}`);
+        navigate(`/${routesLogin[data.role]}`, { replace: true });
       } else {
         setLoginError('Você não tem uma conta');
       }
