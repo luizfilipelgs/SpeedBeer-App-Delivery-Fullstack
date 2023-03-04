@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
@@ -26,6 +26,13 @@ function Login() {
   const [loginError, setLoginError] = useState('');
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user && user.role) {
+      navigate(`/${routesLogin[user.role]}`);
+    }
+  }, [navigate]);
 
   const handleEmailChange = ({ target: { value } }) => {
     setEmail(value);
