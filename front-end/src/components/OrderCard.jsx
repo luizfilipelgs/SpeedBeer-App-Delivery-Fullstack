@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import formatPrice from '../utils/formatPrice';
 
 const ROUTE_ORDERS = 'customer_orders';
 const ORDER_ID = 'element-order-id';
@@ -11,7 +10,7 @@ const QUATRO = 4;
 
 function OrderCard({ id, status, date, totalPrice }) {
   const formattedDate = new Date(Date.parse(date)).toLocaleDateString('pt-BR');
-  const formattedPrice = formatPrice(totalPrice);
+  const formattedPrice = totalPrice.replace('.', ',');
   const formattedNum = id.toString().padStart(QUATRO, 0);
 
   return (
