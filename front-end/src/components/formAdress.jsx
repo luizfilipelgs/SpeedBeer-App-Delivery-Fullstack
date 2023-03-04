@@ -9,7 +9,7 @@ const NUMBER = 'input-address-number';
 const SELLER = 'select-seller';
 const SUBMIT = 'button-submit-order';
 
-function FormAddress() {
+function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
   const [number, setNumber] = useState(0);
   const [address, setAddress] = useState('');
@@ -39,9 +39,12 @@ function FormAddress() {
       totalPrice: Number(price),
       deliveryAddress: address,
       deliveryNumber: number,
+      products,
     };
 
-    try {
+    console.log(sale);
+
+    /* try {
       const response = await fetch('http://localhost:3001/sales', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -56,7 +59,7 @@ function FormAddress() {
     } catch (error) {
       console.error(error);
       setRegisterError('Ocorreu um erro ao tentar fazer registro');
-    }
+    } */
   };
 
   const isRegisterFormValid = () => {
@@ -98,7 +101,7 @@ function FormAddress() {
         <label htmlFor="numberInput">
           Número
           <input
-            type="number"
+            type="text"
             name="numberInput"
             value={ number }
             data-testid={ `${ROUTE}__${NUMBER}` }

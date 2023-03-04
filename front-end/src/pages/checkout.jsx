@@ -21,8 +21,8 @@ function Checkout() {
       <NavBar />
       <h4>Finalizar Pedido</h4>
       <section>
-        <TableOrder products={ products } setProducts={ setProducts } />
-        <FormAddress />
+        <TableOrder products={ products } />
+        <FormAddress products={ products } />
       </section>
     </div>
   );
