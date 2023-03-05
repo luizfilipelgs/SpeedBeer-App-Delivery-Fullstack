@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { getLocalStorage, delLocalStorage } from '../services/localStorage';
-import '../App.css';
-
-const ROUTE = 'customer_products';
-const PRODUCTS = 'element-navbar-link-products';
-const ORDERS = 'element-navbar-link-orders';
-const FULL_NAME = 'element-navbar-user-full-name';
-const LOGOUT = 'element-navbar-link-logout';
+import {
+  CUSTOMER_PRODUCTS,
+  PRODUCTS_LINK,
+  ORDERS_LINK,
+  FULL_NAME,
+  LOGOUT,
+} from '../utils/Types';
 
 function NavBar() {
   const user = getLocalStorage('user');
@@ -48,7 +48,7 @@ function NavBar() {
               to="/customer/products"
               activeclassname="active"
               className="nav-link"
-              data-testid={ `${ROUTE}__${PRODUCTS}` }
+              data-testid={ `${CUSTOMER_PRODUCTS}__${PRODUCTS_LINK}` }
               style={ {
                 display: 'flex',
                 padding: '16px',
@@ -65,7 +65,7 @@ function NavBar() {
               to="/customer/orders"
               activeclassname="active"
               className="nav-link"
-              data-testid={ `${ROUTE}__${ORDERS}` }
+              data-testid={ `${CUSTOMER_PRODUCTS}__${ORDERS_LINK}` }
               style={ {
                 display: 'flex',
                 padding: '16px',
@@ -92,7 +92,7 @@ function NavBar() {
           } }
         >
           <li
-            data-testid={ `${ROUTE}__${FULL_NAME}` }
+            data-testid={ `${CUSTOMER_PRODUCTS}__${FULL_NAME}` }
             style={ {
               display: 'flex',
               padding: '16px',
@@ -107,7 +107,7 @@ function NavBar() {
           <li>
             <button
               type="button"
-              data-testid={ `${ROUTE}__${LOGOUT}` }
+              data-testid={ `${CUSTOMER_PRODUCTS}__${LOGOUT}` }
               onClick={ handleLogout }
               style={ {
                 display: 'flex',

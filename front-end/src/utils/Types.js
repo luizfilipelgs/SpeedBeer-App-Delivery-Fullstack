@@ -32,3 +32,10 @@ export const ADDRESS = 'input-address';
 export const NUMBER_ADDRESS = 'input-address-number';
 export const SELLER = 'select-seller';
 export const SUBMIT = 'button-submit-order';
+
+// Navbar.jsx
+export const CUSTOMER_PRODUCTS = 'customer_products';
+export const PRODUCTS_LINK = 'element-navbar-link-products';
+export const ORDERS_LINK = 'element-navbar-link-orders';
+export const FULL_NAME = 'element-navbar-user-full-name';
+export const LOGOUT = 'element-navbar-link-logout';
