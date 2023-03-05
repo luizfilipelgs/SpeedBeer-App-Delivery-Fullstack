@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import NavBar from '../components/navbar';
 import ProductCard from '../components/productCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
@@ -13,12 +14,26 @@ function Products() {
 
   const navigate = useNavigate();
 
+  // const getAllProducts = async () => {
+  //   try {
+  //     const response = await fetch('http://localhost:3001/products', {
+  //       method: 'GET',
+  //     });
+  //     const data = await response.json();
+  //     if (data) {
+  //       setProducts(data);
+  //     } else {
+  //       console.log('Ocorreu um erro');
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const getAllProducts = async () => {
     try {
-      const response = await fetch('http://localhost:3001/products', {
-        method: 'GET',
-      });
-      const data = await response.json();
+      const response = await axios.get('http://localhost:3001/products');
+      const { data } = response;
       if (data) {
         setProducts(data);
       } else {
