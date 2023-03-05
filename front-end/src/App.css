@@ -136,3 +136,74 @@
 .ver-carrinho:hover {
   background-color: #3e8e41;
 }
+
+/* register page */
+.registro {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 1.2rem;
+  font-weight: 800;
+  gap: 1rem;
+  padding: 24px;
+  width: 32vw;
+}
+
+.registro fieldset {
+  border: none;
+  padding: 0;
+}
+
+.registro form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.registro label {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.registro input {
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.registro button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.registro button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.registro p {
+  color: red;
+}
+
+.registro-container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
