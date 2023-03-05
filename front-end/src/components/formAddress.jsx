@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { getLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 
@@ -46,12 +47,10 @@ function FormAddress({ products }) {
       products,
     };
     try {
-      const response = await fetch('http://localhost:3001/sales/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `${token}` },
-        body: JSON.stringify(sale),
+      const response = await axios.post('http://localhost:3001/sales/register', sale, {
+        headers: { Authorization: `${token}` },
       });
-      const data = await response.json();
+      const { data } = response;
       if (data.id) {
         navigate(`/customer/orders/${data.id}`);
       }
