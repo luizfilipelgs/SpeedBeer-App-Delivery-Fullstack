@@ -46,13 +46,19 @@ function TableOrder({ products }) {
 
   const headerTable = () => {
     if (pathname === PATH_CHECKOUT) {
-      return ['item', 'Descrição',
-        'Quantidade', 'Valor Unitário', 'Sub-total', 'Remover'];
+      return [
+        'item',
+        'Descrição',
+        'Quantidade',
+        'Valor Unitário',
+        'Sub-total',
+        'Remover',
+      ];
     }
-    if (pathname === PATH_ORDERS) {
-      return ['item', 'Descrição',
-        'Quantidade', 'Valor Unitário', 'Sub-total', 'Remover'];
+    if (pathname.startsWith(PATH_ORDERS_DETAIL)) {
+      return ['item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
     }
+    return [];
   };
 
   const formatedNumber = (number) => {
