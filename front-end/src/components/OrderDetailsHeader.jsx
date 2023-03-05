@@ -24,25 +24,48 @@ function OrderDetailsHeader({
 
   return (
     <div>
-      <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_ID}${id}` }>
+      <span
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_ID}${id}` }
+        style={ {
+          margin: '4px auto',
+          padding: '8px',
+        } }
+      >
         PEDIDO
         {' '}
         {formattedNum}
         {' '}
       </span>
 
-      <span>
+      <span
+        style={ {
+          margin: '4px auto',
+          padding: '8px',
+        } }
+      >
         <span>P. Venda: </span>
         <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_SELLER_NAME}` }>
           {sellerName}
         </span>
       </span>
 
-      <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_DATE}` }>
+      <span
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_DATE}` }
+        style={ {
+          margin: '4px auto',
+          padding: '8px',
+        } }
+      >
         {formattedDate}
       </span>
 
-      <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_STATUS}` }>
+      <span
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_STATUS}` }
+        style={ {
+          margin: '4px auto',
+          padding: '8px',
+        } }
+      >
         {saleStatus}
       </span>
 
@@ -51,6 +74,10 @@ function OrderDetailsHeader({
         data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_BUTTON_CHECK}` }
         disabled={ saleStatus !== 'Em Trânsito' }
         type="button"
+        style={ {
+          margin: '4px auto',
+          padding: '8px',
+        } }
       >
         MARCAR COMO ENTREGUE
       </button>
