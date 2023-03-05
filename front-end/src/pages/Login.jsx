@@ -46,7 +46,10 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/login', { email, password });
+      const response = await axios.post('http://localhost:3001/login', {
+        email,
+        password,
+      });
       const { data } = response;
       if (data.role) {
         setUser(data);

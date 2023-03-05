@@ -103,10 +103,8 @@ function ProductCard({ product, sumTotalPrice }) {
           display: 'flex',
           justifyContent: 'center',
           minHeight: '10px',
-
         } }
       >
-
         <img
           src={ product.urlImage }
           alt={ product.name }
@@ -131,7 +129,6 @@ function ProductCard({ product, sumTotalPrice }) {
           minWidth: '100%',
         } }
       >
-
         <p
           data-testid={ `${ROUTE}__${TITLE}-${product.id}` }
           style={ {
@@ -150,7 +147,6 @@ function ProductCard({ product, sumTotalPrice }) {
             marginBottom: '10px',
           } }
         >
-
           {`R$ ${formattedNumber(product.price)}`}
         </span>
 
@@ -166,7 +162,6 @@ function ProductCard({ product, sumTotalPrice }) {
             minWidth: '150px',
           } }
         >
-
           <button
             className="increment-button"
             type="button"

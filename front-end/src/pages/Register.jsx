@@ -45,13 +45,17 @@ function Register() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/register', {
-        name,
-        email,
-        password,
-      }, {
-        headers: { 'Content-Type': 'application/json' },
-      });
+      const response = await axios.post(
+        'http://localhost:3001/register',
+        {
+          name,
+          email,
+          password,
+        },
+        {
+          headers: { 'Content-Type': 'application/json' },
+        },
+      );
       const { data } = response;
       if (data.role) {
         setUser(data);
@@ -126,7 +130,9 @@ function Register() {
             CADASTRAR
           </button>
         </form>
-        { registerError && <p data-testid={ `${ROUTE}__${ERROR}` }>{registerError}</p> }
+        {registerError && (
+          <p data-testid={ `${ROUTE}__${ERROR}` }>{registerError}</p>
+        )}
       </fieldset>
     </div>
   );

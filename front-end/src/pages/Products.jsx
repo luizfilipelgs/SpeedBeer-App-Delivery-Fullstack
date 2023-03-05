@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import NavBar from '../components/navbar';
-import ProductCard from '../components/productCard';
+import NavBar from '../components/Navbar';
+import ProductCard from '../components/ProductCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import formattedNumber from '../utils/formattedNumber';
 
@@ -90,7 +90,6 @@ function Products() {
         disabled={ totalPrice === 0 || totalPrice === undefined }
       >
         Ver Carrinho:
-
         <span> Total: R$ </span>
         <span data-testid={ `${ROUTE}__${PRICE}` }>
           {formattedNumber(totalPrice)}

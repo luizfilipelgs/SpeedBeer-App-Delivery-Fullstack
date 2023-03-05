@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import FormAddress from '../components/formAddress';
-import NavBar from '../components/navbar';
-import TableOrder from '../components/tableOrder';
+import FormAddress from '../components/FormAddress';
+import NavBar from '../components/Navbar';
+import TableOrder from '../components/TableOrder';
 import { getLocalStorage } from '../services/localStorage';
 
 function Checkout() {

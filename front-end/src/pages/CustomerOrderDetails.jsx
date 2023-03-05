@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
-import NavBar from '../components/navbar';
+import NavBar from '../components/Navbar';
 import OrderDetailsHeader from '../components/OrderDetailsHeader';
-import TableOrder from '../components/tableOrder';
+import TableOrder from '../components/TableOrder';
 import { getLocalStorage } from '../services/localStorage';
 
 function CustomerOrder() {
@@ -40,7 +40,8 @@ function CustomerOrder() {
     const newStatus = status === 'Pendente' ? 'Entregue' : 'Pendente';
     const saleId = location.pathname.split('/')[3];
 
-    axios.put(`http://localhost:3001/sales/status/${saleId}`, { newStatus })
+    axios
+      .put(`http://localhost:3001/sales/status/${saleId}`, { newStatus })
       .then(() => {
         setStatus(newStatus);
       })
@@ -50,7 +51,6 @@ function CustomerOrder() {
   };
 
   return (
-
     <div>
       <NavBar />
 
@@ -65,7 +65,6 @@ function CustomerOrder() {
         />
       </section>
       <TableOrder products={ products } />
-
     </div>
   );
 }
