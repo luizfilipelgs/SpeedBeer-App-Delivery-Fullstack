@@ -24,9 +24,7 @@ function OrderDetailsHeader({
 
   return (
     <div>
-      <span
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_ID}${id}` }
-      >
+      <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_ID}${id}` }>
         PEDIDO
         {' '}
         {formattedNum}
@@ -40,23 +38,18 @@ function OrderDetailsHeader({
         </span>
       </span>
 
-      <span
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_DATE}` }
-      >
+      <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_DATE}` }>
         {formattedDate}
-
       </span>
 
-      <span
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_STATUS}` }
-      >
+      <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_STATUS}` }>
         {saleStatus}
-
       </span>
 
       <button
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_BUTTON_CHECK}` }
         onClick={ () => newStatus('Entregue') }
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_BUTTON_CHECK}` }
+        disabled={ saleStatus !== 'Em Trânsito' }
         type="button"
       >
         MARCAR COMO ENTREGUE
