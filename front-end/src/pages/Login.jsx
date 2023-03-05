@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
+import { isLoginFormValid } from '../utils/ValidationUtils';
 import {
   ROUTE_LOGIN,
   EMAIL,
@@ -10,7 +11,6 @@ import {
   LOGIN,
   REGISTER,
   ERROR,
-  MIN_NUMBER_PASSWORD,
 } from '../utils/Types';
 
 const routesLogin = {
@@ -28,7 +28,6 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // getLocalStorage('user')
     const user = getLocalStorage('user');
     if (user && user.role) {
       navigate(`/${routesLogin[user.role]}`);
@@ -65,12 +64,6 @@ function Login() {
     }
   };
 
-  const isValidEmail = (validEmail) => /\S+@\S+\.\S+/.test(validEmail);
-
-  const isValidPassword = (validPassword) => validPassword.length >= MIN_NUMBER_PASSWORD;
-
-  const isLoginFormValid = () => isValidEmail(email) && isValidPassword(password);
-
   return (
     <fieldset>
       <form onSubmit={ handleSubmit }>
@@ -101,7 +94,7 @@ function Login() {
         <button
           type="submit"
           data-testid={ `${ROUTE_LOGIN}__${LOGIN}` }
-          disabled={ !isLoginFormValid() }
+          disabled={ !isLoginFormValid(email, password) }
         >
           LOGIN
         </button>
