@@ -1,13 +1,14 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import formattedNumber from '../utils/formattedNumber';
-
-const ROUTE_ORDERS = 'customer_orders';
-const ORDER_ID = 'element-order-id';
-const ORDER_DATE = 'element-order-date-';
-const ORDER_STATUS = 'element-delivery-status';
-const ORDER_CARD_PRICE = 'element-card-price';
-const QUATRO = 4;
+import {
+  CUSTOMER_ORDERS,
+  ORDER_ID,
+  ORDER_DATE,
+  ORDER_STATUS,
+  ORDER_CARD_PRICE,
+  QUATRO,
+} from '../utils/Types';
 
 function OrderCard({ id, status, date, totalPrice }) {
   const formattedDate = new Date(Date.parse(date)).toLocaleDateString('pt-BR');
@@ -57,7 +58,7 @@ function OrderCard({ id, status, date, totalPrice }) {
           </span>
 
           <span
-            data-testid={ `${ROUTE_ORDERS}__${ORDER_ID}-${id}` }
+            data-testid={ `${CUSTOMER_ORDERS}__${ORDER_ID}-${id}` }
             style={ {
               alignSelf: 'center',
             } }
@@ -67,7 +68,7 @@ function OrderCard({ id, status, date, totalPrice }) {
         </div>
 
         <span
-          data-testid={ `${ROUTE_ORDERS}__${ORDER_STATUS}-${id}` }
+          data-testid={ `${CUSTOMER_ORDERS}__${ORDER_STATUS}-${id}` }
           className="status-content"
           style={ {
             display: 'flex',
@@ -95,13 +96,13 @@ function OrderCard({ id, status, date, totalPrice }) {
             minWidth: '100px',
           } }
         >
-          <span data-testid={ `${ROUTE_ORDERS}__${ORDER_DATE}-${id}` }>
+          <span data-testid={ `${CUSTOMER_ORDERS}__${ORDER_DATE}-${id}` }>
             {formattedDate}
           </span>
 
           <div>
             <span>R$: </span>
-            <span data-testid={ `${ROUTE_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
+            <span data-testid={ `${CUSTOMER_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
               {formattedNumber(totalPrice)}
             </span>
           </div>
