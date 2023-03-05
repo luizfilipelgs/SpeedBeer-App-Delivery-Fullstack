@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import LoginContext from '../context/LoginContext';
 import { setLocalStorage } from '../services/localStorage';
 
@@ -44,12 +45,14 @@ function Register() {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/register', {
-        method: 'POST',
+      const response = await axios.post('http://localhost:3001/register', {
+        name,
+        email,
+        password,
+      }, {
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
       });
-      const data = await response.json();
+      const { data } = response;
       if (data.role) {
         setUser(data);
         setLocalStorage('user', data);
