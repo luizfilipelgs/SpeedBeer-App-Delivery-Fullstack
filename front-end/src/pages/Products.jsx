@@ -5,9 +5,10 @@ import NavBar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import formattedNumber from '../utils/formattedNumber';
-
-const ROUTE = 'customer_products';
-const PRICE = 'checkout-bottom-value';
+import {
+  CUSTOMER_PRODUCTS,
+  CHECKOUT_PRICE,
+} from '../utils/Types';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -91,7 +92,7 @@ function Products() {
       >
         Ver Carrinho:
         <span> Total: R$ </span>
-        <span data-testid={ `${ROUTE}__${PRICE}` }>
+        <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
           {formattedNumber(totalPrice)}
         </span>
       </button>

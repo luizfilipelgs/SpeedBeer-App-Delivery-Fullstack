@@ -9,7 +9,6 @@ export const SUB_TOTAL = 'element-order-table-sub-total';
 export const REMOVE = 'element-order-table-remove';
 
 // productCard.jsx
-export const ROUTE = 'customer_products';
 export const CARD_PRICE = 'element-card-price';
 export const IMAGE = 'img-card-bg-image';
 export const TITLE = 'element-card-title';
@@ -55,3 +54,6 @@ export const LOGIN = 'button-login';
 export const REGISTER = 'button-register';
 export const ERROR = 'element-invalid-email';
 export const MIN_NUMERO_PASSWORD = 6;
+
+// Products.jsx
+export const CHECKOUT_PRICE = 'checkout-bottom-value';

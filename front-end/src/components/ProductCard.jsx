@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import formattedNumber from '../utils/formattedNumber';
 import {
-  ROUTE,
+  CUSTOMER_PRODUCTS,
   CARD_PRICE,
   IMAGE,
   TITLE,
@@ -108,7 +108,7 @@ function ProductCard({ product, sumTotalPrice }) {
         <img
           src={ product.urlImage }
           alt={ product.name }
-          data-testid={ `${ROUTE}__${IMAGE}-${product.id}` }
+          data-testid={ `${CUSTOMER_PRODUCTS}__${IMAGE}-${product.id}` }
           style={ {
             objectFit: 'cover',
             width: '150px',
@@ -130,7 +130,7 @@ function ProductCard({ product, sumTotalPrice }) {
         } }
       >
         <p
-          data-testid={ `${ROUTE}__${TITLE}-${product.id}` }
+          data-testid={ `${CUSTOMER_PRODUCTS}__${TITLE}-${product.id}` }
           style={ {
             fontSize: '1.2rem',
             marginBottom: '10px',
@@ -140,7 +140,7 @@ function ProductCard({ product, sumTotalPrice }) {
         </p>
 
         <span
-          data-testid={ `${ROUTE}__${CARD_PRICE}-${product.id}` }
+          data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_PRICE}-${product.id}` }
           style={ {
             fontSize: '1.4rem',
             fontWeight: 'bold',
@@ -165,7 +165,7 @@ function ProductCard({ product, sumTotalPrice }) {
           <button
             className="increment-button"
             type="button"
-            data-testid={ `${ROUTE}__${RM}-${product.id}` }
+            data-testid={ `${CUSTOMER_PRODUCTS}__${RM}-${product.id}` }
             onClick={ subQuantity }
           >
             -
@@ -174,7 +174,7 @@ function ProductCard({ product, sumTotalPrice }) {
             className="increment-button no-spinners"
             type="number"
             value={ count }
-            data-testid={ `${ROUTE}__${CARD_QUANTITY}-${product.id}` }
+            data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_QUANTITY}-${product.id}` }
             onChange={ handleQuantity }
             style={ {
               textAlign: 'center',
@@ -183,7 +183,7 @@ function ProductCard({ product, sumTotalPrice }) {
           <button
             className="increment-button"
             type="button"
-            data-testid={ `${ROUTE}__${ADD}-${product.id}` }
+            data-testid={ `${CUSTOMER_PRODUCTS}__${ADD}-${product.id}` }
             onClick={ sumQuantity }
           >
             +
