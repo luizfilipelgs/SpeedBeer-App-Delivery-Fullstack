@@ -4,12 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
-
-const ROUTE = 'customer_checkout';
-const ADDRESS = 'input-address';
-const NUMBER = 'input-address-number';
-const SELLER = 'select-seller';
-const SUBMIT = 'button-submit-order';
+import {
+  CUSTOMER_CHECKOUT,
+  ADDRESS,
+  NUMBER_ADDRESS,
+  SELLER,
+  SUBMIT,
+} from '../utils/Types';
 
 function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
@@ -81,7 +82,7 @@ function FormAddress({ products }) {
           <select
             type="select"
             name="sellerInput"
-            data-testid={ `${ROUTE}__${SELLER}` }
+            data-testid={ `${CUSTOMER_CHECKOUT}__${SELLER}` }
             onChange={ handleSellerChange }
             value={ selectedSeller }
             required
@@ -100,7 +101,7 @@ function FormAddress({ products }) {
             name="addressInput"
             value={ address }
             placeholder="Av.x, Bairro Y"
-            data-testid={ `${ROUTE}__${ADDRESS}` }
+            data-testid={ `${CUSTOMER_CHECKOUT}__${ADDRESS}` }
             onChange={ handleAddressChange }
             required
           />
@@ -112,14 +113,14 @@ function FormAddress({ products }) {
             type="text"
             name="numberInput"
             value={ number }
-            data-testid={ `${ROUTE}__${NUMBER}` }
+            data-testid={ `${CUSTOMER_CHECKOUT}__${NUMBER_ADDRESS}` }
             onChange={ handleNumberChange }
             required
           />
         </label>
         <button
           type="submit"
-          data-testid={ `${ROUTE}__${SUBMIT}` }
+          data-testid={ `${CUSTOMER_CHECKOUT}__${SUBMIT}` }
           disabled={ !isRegisterFormValid() }
         >
           FINALIZAR PEDIDO

@@ -17,7 +17,7 @@ export const RM = 'button-card-rm-item';
 export const CARD_QUANTITY = 'input-card-quantity';
 export const ADD = 'button-card-add-item';
 
-// OrderDetailsHeader
+// OrderDetailsHeader.jsx
 export const ROUTE_DETAILS = 'customer_order_details';
 export const ORDER_DETAILS_ID = 'element-order-details-label-order-id';
 export const ORDER_DETAILS_SELLER_NAME = 'element-order-details-label-seller-name';
@@ -25,3 +25,10 @@ export const ORDER_DETAILS_DATE = 'element-order-details-label-order-date';
 export const ORDER_DETAILS_STATUS = 'element-order-details-label-delivery-status';
 export const ORDER_DETAILS_BUTTON_CHECK = 'button-delivery-check';
 export const QUATRO = 4;
+
+// FormAddress.jsx
+export const CUSTOMER_CHECKOUT = 'customer_checkout';
+export const ADDRESS = 'input-address';
+export const NUMBER_ADDRESS = 'input-address-number';
+export const SELLER = 'select-seller';
+export const SUBMIT = 'button-submit-order';
