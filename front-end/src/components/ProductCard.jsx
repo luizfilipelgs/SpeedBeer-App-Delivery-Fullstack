@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
-import formattedNumber from '../utils/formattedNumber';
+import { formattedNumber } from '../utils/ValidationUtils';
 import {
   CUSTOMER_PRODUCTS,
   CARD_PRICE,

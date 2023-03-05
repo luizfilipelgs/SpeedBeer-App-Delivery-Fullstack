@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import formattedNumber from '../utils/formattedNumber';
+import { formattedNumber } from '../utils/ValidationUtils';
 import {
   CUSTOMER_ORDERS,
   ORDER_ID,

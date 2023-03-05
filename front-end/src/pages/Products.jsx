@@ -4,7 +4,7 @@ import axios from 'axios';
 import NavBar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
-import formattedNumber from '../utils/formattedNumber';
+import { formattedNumber } from '../utils/ValidationUtils';
 import {
   CUSTOMER_PRODUCTS,
   CHECKOUT_PRICE,

@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 import { verifyRoute, verifyRouteInTotalPrice } from '../utils/verifyRoute';
-import formattedNumber from '../utils/formattedNumber';
+import { formattedNumber } from '../utils/ValidationUtils';
 import {
   PATH_CHECKOUT,
   PATH_ORDERS_DETAIL,
