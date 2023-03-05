@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
+import { verifyRoute, verifyRouteInTotalPrice } from '../utils/verifyRoute';
 
 const PATH_CHECKOUT = '/customer/checkout';
 const PATH_ORDERS = '/customer/orders';
@@ -12,26 +13,12 @@ const QUANTITY = 'element-order-table-quantity';
 const PRICE = 'element-order-table-unit-price';
 const SUB_TOTAL = 'element-order-table-sub-total';
 const REMOVE = 'element-order-table-remove';
-const TOTAL = 'element-order-total-price';
 
 function TableOrder({ products }) {
   const { setPrice } = useContext(totalPriceContext);
   const [listProducts, setListProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const { pathname } = useLocation();
-
-  const verifyRoute = () => {
-    let ROUTE = '';
-
-    if (pathname === PATH_CHECKOUT) {
-      ROUTE = 'customer_checkout';
-      return ROUTE;
-    }
-    if (pathname === PATH_ORDERS) {
-      ROUTE = 'customer_order_details';
-      return ROUTE;
-    }
-  };
 
   const sumTotalPrice = () => {
     const total = listProducts?.reduce((acc, curr) => (
@@ -138,7 +125,7 @@ function TableOrder({ products }) {
       <div>
         <h2>Total: R$</h2>
         <h2
-          data-testid={ `${verifyRoute()}__${TOTAL}` }
+          data-testid={ verifyRouteInTotalPrice(pathname) }
         >
           { formatedNumber(totalPrice) }
         </h2>
