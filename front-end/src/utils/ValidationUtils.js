@@ -18,6 +18,8 @@ export const isLoginFormValid = (email, password) => {
 };
 
 export const isRegisterFormValid = (name, email, password) => {
-  const valid = isValidEmail(email) && isValidPassword(password) && isValidName(name);
-  return valid;
+  const isNameValid = isValidName(name);
+  const isEmailValid = isValidEmail(email);
+  const isPasswordValid = isValidPassword(password);
+  return isNameValid && isEmailValid && isPasswordValid;
 };
