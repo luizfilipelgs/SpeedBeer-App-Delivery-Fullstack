@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
 import { setLocalStorage } from '../services/localStorage';
-
-const ROUTE = 'common_register';
-const EMAIL = 'input-email';
-const PASSWORD = 'input-password';
-const NAME = 'input-name';
-const REGISTER = 'button-register';
-const ERROR = 'element-invalid_register';
-
-const MIN_NUMERO_PASSWORD = 6;
-const MIN_NUMERO_NAME = 12;
+import {
+  ROUTE_REGISTER,
+  EMAIL,
+  PASSWORD,
+  INPUT_NAME,
+  REGISTER,
+  ERROR_REGISTER,
+  MIN_NUMBER_PASSWORD,
+  MIN_NUMBER_NAME,
+} from '../utils/Types';
 
 const routesLogin = {
   customer: 'customer/products',
@@ -72,9 +72,9 @@ function Register() {
 
   const isValidEmail = (validEmail) => /\S+@\S+\.\S+/.test(validEmail);
 
-  const isValidPassword = (validPassword) => validPassword.length >= MIN_NUMERO_PASSWORD;
+  const isValidPassword = (validPassword) => validPassword.length >= MIN_NUMBER_PASSWORD;
 
-  const isValidName = (validName) => validName.length >= MIN_NUMERO_NAME;
+  const isValidName = (validName) => validName.length >= MIN_NUMBER_NAME;
 
   const isRegisterFormValid = () => {
     const valid = isValidEmail(email) && isValidPassword(password) && isValidName(name);
@@ -93,7 +93,7 @@ function Register() {
               name="nameInput"
               value={ name }
               placeholder="Seu nome"
-              data-testid={ `${ROUTE}__${NAME}` }
+              data-testid={ `${ROUTE_REGISTER}__${INPUT_NAME}` }
               onChange={ handleNameChange }
               required
             />
@@ -105,7 +105,7 @@ function Register() {
               name="emailInput"
               value={ email }
               placeholder="email@dominio.com"
-              data-testid={ `${ROUTE}__${EMAIL}` }
+              data-testid={ `${ROUTE_REGISTER}__${EMAIL}` }
               onChange={ handleEmailChange }
               required
             />
@@ -117,21 +117,23 @@ function Register() {
               name="passwordInput"
               value={ password }
               placeholder="******"
-              data-testid={ `${ROUTE}__${PASSWORD}` }
+              data-testid={ `${ROUTE_REGISTER}__${PASSWORD}` }
               onChange={ handlePasswordChange }
               required
             />
           </label>
           <button
             type="submit"
-            data-testid={ `${ROUTE}__${REGISTER}` }
+            data-testid={ `${ROUTE_REGISTER}__${REGISTER}` }
             disabled={ !isRegisterFormValid() }
           >
             CADASTRAR
           </button>
         </form>
         {registerError && (
-          <p data-testid={ `${ROUTE}__${ERROR}` }>{registerError}</p>
+          <p data-testid={ `${ROUTE_REGISTER}__${ERROR_REGISTER}` }>
+            {registerError}
+          </p>
         )}
       </fieldset>
     </div>

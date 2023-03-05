@@ -51,9 +51,15 @@ export const ROUTE_LOGIN = 'common_login';
 export const EMAIL = 'input-email';
 export const PASSWORD = 'input-password';
 export const LOGIN = 'button-login';
-export const REGISTER = 'button-register';
 export const ERROR = 'element-invalid-email';
-export const MIN_NUMERO_PASSWORD = 6;
+export const MIN_NUMBER_PASSWORD = 6;
 
 // Products.jsx
 export const CHECKOUT_PRICE = 'checkout-bottom-value';
+
+// Register.jsx
+export const ROUTE_REGISTER = 'common_register';
+export const INPUT_NAME = 'input-name';
+export const REGISTER = 'button-register';
+export const ERROR_REGISTER = 'element-invalid_register';
+export const MIN_NUMBER_NAME = 12;

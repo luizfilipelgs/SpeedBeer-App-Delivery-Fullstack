@@ -10,7 +10,7 @@ import {
   LOGIN,
   REGISTER,
   ERROR,
-  MIN_NUMERO_PASSWORD,
+  MIN_NUMBER_PASSWORD,
 } from '../utils/Types';
 
 const routesLogin = {
@@ -66,7 +66,7 @@ function Login() {
 
   const isValidEmail = (validEmail) => /\S+@\S+\.\S+/.test(validEmail);
 
-  const isValidPassword = (validPassword) => validPassword.length >= MIN_NUMERO_PASSWORD;
+  const isValidPassword = (validPassword) => validPassword.length >= MIN_NUMBER_PASSWORD;
 
   const isLoginFormValid = () => isValidEmail(email) && isValidPassword(password);
 
