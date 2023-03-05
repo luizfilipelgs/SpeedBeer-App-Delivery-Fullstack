@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
+import formattedNumber from '../utils/formattedNumber';
 
 const ROUTE = 'customer_products';
 const PRICE = 'element-card-price';
@@ -87,7 +88,7 @@ function ProductCard({ product, sumTotalPrice }) {
         <span
           data-testid={ `${ROUTE}__${PRICE}-${product.id}` }
         >
-          {`R$ ${product.price.replace('.', ',')}`}
+          {`R$ ${formattedNumber(product.price)}`}
         </span>
         <img
           src={ product.urlImage }
