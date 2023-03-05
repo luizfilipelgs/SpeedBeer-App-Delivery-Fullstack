@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
-import { setLocalStorage } from '../services/localStorage';
+import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import {
   ROUTE_LOGIN,
   EMAIL,
@@ -28,7 +28,8 @@ function Login() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    // getLocalStorage('user')
+    const user = getLocalStorage('user');
     if (user && user.role) {
       navigate(`/${routesLogin[user.role]}`);
     }

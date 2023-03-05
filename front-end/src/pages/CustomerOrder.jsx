@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import OrderCard from '../components/OrderCard';
 import NavBar from '../components/Navbar';
+import { getLocalStorage } from '../services/localStorage';
 
 function CustomerOrder() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem('user'));
+    const userData = getLocalStorage('user');
 
     if (!userData) {
       console.error('Dados do usuário não encontrados no Local Storage');
