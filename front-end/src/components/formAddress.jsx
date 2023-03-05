@@ -31,7 +31,6 @@ function FormAddress({ products }) {
     setSelectedSeller(value);
   };
 
-  console.log(selectedSeller);
   const { token } = getLocalStorage('user');
 
   const handleSubmit = async (e) => {
@@ -46,7 +45,6 @@ function FormAddress({ products }) {
       deliveryNumber: parseInt(number, 10),
       products,
     };
-    console.log(sale);
     try {
       const response = await fetch('http://localhost:3001/sales/register', {
         method: 'POST',
@@ -66,7 +64,6 @@ function FormAddress({ products }) {
     fetch('http://localhost:3001/sales/seller')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setSellers(data);
       });
   }, []);
