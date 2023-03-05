@@ -65,7 +65,14 @@ function Products() {
   return (
     <div>
       <NavBar />
-      <section>
+      <section
+        style={ {
+          display: 'flex',
+          flexFlow: 'row wrap',
+          justifyContent: 'center',
+          minHeight: '10px',
+        } }
+      >
         {products.map((product) => (
           <ProductCard
             key={ product.id }
@@ -76,12 +83,15 @@ function Products() {
         ))}
       </section>
       <button
+        className="ver-carrinho"
         type="button"
         data-testid="customer_products__button-cart"
         onClick={ handleClick }
         disabled={ totalPrice === 0 || totalPrice === undefined }
       >
         Ver Carrinho:
+
+        <span> Total: R$ </span>
         <span data-testid={ `${ROUTE}__${PRICE}` }>
           {formattedNumber(totalPrice)}
         </span>

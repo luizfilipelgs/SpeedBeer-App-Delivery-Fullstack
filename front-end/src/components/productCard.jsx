@@ -84,39 +84,116 @@ function ProductCard({ product, sumTotalPrice }) {
   };
 
   return (
-    <div>
-      <div>
-        <span data-testid={ `${ROUTE}__${CARD_PRICE}-${product.id}` }>
-          {`R$ ${formattedNumber(product.price)}`}
-        </span>
+    <div
+      className="card"
+      style={ {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '200px',
+        margin: '20px',
+        padding: '20px',
+        border: '1px solid #ccc',
+        borderRadius: '5px',
+        boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
+      } }
+    >
+      <div
+        style={ {
+          display: 'flex',
+          justifyContent: 'center',
+          minHeight: '10px',
+
+        } }
+      >
+
         <img
           src={ product.urlImage }
           alt={ product.name }
           data-testid={ `${ROUTE}__${IMAGE}-${product.id}` }
+          style={ {
+            objectFit: 'cover',
+            width: '150px',
+            height: '150px',
+            marginBottom: '10px',
+          } }
         />
       </div>
-      <p data-testid={ `${ROUTE}__${TITLE}-${product.id}` }>{product.name}</p>
-      <div>
-        <button
-          type="button"
-          data-testid={ `${ROUTE}__${RM}-${product.id}` }
-          onClick={ subQuantity }
+
+      <div
+        style={ {
+          display: 'flex',
+          // margin: '4px auto',
+          padding: '8px',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          flexDirection: 'column',
+          minWidth: '100%',
+        } }
+      >
+
+        <p
+          data-testid={ `${ROUTE}__${TITLE}-${product.id}` }
+          style={ {
+            fontSize: '1.2rem',
+            marginBottom: '10px',
+          } }
         >
-          -
-        </button>
-        <input
-          type="number"
-          value={ count }
-          data-testid={ `${ROUTE}__${CARD_QUANTITY}-${product.id}` }
-          onChange={ handleQuantity }
-        />
-        <button
-          type="button"
-          data-testid={ `${ROUTE}__${ADD}-${product.id}` }
-          onClick={ sumQuantity }
+          {product.name}
+        </p>
+
+        <span
+          data-testid={ `${ROUTE}__${CARD_PRICE}-${product.id}` }
+          style={ {
+            fontSize: '1.4rem',
+            fontWeight: 'bold',
+            marginBottom: '10px',
+          } }
         >
-          +
-        </button>
+
+          {`R$ ${formattedNumber(product.price)}`}
+        </span>
+
+        <div
+          style={ {
+            display: 'flex',
+            padding: '8px',
+            width: '30%',
+            height: '20px',
+            justifyContent: 'center',
+            textAlign: 'center',
+            flexDirection: 'row',
+            minWidth: '150px',
+          } }
+        >
+
+          <button
+            className="increment-button"
+            type="button"
+            data-testid={ `${ROUTE}__${RM}-${product.id}` }
+            onClick={ subQuantity }
+          >
+            -
+          </button>
+          <input
+            className="increment-button no-spinners"
+            type="number"
+            value={ count }
+            data-testid={ `${ROUTE}__${CARD_QUANTITY}-${product.id}` }
+            onChange={ handleQuantity }
+            style={ {
+              textAlign: 'center',
+            } }
+          />
+          <button
+            className="increment-button"
+            type="button"
+            data-testid={ `${ROUTE}__${ADD}-${product.id}` }
+            onClick={ sumQuantity }
+          >
+            +
+          </button>
+        </div>
       </div>
     </div>
   );
