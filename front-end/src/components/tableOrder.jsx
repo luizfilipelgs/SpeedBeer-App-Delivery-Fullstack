@@ -77,7 +77,7 @@ function TableOrder({ products }) {
         </colgroup>
         <thead>
           <tr>
-            {headerTable().map((header) => (
+            {headerTable()?.map((header) => (
               <th key={ header } scope="col">
                 {header}
               </th>
@@ -87,28 +87,36 @@ function TableOrder({ products }) {
         <tbody>
           {listProducts?.map((product, i) => (
             <tr key={ product.id }>
-              <th data-testid={ `${verifyRoute()}__${NUMBER}-${i}` } scope="row">
+              <th
+                data-testid={ `${verifyRoute(pathname)}__${NUMBER}-${i}` }
+                scope="row"
+              >
                 {i + 1}
               </th>
-              <td data-testid={ `${verifyRoute()}__${NAME}-${i}` }>
+              <td data-testid={ `${verifyRoute(pathname)}__${NAME}-${i}` }>
                 {product.name}
               </td>
-              <td data-testid={ `${verifyRoute()}__${ORDER_QUANTITY}-${i}` }>
+              <td
+                data-testid={ `${verifyRoute(pathname)}__${ORDER_QUANTITY}-${i}` }
+              >
                 {product.quantity}
               </td>
-              <td data-testid={ `${verifyRoute()}__${ORDER_PRICE}-${i}` }>
+              <td data-testid={ `${verifyRoute(pathname)}__${ORDER_PRICE}-${i}` }>
                 {formattedNumber(product.price)}
               </td>
-              <td data-testid={ `${verifyRoute()}__${SUB_TOTAL}-${i}` }>
+              <td data-testid={ `${verifyRoute(pathname)}__${SUB_TOTAL}-${i}` }>
                 {formattedNumber(product.totalPrice)}
               </td>
               {pathname === PATH_CHECKOUT && (
                 <td>
                   <button
-                    data-testid={ `${verifyRoute()}__${REMOVE}-${i}` }
+                    data-testid={ `${verifyRoute(pathname)}__${REMOVE}-${i}` }
                     id={ product.id }
+                    value={ product.id }
                     type="button"
-                    onClick={ () => removeProduct(product.id) }
+                    onClick={ () => {
+                      removeProduct(product.id);
+                    } }
                   >
                     Remover
                   </button>
@@ -118,12 +126,10 @@ function TableOrder({ products }) {
           ))}
         </tbody>
       </table>
-      <div>
-        <h2>Total: R$</h2>
-        <h2 data-testid={ verifyRouteInTotalPrice(pathname) }>
-          {formattedNumber(totalPrice)}
-        </h2>
-      </div>
+      <span>Total: R$ </span>
+      <span data-testid={ verifyRouteInTotalPrice(pathname) }>
+        {formattedNumber(totalPrice)}
+      </span>
     </div>
   );
 }
