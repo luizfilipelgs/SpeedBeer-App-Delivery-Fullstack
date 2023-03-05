@@ -1,5 +1,14 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import {
+  ROUTE_DETAILS,
+  ORDER_DETAILS_ID,
+  ORDER_DETAILS_SELLER_NAME,
+  ORDER_DETAILS_DATE,
+  ORDER_DETAILS_STATUS,
+  ORDER_DETAILS_BUTTON_CHECK,
+  QUATRO,
+} from '../utils/Types';
 
 function OrderDetailsHeader({
   id,
@@ -15,7 +24,9 @@ function OrderDetailsHeader({
 
   return (
     <div>
-      <span>
+      <span
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_ID}${id}` }
+      >
         PEDIDO
         {' '}
         {formattedNum}
@@ -24,14 +35,30 @@ function OrderDetailsHeader({
 
       <span>
         <span>P. Venda: </span>
-        <span>{sellerName}</span>
+        <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_SELLER_NAME}` }>
+          {sellerName}
+        </span>
       </span>
 
-      <span>{formattedDate}</span>
+      <span
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_DATE}` }
+      >
+        {formattedDate}
 
-      <span>{saleStatus}</span>
+      </span>
 
-      <button onClick={ () => newStatus('Entregue') } type="button">
+      <span
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_STATUS}` }
+      >
+        {saleStatus}
+
+      </span>
+
+      <button
+        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_BUTTON_CHECK}` }
+        onClick={ () => newStatus('Entregue') }
+        type="button"
+      >
         MARCAR COMO ENTREGUE
       </button>
     </div>
