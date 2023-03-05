@@ -2,14 +2,15 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import formattedNumber from '../utils/formattedNumber';
-
-const ROUTE = 'customer_products';
-const PRICE = 'element-card-price';
-const IMAGE = 'img-card-bg-image';
-const TITLE = 'element-card-title';
-const RM = 'button-card-rm-item';
-const QUANTITY = 'input-card-quantity';
-const ADD = 'button-card-add-item';
+import {
+  ROUTE,
+  CARD_PRICE,
+  IMAGE,
+  TITLE,
+  RM,
+  CARD_QUANTITY,
+  ADD,
+} from '../utils/Types';
 
 function ProductCard({ product, sumTotalPrice }) {
   const [count, setCount] = useState(0);
@@ -85,9 +86,7 @@ function ProductCard({ product, sumTotalPrice }) {
   return (
     <div>
       <div>
-        <span
-          data-testid={ `${ROUTE}__${PRICE}-${product.id}` }
-        >
+        <span data-testid={ `${ROUTE}__${CARD_PRICE}-${product.id}` }>
           {`R$ ${formattedNumber(product.price)}`}
         </span>
         <img
@@ -96,11 +95,7 @@ function ProductCard({ product, sumTotalPrice }) {
           data-testid={ `${ROUTE}__${IMAGE}-${product.id}` }
         />
       </div>
-      <p
-        data-testid={ `${ROUTE}__${TITLE}-${product.id}` }
-      >
-        {product.name}
-      </p>
+      <p data-testid={ `${ROUTE}__${TITLE}-${product.id}` }>{product.name}</p>
       <div>
         <button
           type="button"
@@ -112,7 +107,7 @@ function ProductCard({ product, sumTotalPrice }) {
         <input
           type="number"
           value={ count }
-          data-testid={ `${ROUTE}__${QUANTITY}-${product.id}` }
+          data-testid={ `${ROUTE}__${CARD_QUANTITY}-${product.id}` }
           onChange={ handleQuantity }
         />
         <button

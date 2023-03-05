@@ -5,15 +5,16 @@ import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 import { verifyRoute, verifyRouteInTotalPrice } from '../utils/verifyRoute';
 import formattedNumber from '../utils/formattedNumber';
-
-const PATH_CHECKOUT = '/customer/checkout';
-const PATH_ORDERS = '/customer/orders';
-const NUMBER = 'element-order-table-item-number';
-const NAME = 'element-order-table-name';
-const QUANTITY = 'element-order-table-quantity';
-const PRICE = 'element-order-table-unit-price';
-const SUB_TOTAL = 'element-order-table-sub-total';
-const REMOVE = 'element-order-table-remove';
+import {
+  PATH_CHECKOUT,
+  PATH_ORDERS_DETAIL,
+  NUMBER,
+  NAME,
+  ORDER_QUANTITY,
+  ORDER_PRICE,
+  SUB_TOTAL,
+  REMOVE,
+} from '../utils/Types';
 
 function TableOrder({ products }) {
   const { setPrice } = useContext(totalPriceContext);
@@ -92,10 +93,10 @@ function TableOrder({ products }) {
               <td data-testid={ `${verifyRoute()}__${NAME}-${i}` }>
                 {product.name}
               </td>
-              <td data-testid={ `${verifyRoute()}__${QUANTITY}-${i}` }>
+              <td data-testid={ `${verifyRoute()}__${ORDER_QUANTITY}-${i}` }>
                 {product.quantity}
               </td>
-              <td data-testid={ `${verifyRoute()}__${PRICE}-${i}` }>
+              <td data-testid={ `${verifyRoute()}__${ORDER_PRICE}-${i}` }>
                 {formattedNumber(product.price)}
               </td>
               <td data-testid={ `${verifyRoute()}__${SUB_TOTAL}-${i}` }>
