@@ -46,3 +46,12 @@ export const ORDER_ID = 'element-order-id';
 export const ORDER_DATE = 'element-order-date-';
 export const ORDER_STATUS = 'element-delivery-status';
 export const ORDER_CARD_PRICE = 'element-card-price';
+
+// Login.jsx
+export const ROUTE_LOGIN = 'common_login';
+export const EMAIL = 'input-email';
+export const PASSWORD = 'input-password';
+export const LOGIN = 'button-login';
+export const REGISTER = 'button-register';
+export const ERROR = 'element-invalid-email';
+export const MIN_NUMERO_PASSWORD = 6;

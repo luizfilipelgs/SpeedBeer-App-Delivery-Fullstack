@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
 import { setLocalStorage } from '../services/localStorage';
-
-const ROUTE = 'common_login';
-const EMAIL = 'input-email';
-const PASSWORD = 'input-password';
-const LOGIN = 'button-login';
-const REGISTER = 'button-register';
-const ERROR = 'element-invalid-email';
-
-const MIN_NUMERO_PASSWORD = 6;
+import {
+  ROUTE_LOGIN,
+  EMAIL,
+  PASSWORD,
+  LOGIN,
+  REGISTER,
+  ERROR,
+  MIN_NUMERO_PASSWORD,
+} from '../utils/Types';
 
 const routesLogin = {
   customer: 'customer/products',
@@ -80,7 +80,7 @@ function Login() {
             name="emailInput"
             value={ email }
             placeholder="email@dominio.com"
-            data-testid={ `${ROUTE}__${EMAIL}` }
+            data-testid={ `${ROUTE_LOGIN}__${EMAIL}` }
             onChange={ handleEmailChange }
             required
           />
@@ -92,27 +92,29 @@ function Login() {
             name="passwordInput"
             value={ password }
             placeholder="******"
-            data-testid={ `${ROUTE}__${PASSWORD}` }
+            data-testid={ `${ROUTE_LOGIN}__${PASSWORD}` }
             onChange={ handlePasswordChange }
             required
           />
         </label>
         <button
           type="submit"
-          data-testid={ `${ROUTE}__${LOGIN}` }
+          data-testid={ `${ROUTE_LOGIN}__${LOGIN}` }
           disabled={ !isLoginFormValid() }
         >
           LOGIN
         </button>
         <button
           type="button"
-          data-testid={ `${ROUTE}__${REGISTER}` }
+          data-testid={ `${ROUTE_LOGIN}__${REGISTER}` }
           onClick={ () => navigate('/register') }
         >
           Ainda não tenho conta
         </button>
       </form>
-      {loginError && <p data-testid={ `${ROUTE}__${ERROR}` }>{loginError}</p>}
+      {loginError && (
+        <p data-testid={ `${ROUTE_LOGIN}__${ERROR}` }>{loginError}</p>
+      )}
     </fieldset>
   );
 }
