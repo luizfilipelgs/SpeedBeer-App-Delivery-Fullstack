@@ -71,7 +71,6 @@ function Register() {
 
   const isRegisterFormValid = () => {
     const valid = isValidEmail(email) && isValidPassword(password) && isValidName(name);
-    console.log(valid);
     return valid;
   };
 
