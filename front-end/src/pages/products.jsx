@@ -4,6 +4,7 @@ import axios from 'axios';
 import NavBar from '../components/navbar';
 import ProductCard from '../components/productCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
+import formattedNumber from '../utils/formattedNumber';
 
 const ROUTE = 'customer_products';
 const PRICE = 'checkout-bottom-value';
@@ -13,22 +14,6 @@ function Products() {
   const [totalPrice, setTotalPrice] = useState(0);
 
   const navigate = useNavigate();
-
-  // const getAllProducts = async () => {
-  //   try {
-  //     const response = await fetch('http://localhost:3001/products', {
-  //       method: 'GET',
-  //     });
-  //     const data = await response.json();
-  //     if (data) {
-  //       setProducts(data);
-  //     } else {
-  //       console.log('Ocorreu um erro');
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
 
   const getAllProducts = async () => {
     try {
@@ -51,9 +36,10 @@ function Products() {
     } else {
       setLocalStorage('products', storage);
     }
-    const total = storage?.reduce((acc, curr) => (
-      curr.totalPrice ? curr.totalPrice + acc : curr.price + acc
-    ), 0);
+    const total = storage?.reduce(
+      (acc, curr) => (curr.totalPrice ? curr.totalPrice + acc : curr.price + acc),
+      0,
+    );
     setTotalPrice(total);
   };
 
@@ -80,14 +66,14 @@ function Products() {
     <div>
       <NavBar />
       <section>
-        { products.map((product) => (
+        {products.map((product) => (
           <ProductCard
             key={ product.id }
             product={ product }
             sumTotalPrice={ sumTotalPrice }
             quantSave={ quantSave }
           />
-        )) }
+        ))}
       </section>
       <button
         type="button"
@@ -97,7 +83,7 @@ function Products() {
       >
         Ver Carrinho:
         <span data-testid={ `${ROUTE}__${PRICE}` }>
-          {`${totalPrice?.toFixed(2).replace('.', ',')}`}
+          {formattedNumber(totalPrice)}
         </span>
       </button>
     </div>
