@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 import { verifyRoute, verifyRouteInTotalPrice } from '../utils/verifyRoute';
+import formattedNumber from '../utils/formattedNumber';
 
 const PATH_CHECKOUT = '/customer/checkout';
 const PATH_ORDERS = '/customer/orders';
@@ -21,9 +22,10 @@ function TableOrder({ products }) {
   const { pathname } = useLocation();
 
   const sumTotalPrice = () => {
-    const total = listProducts?.reduce((acc, curr) => (
-      curr.totalPrice ? curr.totalPrice + acc : curr.price + acc
-    ), 0);
+    const total = listProducts?.reduce(
+      (acc, curr) => (curr.totalPrice ? curr.totalPrice + acc : curr.price + acc),
+      0,
+    );
     setTotalPrice(total.toFixed(2));
     setPrice(total.toFixed(2));
   };
@@ -61,11 +63,6 @@ function TableOrder({ products }) {
     return [];
   };
 
-  const formatedNumber = (number) => {
-    const formated = Number(number).toFixed(2).toString().replace('.', ',');
-    return formated;
-  };
-
   return (
     <div>
       <table>
@@ -79,41 +76,32 @@ function TableOrder({ products }) {
         </colgroup>
         <thead>
           <tr>
-            { headerTable().map((header) => (
-              <th key={ header } scope="col">{header}</th>
+            {headerTable().map((header) => (
+              <th key={ header } scope="col">
+                {header}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {listProducts?.map((product, i) => (
             <tr key={ product.id }>
-              <th
-                data-testid={ `${verifyRoute()}__${NUMBER}-${i}` }
-                scope="row"
-              >
+              <th data-testid={ `${verifyRoute()}__${NUMBER}-${i}` } scope="row">
                 {i + 1}
               </th>
-              <td
-                data-testid={ `${verifyRoute()}__${NAME}-${i}` }
-              >
+              <td data-testid={ `${verifyRoute()}__${NAME}-${i}` }>
                 {product.name}
               </td>
-              <td
-                data-testid={ `${verifyRoute()}__${QUANTITY}-${i}` }
-              >
+              <td data-testid={ `${verifyRoute()}__${QUANTITY}-${i}` }>
                 {product.quantity}
               </td>
-              <td
-                data-testid={ `${verifyRoute()}__${PRICE}-${i}` }
-              >
-                {formatedNumber(product.price)}
+              <td data-testid={ `${verifyRoute()}__${PRICE}-${i}` }>
+                {formattedNumber(product.price)}
               </td>
-              <td
-                data-testid={ `${verifyRoute()}__${SUB_TOTAL}-${i}` }
-              >
-                {formatedNumber(product.totalPrice)}
+              <td data-testid={ `${verifyRoute()}__${SUB_TOTAL}-${i}` }>
+                {formattedNumber(product.totalPrice)}
               </td>
-              { pathname === PATH_CHECKOUT && (
+              {pathname === PATH_CHECKOUT && (
                 <td>
                   <button
                     data-testid={ `${verifyRoute()}__${REMOVE}-${i}` }
@@ -123,17 +111,16 @@ function TableOrder({ products }) {
                   >
                     Remover
                   </button>
-                </td>)}
+                </td>
+              )}
             </tr>
           ))}
         </tbody>
       </table>
       <div>
         <h2>Total: R$</h2>
-        <h2
-          data-testid={ verifyRouteInTotalPrice(pathname) }
-        >
-          { formatedNumber(totalPrice) }
+        <h2 data-testid={ verifyRouteInTotalPrice(pathname) }>
+          {formattedNumber(totalPrice)}
         </h2>
       </div>
     </div>
