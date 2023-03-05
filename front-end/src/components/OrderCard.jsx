@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import formattedNumber from '../utils/formattedNumber';
 
 const ROUTE_ORDERS = 'customer_orders';
 const ORDER_ID = 'element-order-id';
@@ -10,7 +11,6 @@ const QUATRO = 4;
 
 function OrderCard({ id, status, date, totalPrice }) {
   const formattedDate = new Date(Date.parse(date)).toLocaleDateString('pt-BR');
-  const formattedPrice = totalPrice.replace('.', ',');
   const formattedNum = id.toString().padStart(QUATRO, 0);
 
   return (
@@ -98,10 +98,11 @@ function OrderCard({ id, status, date, totalPrice }) {
           <span data-testid={ `${ROUTE_ORDERS}__${ORDER_DATE}-${id}` }>
             {formattedDate}
           </span>
+
           <div>
             <span>R$: </span>
             <span data-testid={ `${ROUTE_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
-              {formattedPrice}
+              {formattedNumber(totalPrice)}
             </span>
           </div>
         </div>
