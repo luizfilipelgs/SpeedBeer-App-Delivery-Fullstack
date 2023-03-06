@@ -8,6 +8,8 @@ import {
   ORDER_DETAILS_DATE,
   ORDER_DETAILS_STATUS,
   ORDER_DETAILS_BUTTON_CHECK,
+  ORDER_DETAILS_BUTTON_PREPARE,
+  ORDER_DETAILS_BUTTON_DISPATCH,
   QUATRO,
 } from '../utils/Types';
 
@@ -90,7 +92,7 @@ function OrderDetailsHeader({
           <button
             className="btn-order-details"
             onClick={ () => handleClick('Preparando') }
-            data-testid={ `${role}_order_details__${ORDER_DETAILS_BUTTON_CHECK}` }
+            data-testid={ `${role}_order_details__${ORDER_DETAILS_BUTTON_PREPARE}` }
             disabled={ status !== 'Pendente' }
             type="button"
           >
@@ -100,7 +102,7 @@ function OrderDetailsHeader({
           <button
             className="btn-order-details"
             onClick={ () => handleClick('Em Trânsito') }
-            data-testid={ `${role}_order_details__${ORDER_DETAILS_BUTTON_CHECK}` }
+            data-testid={ `${role}_order_details__${ORDER_DETAILS_BUTTON_DISPATCH}` }
             disabled={ status !== 'Preparando' }
             type="button"
           >

@@ -23,6 +23,8 @@ export const ORDER_DETAILS_SELLER_NAME = 'element-order-details-label-seller-nam
 export const ORDER_DETAILS_DATE = 'element-order-details-label-order-date';
 export const ORDER_DETAILS_STATUS = 'element-order-details-label-delivery-status';
 export const ORDER_DETAILS_BUTTON_CHECK = 'button-delivery-check';
+export const ORDER_DETAILS_BUTTON_PREPARE = 'button-preparing-check';
+export const ORDER_DETAILS_BUTTON_DISPATCH = 'button-dispatch-check';
 export const QUATRO = 4;
 
 // FormAddress.jsx

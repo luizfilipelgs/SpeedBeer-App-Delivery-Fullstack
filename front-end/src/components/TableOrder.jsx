@@ -116,7 +116,6 @@ function TableOrder({ products }) {
                   >
                     <IoCloseCircleSharp />
 
-                    {/* x */}
                   </button>
                 </td>
               )}

@@ -13,11 +13,14 @@ export function verifyRoute(pathname) {
 export function verifyRouteInTotalPrice(pathname) {
   const PATH_CHECKOUT = '/customer/checkout';
   const PATH_ORDER_DETAIL = '/customer/orders/';
+  const PATH_SELLER_ORDER = '/seller/orders/';
 
   if (pathname === PATH_CHECKOUT) {
     return 'customer_checkout__element-order-total-price';
   } if (pathname?.startsWith(PATH_ORDER_DETAIL)) {
     return 'customer_order_details__element-order-total-price';
+  } if (pathname?.startsWith(PATH_SELLER_ORDER)) {
+    return 'seller_order_details__element-order-total-price';
   }
 
   return '';
