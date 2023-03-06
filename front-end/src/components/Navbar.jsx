@@ -8,6 +8,7 @@ import {
   FULL_NAME,
   LOGOUT,
 } from '../utils/Types';
+import { verifyRouteNav } from '../utils/verifyRoute';
 
 function NavBar() {
   const user = getLocalStorage('user');
@@ -71,7 +72,7 @@ function NavBar() {
           </li>
           <li>
             <NavLink
-              to="/customer/orders"
+              to={ verifyRouteNav(user.role) }
               activeclassname="active"
               className="nav-link"
               data-testid={ `${CUSTOMER_PRODUCTS}__${ORDERS_LINK}` }

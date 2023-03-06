@@ -1,18 +1,21 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { formattedNumber } from '../utils/ValidationUtils';
 import {
-  CUSTOMER_ORDERS,
   ORDER_ID,
   ORDER_DATE,
   ORDER_STATUS,
   ORDER_CARD_PRICE,
   QUATRO,
 } from '../utils/Types';
+import { verifyRoute, verifyRouteNav } from '../utils/verifyRoute';
+import { getLocalStorage } from '../services/localStorage';
 
 function OrderCard({ id, status, date, totalPrice }) {
   const formattedDate = new Date(Date.parse(date)).toLocaleDateString('pt-BR');
   const formattedNum = id.toString().padStart(QUATRO, 0);
+  const { pathname } = useLocation();
+  const { role } = getLocalStorage('user');
 
   return (
     <section
@@ -24,7 +27,7 @@ function OrderCard({ id, status, date, totalPrice }) {
       } }
     >
       <Link
-        to={ `/customer/orders/${id}` }
+        to={ `${verifyRouteNav(role)}/${id}` }
         className="order-container"
         style={ {
           color: '#000',
@@ -58,7 +61,7 @@ function OrderCard({ id, status, date, totalPrice }) {
           </span>
 
           <span
-            data-testid={ `${CUSTOMER_ORDERS}__${ORDER_ID}-${id}` }
+            data-testid={ `${verifyRoute(pathname)}__${ORDER_ID}-${id}` }
             style={ {
               alignSelf: 'center',
             } }
@@ -68,7 +71,7 @@ function OrderCard({ id, status, date, totalPrice }) {
         </div>
 
         <span
-          data-testid={ `${CUSTOMER_ORDERS}__${ORDER_STATUS}-${id}` }
+          data-testid={ `${verifyRoute(pathname)}__${ORDER_STATUS}-${id}` }
           className="status-content"
           style={ {
             display: 'flex',
@@ -96,13 +99,13 @@ function OrderCard({ id, status, date, totalPrice }) {
             minWidth: '100px',
           } }
         >
-          <span data-testid={ `${CUSTOMER_ORDERS}__${ORDER_DATE}-${id}` }>
+          <span data-testid={ `${verifyRoute(pathname)}__${ORDER_DATE}-${id}` }>
             {formattedDate}
           </span>
 
           <div>
             <span>R$: </span>
-            <span data-testid={ `${CUSTOMER_ORDERS}__${ORDER_CARD_PRICE}-${id}` }>
+            <span data-testid={ `${verifyRoute(pathname)}__${ORDER_CARD_PRICE}-${id}` }>
               {formattedNumber(totalPrice)}
             </span>
           </div>

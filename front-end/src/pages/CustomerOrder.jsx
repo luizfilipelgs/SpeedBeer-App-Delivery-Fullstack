@@ -6,6 +6,8 @@ import { getLocalStorage } from '../services/localStorage';
 
 function CustomerOrder() {
   const [orders, setOrders] = useState([]);
+  const { role } = getLocalStorage('user');
+  const route = role === 'seller' ? 'sales/seller' : 'sales/orders';
 
   useEffect(() => {
     const userData = getLocalStorage('user');
@@ -15,7 +17,7 @@ function CustomerOrder() {
     } else {
       const userId = userData.id;
       axios
-        .get(`http://localhost:3001/sales/orders/${userId}`)
+        .get(`http://localhost:3001/${route}/${userId}`)
         .then((response) => {
           setOrders(response.data);
         })
@@ -23,7 +25,7 @@ function CustomerOrder() {
           console.error(error);
         });
     }
-  }, []);
+  }, [route]);
 
   return (
     <div>

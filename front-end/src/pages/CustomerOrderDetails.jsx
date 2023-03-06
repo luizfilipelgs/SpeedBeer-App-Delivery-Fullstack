@@ -65,13 +65,15 @@ function CustomerOrder() {
         } }
       >
 
-        <OrderDetailsHeader
-          id={ data.id }
-          sellerName={ data.seller?.name }
-          saleDate={ new Date(Date.parse(data.saleDate)) }
-          saleStatus={ data.status }
-          newStatus={ updateStatus }
-        />
+        { data && (
+          <OrderDetailsHeader
+            id={ data.id }
+            sellerName={ data.seller?.name }
+            saleDate={ new Date(Date.parse(data.saleDate)) }
+            saleStatus={ data.status }
+            newStatus={ updateStatus }
+          />
+        )}
 
         <TableOrder products={ products } />
       </section>
