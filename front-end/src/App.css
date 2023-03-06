@@ -53,6 +53,14 @@
   }
 }
 
+.title-page {
+  display: flex;
+  font-size: 40px;
+  margin: 16px;
+  padding: 0 48px;
+
+}
+
 .active {
   background-color: #005d8e;
   border-bottom: 1px solid rgb(93, 93, 93);
@@ -208,28 +216,14 @@
   text-align: center;
 }
 
-/* * {
-  border: 1px solid red;
-} */
-
-
 /* Login page */
 .login-container {
-
-  /* align-items: center; */
   background-color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-
-  /* display: flex; */
-
-  /* flex-direction: column; */
-
-  /* justify-content: center; */
   max-width: 400px;
   padding: 20px;
   width: 100%;
-
 }
 
 .login-header {
@@ -239,12 +233,8 @@
 }
 
 .form-group {
-
-  /* align-items: center; */
   display: flex;
   flex-direction: column;
-
-  /* justify-content: center; */
   margin-bottom: 20px;
 
 }
@@ -261,9 +251,6 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   margin: 8px 0;
   padding: 10px;
-
-  /* width: 100%; */
-
 }
 
 .btn-login {
@@ -294,8 +281,6 @@
   border: none;
   border-radius: 5px;
   color: #293266cf;
-
-  /* color: white; */
   cursor: pointer;
   display: block;
   font-size: 18px;
@@ -306,7 +291,6 @@
 
 }
 
-
 .btn-signup:hover {
   background-color: #ccc;
   opacity: 0.7;
@@ -315,4 +299,112 @@
 
 .login-error p {
   color: red;
+}
+
+/* tableOrder component */
+.table-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  text-align: center;
+  width: 90%;
+}
+
+.table-wrapper {
+  border-collapse: collapse;
+  font-size: 16px;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 400px;
+  width: 100%;
+
+}
+
+.table-scroll {
+  display: block;
+  height: 400px;
+  overflow-y: scroll;
+}
+
+.table-wrapper th {
+  background-color: #eee;
+  padding: 10px;
+  text-align: center;
+
+}
+
+.table-wrapper thead th {
+  position: sticky;
+  top: 0;
+}
+
+.table-wrapper td {
+  border: 1px solid #ccc;
+  margin: 0 100px;
+  padding: 10px;
+  width: 100%;
+  word-break: break-all;
+}
+
+.btn-table-wrapper {
+  background-color: #e7e7e7;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.btn-table-wrapper:hover {
+  background-color: #ddd;
+}
+
+.table-wrapper tr:nth-child( even ) {
+  background-color: #f2f2f2;
+}
+
+.table-wrapper tr:hover {
+  background-color: #ddd;
+}
+
+.table-container span {
+  font-size: 36px;
+  font-weight: 800;
+  margin-top: 12px;
+}
+
+.total-label {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.table-wrapper th:nth-child( 1 ), .table-wrapper td:nth-child( 1 ) {
+  width: 5%;
+}
+
+.table-wrapper th:nth-child( 2 ), .table-wrapper td:nth-child( 2 ) {
+  width: 50%;
+}
+
+.table-wrapper th:nth-child( 3 ), .table-wrapper td:nth-child( 3 ) {
+  width: 10%;
+}
+
+.table-wrapper th:nth-child( 4 ), .table-wrapper td:nth-child( 4 ) {
+  width: 10%;
+}
+
+.table-wrapper th:nth-child( 5 ), .table-wrapper td:nth-child( 5 ) {
+  width: 10%;
+}
+
+.table-wrapper th:nth-child( 6 ), .table-wrapper td:nth-child( 6 ) {
+  width: 15%;
+}
+
+* {
+  border: 1px solid red;
 }

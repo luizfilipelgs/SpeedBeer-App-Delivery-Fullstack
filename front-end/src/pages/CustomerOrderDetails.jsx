@@ -54,8 +54,14 @@ function CustomerOrder() {
     <div>
       <NavBar />
 
-      <h3>Detalhe do Pedido</h3>
-      <section>
+      <h3 className="title-page">Detalhes do Pedido</h3>
+      <section
+        style={ {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        } }
+      >
         <OrderDetailsHeader
           id={ data.id }
           sellerName={ data.seller?.name }
@@ -63,8 +69,8 @@ function CustomerOrder() {
           saleStatus={ data.status }
           newStatus={ updateStatus }
         />
+        <TableOrder products={ products } />
       </section>
-      <TableOrder products={ products } />
     </div>
   );
 }

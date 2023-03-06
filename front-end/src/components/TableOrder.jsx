@@ -65,16 +65,8 @@ function TableOrder({ products }) {
   };
 
   return (
-    <div>
-      <table>
-        <colgroup>
-          <col style={ { width: '10%' } } />
-          <col style={ { width: '40%' } } />
-          <col style={ { width: '15%' } } />
-          <col style={ { width: '15%' } } />
-          <col style={ { width: '15%' } } />
-          <col style={ { width: '5%' } } />
-        </colgroup>
+    <div className="table-container">
+      <table className="table-wrapper table-scroll">
         <thead>
           <tr>
             {headerTable()?.map((header) => (
@@ -110,6 +102,7 @@ function TableOrder({ products }) {
               {pathname === PATH_CHECKOUT && (
                 <td>
                   <button
+                    className="btn-table-wrapper"
                     data-testid={ `${verifyRoute(pathname)}__${REMOVE}-${i}` }
                     id={ product.id }
                     value={ product.id }
@@ -126,10 +119,12 @@ function TableOrder({ products }) {
           ))}
         </tbody>
       </table>
-      <span>Total: R$ </span>
-      <span data-testid={ verifyRouteInTotalPrice(pathname) }>
-        {formattedNumber(totalPrice)}
-      </span>
+      <div className="total-label">
+        <span> Total: R$ </span>
+        <span data-testid={ verifyRouteInTotalPrice(pathname) }>
+          {formattedNumber(totalPrice)}
+        </span>
+      </div>
     </div>
   );
 }
