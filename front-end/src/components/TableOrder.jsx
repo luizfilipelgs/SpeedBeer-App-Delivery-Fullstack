@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import { IoCloseCircleSharp } from 'react-icons/io5';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 import { verifyRoute, verifyRouteInTotalPrice } from '../utils/verifyRoute';
 import { formattedNumber } from '../utils/ValidationUtils';
+
 import {
   PATH_CHECKOUT,
   PATH_ORDERS_DETAIL,
@@ -102,7 +104,7 @@ function TableOrder({ products }) {
               {pathname === PATH_CHECKOUT && (
                 <td>
                   <button
-                    className="btn-table-wrapper"
+                    className="remove-btn"
                     data-testid={ `${verifyRoute(pathname)}__${REMOVE}-${i}` }
                     id={ product.id }
                     value={ product.id }
@@ -110,8 +112,11 @@ function TableOrder({ products }) {
                     onClick={ () => {
                       removeProduct(product.id);
                     } }
+                    aria-label="Remover"
                   >
-                    Remover
+                    <IoCloseCircleSharp />
+
+                    {/* x */}
                   </button>
                 </td>
               )}

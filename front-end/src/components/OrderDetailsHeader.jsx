@@ -23,13 +23,11 @@ function OrderDetailsHeader({
   );
 
   return (
-    <div>
+    <div className="order-details-container">
+
       <span
+        className="order-details-order "
         data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_ID}${id}` }
-        style={ {
-          margin: '4px auto',
-          padding: '8px',
-        } }
       >
         PEDIDO
         {' '}
@@ -37,50 +35,37 @@ function OrderDetailsHeader({
         {' '}
       </span>
 
-      <span
-        style={ {
-          margin: '4px auto',
-          padding: '8px',
-        } }
-      >
-        <span>P. Venda: </span>
+      <span className="order-details-seller">
+        <span className="order-details-seller-p">P. Venda: </span>
         <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_SELLER_NAME}` }>
           {sellerName}
         </span>
       </span>
 
       <span
+        className="order-details-date"
         data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_DATE}` }
-        style={ {
-          margin: '4px auto',
-          padding: '8px',
-        } }
       >
         {formattedDate}
       </span>
 
       <span
+        className="order-details-status"
         data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_STATUS}` }
-        style={ {
-          margin: '4px auto',
-          padding: '8px',
-        } }
       >
         {saleStatus}
       </span>
 
       <button
+        className="btn-order-details"
         onClick={ () => newStatus('Entregue') }
         data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_BUTTON_CHECK}` }
         disabled={ saleStatus !== 'Em Trânsito' }
         type="button"
-        style={ {
-          margin: '4px auto',
-          padding: '8px',
-        } }
       >
         MARCAR COMO ENTREGUE
       </button>
+
     </div>
   );
 }

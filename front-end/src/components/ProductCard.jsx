@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { IoMdAddCircle, IoMdRemoveCircle } from 'react-icons/io';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import { formattedNumber } from '../utils/ValidationUtils';
 import {
@@ -91,14 +92,16 @@ function ProductCard({ product, sumTotalPrice }) {
         flexDirection: 'column',
         alignItems: 'center',
         width: '200px',
+        height: '300px',
         margin: '20px',
-        padding: '20px',
+        padding: '10px',
         border: '1px solid #ccc',
         borderRadius: '5px',
         boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
       } }
     >
       <div
+        className=""
         style={ {
           display: 'flex',
           justifyContent: 'center',
@@ -119,14 +122,15 @@ function ProductCard({ product, sumTotalPrice }) {
       </div>
 
       <div
+        className=""
         style={ {
           display: 'flex',
-          // margin: '4px auto',
           padding: '8px',
-          justifyContent: 'space-around',
           alignItems: 'center',
           flexDirection: 'column',
           minWidth: '100%',
+          justifyContent: 'center',
+          textAlign: 'center',
         } }
       >
         <p
@@ -150,28 +154,18 @@ function ProductCard({ product, sumTotalPrice }) {
           {`R$ ${formattedNumber(product.price)}`}
         </span>
 
-        <div
-          style={ {
-            display: 'flex',
-            padding: '8px',
-            width: '30%',
-            height: '20px',
-            justifyContent: 'center',
-            textAlign: 'center',
-            flexDirection: 'row',
-            minWidth: '150px',
-          } }
-        >
+        <div className="btns-container">
           <button
             className="increment-button"
             type="button"
             data-testid={ `${CUSTOMER_PRODUCTS}__${RM}-${product.id}` }
             onClick={ subQuantity }
           >
-            -
+            <IoMdRemoveCircle />
+
           </button>
           <input
-            className="increment-button no-spinners"
+            className="increment-button-number no-spinners"
             type="number"
             value={ count }
             data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_QUANTITY}-${product.id}` }
@@ -186,7 +180,7 @@ function ProductCard({ product, sumTotalPrice }) {
             data-testid={ `${CUSTOMER_PRODUCTS}__${ADD}-${product.id}` }
             onClick={ sumQuantity }
           >
-            +
+            <IoMdAddCircle />
           </button>
         </div>
       </div>

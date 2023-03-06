@@ -14,7 +14,7 @@ import {
 
 function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState();
   const [address, setAddress] = useState('');
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState('');
@@ -48,9 +48,11 @@ function FormAddress({ products }) {
       products,
     };
     try {
-      const response = await axios.post('http://localhost:3001/sales/register', sale, {
-        headers: { Authorization: `${token}` },
-      });
+      const response = await axios.post(
+        'http://localhost:3001/sales/register',
+        sale,
+        { headers: { Authorization: `${token}` } },
+      );
       const { data } = response;
       if (data.id) {
         navigate(`/customer/orders/${data.id}`);
@@ -74,59 +76,63 @@ function FormAddress({ products }) {
   };
 
   return (
-    <div>
-      <h4>Detalhes e Endereço para Entrega</h4>
+    <form className="form-address-container" onSubmit={ handleSubmit }>
+      <h4 className="sub-title-page">Detalhes e Endereço para Entrega</h4>
 
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="sellerInput">
+      <section className="checkout-form-address">
+        <label htmlFor="sellerInput" className="input-select-form-address">
           <select
-            type="select"
             name="sellerInput"
             data-testid={ `${CUSTOMER_CHECKOUT}__${SELLER}` }
             onChange={ handleSellerChange }
             value={ selectedSeller }
             required
           >
-            <option>Selecione</option>
+            <option value="" disabled selected>
+              -- Selecione o vendedor --
+            </option>
             {sellers.map((seller) => (
-              <option key={ seller.id } value={ seller.id }>{ seller.name }</option>
+              <option key={ seller.id } value={ seller.id }>
+                {seller.name}
+              </option>
             ))}
           </select>
         </label>
 
-        <label htmlFor="addressInput">
-          Endereço
+        <label className="input-text-form-address" htmlFor="addressInput">
           <input
             type="text"
             name="addressInput"
             value={ address }
-            placeholder="Av.x, Bairro Y"
+            placeholder="Digite o seu endereço"
             data-testid={ `${CUSTOMER_CHECKOUT}__${ADDRESS}` }
             onChange={ handleAddressChange }
             required
           />
         </label>
 
-        <label htmlFor="numberInput">
-          Número
+        <label className="input-number-form-address" htmlFor="numberInput">
           <input
-            type="text"
+            type="number"
             name="numberInput"
+            placeholder="Número"
+            min="0"
             value={ number }
             data-testid={ `${CUSTOMER_CHECKOUT}__${NUMBER_ADDRESS}` }
             onChange={ handleNumberChange }
             required
           />
         </label>
-        <button
-          type="submit"
-          data-testid={ `${CUSTOMER_CHECKOUT}__${SUBMIT}` }
-          disabled={ !isRegisterFormValid() }
-        >
-          FINALIZAR PEDIDO
-        </button>
-      </form>
-    </div>
+      </section>
+      <button
+        className="btn-checkout-form-address"
+        type="submit"
+        data-testid={ `${CUSTOMER_CHECKOUT}__${SUBMIT}` }
+        disabled={ !isRegisterFormValid() }
+      >
+        FINALIZAR PEDIDO
+      </button>
+    </form>
   );
 }
 

@@ -60,8 +60,11 @@ function CustomerOrder() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          maxWidth: '100%',
+
         } }
       >
+
         <OrderDetailsHeader
           id={ data.id }
           sellerName={ data.seller?.name }
@@ -69,6 +72,7 @@ function CustomerOrder() {
           saleStatus={ data.status }
           newStatus={ updateStatus }
         />
+
         <TableOrder products={ products } />
       </section>
     </div>

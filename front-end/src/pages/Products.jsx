@@ -72,6 +72,7 @@ function Products() {
           flexFlow: 'row wrap',
           justifyContent: 'center',
           minHeight: '10px',
+          alignItems: 'center',
         } }
       >
         {products.map((product) => (

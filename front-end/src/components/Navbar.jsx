@@ -20,19 +20,28 @@ function NavBar() {
 
   return (
     <nav
+      className=""
       style={ {
         borderBottom: '1px solid black',
-        paddingBottom: '18.5px',
-        marginBottom: '24px',
+        marginBottom: '25px',
+        // position: 'fixed',
+        // top: 0,
+        // left: 0,
+        width: '100%',
+        height: '50px',
+        padding: '8px 0',
+        backgroundColor: '#036B52',
       } }
     >
       <ul
+        className=""
         style={ {
           display: 'flex',
           listStyle: 'none',
         } }
       >
         <div
+          className=""
           style={ {
             display: 'flex',
             textAlign: 'center',
@@ -51,7 +60,7 @@ function NavBar() {
               data-testid={ `${CUSTOMER_PRODUCTS}__${PRODUCTS_LINK}` }
               style={ {
                 display: 'flex',
-                padding: '16px',
+                padding: '24px 48px',
                 justifyContent: 'center',
                 minWidth: '150px',
                 textDecoration: 'none',
@@ -68,7 +77,7 @@ function NavBar() {
               data-testid={ `${CUSTOMER_PRODUCTS}__${ORDERS_LINK}` }
               style={ {
                 display: 'flex',
-                padding: '16px',
+                padding: '24px 48px',
                 justifyContent: 'center',
                 minWidth: '150px',
                 textDecoration: 'none',
@@ -80,6 +89,7 @@ function NavBar() {
         </div>
 
         <div
+          className=""
           style={ {
             display: 'flex',
             textDecoration: 'none',
@@ -95,31 +105,23 @@ function NavBar() {
             data-testid={ `${CUSTOMER_PRODUCTS}__${FULL_NAME}` }
             style={ {
               display: 'flex',
-              padding: '16px',
+              padding: '24px 48px',
               justifyContent: 'center',
               minWidth: '150px',
               textDecoration: 'none',
-              color: '#000',
+              color: 'white',
+              backgroundColor: '#421981',
             } }
           >
             {user.name}
           </li>
           <li>
             <button
+              className="logout-btn"
               type="button"
               data-testid={ `${CUSTOMER_PRODUCTS}__${LOGOUT}` }
               onClick={ handleLogout }
-              style={ {
-                display: 'flex',
-                margin: '0 24px',
-                padding: '8px',
-                cursor: 'pointer',
-                justifyContent: 'center',
-                alignItems: 'center',
-                minWidth: '100px',
-                textDecoration: 'none',
-                color: '#000',
-              } }
+
             >
               Sair
             </button>
