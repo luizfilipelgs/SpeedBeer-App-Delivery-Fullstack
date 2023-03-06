@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/navbar';
-import ProductCard from '../components/productCard';
+import axios from 'axios';
+import NavBar from '../components/Navbar';
+import ProductCard from '../components/ProductCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
-
-const ROUTE = 'customer_products';
-const PRICE = 'checkout-bottom-value';
+import { formattedNumber } from '../utils/ValidationUtils';
+import {
+  CUSTOMER_PRODUCTS,
+  CHECKOUT_PRICE,
+} from '../utils/Types';
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -15,10 +18,8 @@ function Products() {
 
   const getAllProducts = async () => {
     try {
-      const response = await fetch('http://localhost:3001/products', {
-        method: 'GET',
-      });
-      const data = await response.json();
+      const response = await axios.get('http://localhost:3001/products');
+      const { data } = response;
       if (data) {
         setProducts(data);
       } else {
@@ -36,9 +37,10 @@ function Products() {
     } else {
       setLocalStorage('products', storage);
     }
-    const total = storage?.reduce((acc, curr) => (
-      curr.totalPrice ? curr.totalPrice + acc : curr.price + acc
-    ), 0);
+    const total = storage?.reduce(
+      (acc, curr) => (curr.totalPrice ? curr.totalPrice + acc : curr.price + acc),
+      0,
+    );
     setTotalPrice(total);
   };
 
@@ -64,25 +66,35 @@ function Products() {
   return (
     <div>
       <NavBar />
-      <section>
-        { products.map((product) => (
+      <section
+        style={ {
+          display: 'flex',
+          flexFlow: 'row wrap',
+          justifyContent: 'center',
+          minHeight: '10px',
+          alignItems: 'center',
+        } }
+      >
+        {products.map((product) => (
           <ProductCard
             key={ product.id }
             product={ product }
             sumTotalPrice={ sumTotalPrice }
             quantSave={ quantSave }
           />
-        )) }
+        ))}
       </section>
       <button
+        className="ver-carrinho"
         type="button"
         data-testid="customer_products__button-cart"
         onClick={ handleClick }
         disabled={ totalPrice === 0 || totalPrice === undefined }
       >
         Ver Carrinho:
-        <span data-testid={ `${ROUTE}__${PRICE}` }>
-          {`${totalPrice?.toFixed(2).replace('.', ',')}`}
+        <span> Total: R$ </span>
+        <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
+          {formattedNumber(totalPrice)}
         </span>
       </button>
     </div>

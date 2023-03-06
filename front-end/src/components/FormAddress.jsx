@@ -1,18 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { getLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
-
-const ROUTE = 'customer_checkout';
-const ADDRESS = 'input-address';
-const NUMBER = 'input-address-number';
-const SELLER = 'select-seller';
-const SUBMIT = 'button-submit-order';
+import {
+  CUSTOMER_CHECKOUT,
+  ADDRESS,
+  NUMBER_ADDRESS,
+  SELLER,
+  SUBMIT,
+} from '../utils/Types';
 
 function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState();
   const [address, setAddress] = useState('');
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState('');
@@ -31,7 +33,6 @@ function FormAddress({ products }) {
     setSelectedSeller(value);
   };
 
-  console.log(selectedSeller);
   const { token } = getLocalStorage('user');
 
   const handleSubmit = async (e) => {
@@ -46,14 +47,13 @@ function FormAddress({ products }) {
       deliveryNumber: parseInt(number, 10),
       products,
     };
-    console.log(sale);
     try {
-      const response = await fetch('http://localhost:3001/sales/register', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `${token}` },
-        body: JSON.stringify(sale),
-      });
-      const data = await response.json();
+      const response = await axios.post(
+        'http://localhost:3001/sales/register',
+        sale,
+        { headers: { Authorization: `${token}` } },
+      );
+      const { data } = response;
       if (data.id) {
         navigate(`/customer/orders/${data.id}`);
       }
@@ -66,7 +66,6 @@ function FormAddress({ products }) {
     fetch('http://localhost:3001/sales/seller')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setSellers(data);
       });
   }, []);
@@ -77,59 +76,63 @@ function FormAddress({ products }) {
   };
 
   return (
-    <div>
-      <h4>Detalhes e Endereço para Entrega</h4>
+    <form className="form-address-container" onSubmit={ handleSubmit }>
+      <h4 className="sub-title-page">Detalhes e Endereço para Entrega</h4>
 
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="sellerInput">
+      <section className="checkout-form-address">
+        <label htmlFor="sellerInput" className="input-select-form-address">
           <select
-            type="select"
             name="sellerInput"
-            data-testid={ `${ROUTE}__${SELLER}` }
+            data-testid={ `${CUSTOMER_CHECKOUT}__${SELLER}` }
             onChange={ handleSellerChange }
             value={ selectedSeller }
             required
           >
-            <option>Selecione</option>
+            <option value="" disabled selected>
+              -- Selecione o vendedor --
+            </option>
             {sellers.map((seller) => (
-              <option key={ seller.id } value={ seller.id }>{ seller.name }</option>
+              <option key={ seller.id } value={ seller.id }>
+                {seller.name}
+              </option>
             ))}
           </select>
         </label>
 
-        <label htmlFor="addressInput">
-          Endereço
+        <label className="input-text-form-address" htmlFor="addressInput">
           <input
             type="text"
             name="addressInput"
             value={ address }
-            placeholder="Av.x, Bairro Y"
-            data-testid={ `${ROUTE}__${ADDRESS}` }
+            placeholder="Digite o seu endereço"
+            data-testid={ `${CUSTOMER_CHECKOUT}__${ADDRESS}` }
             onChange={ handleAddressChange }
             required
           />
         </label>
 
-        <label htmlFor="numberInput">
-          Número
+        <label className="input-number-form-address" htmlFor="numberInput">
           <input
-            type="text"
+            type="number"
             name="numberInput"
+            placeholder="Número"
+            min="0"
             value={ number }
-            data-testid={ `${ROUTE}__${NUMBER}` }
+            data-testid={ `${CUSTOMER_CHECKOUT}__${NUMBER_ADDRESS}` }
             onChange={ handleNumberChange }
             required
           />
         </label>
-        <button
-          type="submit"
-          data-testid={ `${ROUTE}__${SUBMIT}` }
-          disabled={ !isRegisterFormValid() }
-        >
-          FINALIZAR PEDIDO
-        </button>
-      </form>
-    </div>
+      </section>
+      <button
+        className="btn-checkout-form-address"
+        type="submit"
+        data-testid={ `${CUSTOMER_CHECKOUT}__${SUBMIT}` }
+        disabled={ !isRegisterFormValid() }
+      >
+        FINALIZAR PEDIDO
+      </button>
+    </form>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import FormAddress from '../components/formAddress';
-import NavBar from '../components/navbar';
-import TableOrder from '../components/tableOrder';
+import FormAddress from '../components/FormAddress';
+import NavBar from '../components/Navbar';
+import TableOrder from '../components/TableOrder';
 import { getLocalStorage } from '../services/localStorage';
 
 function Checkout() {
@@ -19,8 +19,17 @@ function Checkout() {
   return (
     <div>
       <NavBar />
-      <h4>Finalizar Pedido</h4>
-      <section>
+      <h3 className="title-page">
+        Finalizar Pedido
+
+      </h3>
+      <section
+        style={ {
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        } }
+      >
         <TableOrder products={ products } />
         <FormAddress products={ products } />
       </section>
