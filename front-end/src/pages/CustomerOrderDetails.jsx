@@ -8,7 +8,6 @@ import { getLocalStorage } from '../services/localStorage';
 
 function CustomerOrder() {
   const [data, setData] = useState([]);
-  const [status, setStatus] = useState('Pendente');
   const [products, setProducts] = useState([]);
 
   const location = useLocation();
@@ -36,20 +35,6 @@ function CustomerOrder() {
     }
   }, [location.pathname]);
 
-  const updateStatus = () => {
-    const newStatus = status === 'Pendente' ? 'Entregue' : 'Pendente';
-    const saleId = location.pathname.split('/')[3];
-
-    axios
-      .put(`http://localhost:3001/sales/status/${saleId}`, { newStatus })
-      .then(() => {
-        setStatus(newStatus);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
   return (
     <div>
       <NavBar />
@@ -71,7 +56,6 @@ function CustomerOrder() {
             sellerName={ data.seller?.name }
             saleDate={ new Date(Date.parse(data.saleDate)) }
             saleStatus={ data.status }
-            newStatus={ updateStatus }
           />
         )}
 
