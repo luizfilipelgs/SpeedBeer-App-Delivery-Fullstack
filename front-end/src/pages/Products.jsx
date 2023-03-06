@@ -44,12 +44,6 @@ function Products() {
     setTotalPrice(total);
   };
 
-  const quantSave = (id) => {
-    const storage = getLocalStorage('products');
-    const prod = storage.filter((s) => s.id === id);
-    return prod.quantity;
-  };
-
   useEffect(() => {
     sumTotalPrice();
     getAllProducts();
@@ -80,7 +74,6 @@ function Products() {
             key={ product.id }
             product={ product }
             sumTotalPrice={ sumTotalPrice }
-            quantSave={ quantSave }
           />
         ))}
       </section>
@@ -94,7 +87,7 @@ function Products() {
         Ver Carrinho:
         <span> Total: R$ </span>
         <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
-          {formattedNumber(totalPrice)}
+          {totalPrice ? formattedNumber(totalPrice) : '0,00'}
         </span>
       </button>
     </div>
