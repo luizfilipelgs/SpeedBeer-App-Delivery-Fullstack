@@ -65,51 +65,69 @@ function Login() {
   };
 
   return (
-    <fieldset>
-      <form onSubmit={ handleSubmit }>
-        <label htmlFor="emailInput">
-          Email:
-          <input
-            type="email"
-            name="emailInput"
-            value={ email }
-            placeholder="email@dominio.com"
-            data-testid={ `${ROUTE_LOGIN}__${EMAIL}` }
-            onChange={ handleEmailChange }
-            required
-          />
-        </label>
-        <label htmlFor="passwordInput">
-          Password:
-          <input
-            type="password"
-            name="passwordInput"
-            value={ password }
-            placeholder="******"
-            data-testid={ `${ROUTE_LOGIN}__${PASSWORD}` }
-            onChange={ handlePasswordChange }
-            required
-          />
-        </label>
-        <button
-          type="submit"
-          data-testid={ `${ROUTE_LOGIN}__${LOGIN}` }
-          disabled={ !isLoginFormValid(email, password) }
-        >
-          LOGIN
-        </button>
-        <button
-          type="button"
-          data-testid={ `${ROUTE_LOGIN}__${REGISTER}` }
-          onClick={ () => navigate('/register') }
-        >
-          Ainda não tenho conta
-        </button>
-      </form>
-      {loginError && (
-        <p data-testid={ `${ROUTE_LOGIN}__${ERROR}` }>{loginError}</p>
-      )}
-    </fieldset>
+    <div
+      style={ {
+        alignItems: 'center',
+        display: 'flex',
+        height: '100vh',
+        justifyContent: 'center',
+        flexDirection: 'column',
+      } }
+    >
+      <fieldset className="login-container">
+        <form className="login-form" onSubmit={ handleSubmit }>
+          <h1 className="login-header">Login</h1>
+
+          <label className="form-group" htmlFor="emailInput">
+            Email:
+            <input
+              type="email"
+              name="emailInput"
+              value={ email }
+              placeholder="Digite seu endereço de e-mail"
+              data-testid={ `${ROUTE_LOGIN}__${EMAIL}` }
+              onChange={ handleEmailChange }
+              required
+            />
+          </label>
+
+          <label className="form-group" htmlFor="passwordInput">
+            Senha:
+            <input
+              type="password"
+              name="passwordInput"
+              value={ password }
+              placeholder="Digite sua senha"
+              data-testid={ `${ROUTE_LOGIN}__${PASSWORD}` }
+              onChange={ handlePasswordChange }
+              required
+            />
+          </label>
+
+          <button
+            className="btn-login"
+            type="submit"
+            data-testid={ `${ROUTE_LOGIN}__${LOGIN}` }
+            disabled={ !isLoginFormValid(email, password) }
+          >
+            LOGIN
+          </button>
+          <button
+            className="btn-signup"
+            type="button"
+            data-testid={ `${ROUTE_LOGIN}__${REGISTER}` }
+            onClick={ () => navigate('/register') }
+          >
+            Ainda não tenho conta? Cadastre-se
+          </button>
+        </form>
+      </fieldset>
+      <div className="login-error">
+        {loginError && (
+          <p data-testid={ `${ROUTE_LOGIN}__${ERROR}` }>{loginError}</p>
+        )}
+      </div>
+    </div>
   );
 }
 
