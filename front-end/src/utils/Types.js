@@ -44,7 +44,7 @@ export const LOGOUT = 'element-navbar-link-logout';
 // OrderCard.jsx
 export const CUSTOMER_ORDERS = 'customer_orders';
 export const ORDER_ID = 'element-order-id';
-export const ORDER_DATE = 'element-order-date-';
+export const ORDER_DATE = 'element-order-date';
 export const ORDER_STATUS = 'element-delivery-status';
 export const ORDER_CARD_PRICE = 'element-card-price';
 
