@@ -1,8 +1,8 @@
 export function verifyRoute(pathname) {
   const routes = {
     '/customer/checkout': 'customer_checkout',
-    '/customer/orders': 'customer_order_details',
-    '/customer/orders/:id': 'customer_orders',
+    '/customer/orders': 'customer_orders',
+    '/customer/orders/:id': 'customer_orders_details',
     '/seller/orders': 'seller_orders',
     '/seller/orders/:id': 'seller_orders_details',
   };
