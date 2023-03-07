@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import {
@@ -17,41 +16,23 @@ function OrderDetailsHeader({
   id,
   sellerName,
   saleDate,
-  saleStatus,
+  updateStatus,
+  status,
 }) {
-  const [status, setStatus] = useState('Pendente');
   const formattedNum = id ? id.toString().padStart(QUATRO, 0) : '';
   const formattedDate = new Date(Date.parse(saleDate)).toLocaleDateString(
     'pt-BR',
   );
   const { pathname } = useLocation();
   const role = pathname.includes('customer') ? 'customer' : 'seller';
-  const location = useLocation();
 
-  const updateStatus = (newStatus) => {
-    const saleId = location.pathname.split('/')[3];
-
-    axios
-      .put(`http://localhost:3001/sales/status/${saleId}`, { newStatus })
-      .then(() => {
-        setStatus(newStatus);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  const handleClick = (click) => {
-    console.log(click);
-    setStatus(click);
-    updateStatus(click);
-  };
-
-  useEffect(() => {
-    if (saleStatus && saleStatus !== 'Pendente') {
-      setStatus(saleStatus);
+  const handleClick = async (click) => {
+    try {
+      await updateStatus(click);
+    } catch (error) {
+      console.error(error);
     }
-  }, [saleStatus]);
+  };
 
   return (
     <div className="order-details-container">
