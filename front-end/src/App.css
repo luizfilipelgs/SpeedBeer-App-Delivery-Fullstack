@@ -628,6 +628,57 @@
   text-align: center;
 }
 
+.pendente {
+  align-items: center;
+  background-color: #ccb800;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.preparando {
+  align-items: center;
+  background-color: #6c0;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.em-transito {
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+
+}
+
+.entregue {
+  background-color: #00cc9b;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
 .order-details-seller-p {
   margin-right: 4px;
 }
