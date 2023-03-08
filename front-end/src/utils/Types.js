@@ -65,3 +65,12 @@ export const INPUT_NAME = 'input-name';
 export const REGISTER = 'button-register';
 export const ERROR_REGISTER = 'element-invalid_register';
 export const MIN_NUMBER_NAME = 12;
+
+// FormRegister.jsx
+export const ROUTE_ADMIN_MANAGE = 'admin_manage';
+export const INPUT_NAME_ADMIN = 'input-name';
+export const INPUT_EMAIL_ADMIN = 'input-email';
+export const INPUT_PASSWORD_ADMIN = 'input-password';
+export const SELECT_ROLE_ADMIN = 'select-role';
+export const REGISTER_ADMIN = 'button-register';
+export const STATUS_CODE_CONFLICT = 409;

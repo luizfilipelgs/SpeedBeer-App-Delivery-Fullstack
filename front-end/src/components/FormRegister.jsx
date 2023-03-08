@@ -3,6 +3,15 @@ import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginContext from '../context/LoginContext';
 import { isRegisterFormValidByAdm } from '../utils/ValidationUtils';
+import {
+  ERROR_REGISTER,
+  INPUT_EMAIL_ADMIN,
+  INPUT_NAME_ADMIN,
+  INPUT_PASSWORD_ADMIN,
+  ROUTE_ADMIN_MANAGE,
+  SELECT_ROLE_ADMIN,
+  STATUS_CODE_CONFLICT,
+} from '../utils/Types';
 
 function FormRegister() {
   const { setUser } = useContext(LoginContext);
@@ -38,18 +47,19 @@ function FormRegister() {
     try {
       const response = await axios.post(
         'http://localhost:3001/register',
-        { name, email, password, role },
+        { name, email, password, selectedRole },
         { headers: { 'Content-Type': 'application/json' } },
       );
       const { data } = response;
       if (data.role) {
         setUser(data);
+        // navigate(`/${routesLogin[data.role]}`);
         navigate('/customer/products');
       } else {
         setRegisterError(data.message);
       }
     } catch (error) {
-      if (error.response && error.response.status === 409) {
+      if (error.response && error.response.status === STATUS_CODE_CONFLICT) {
         setRegisterError('Já existe um usuário com este e-mail cadastrado');
       } else {
         setRegisterError('Ocorreu um erro ao tentar fazer registro');
@@ -68,6 +78,7 @@ function FormRegister() {
             name="nameInput"
             value={ name }
             placeholder="Digite o seu nome"
+            data-testid={ `${ROUTE_ADMIN_MANAGE}__${INPUT_NAME_ADMIN}` }
             onChange={ handleNameChange }
             required
           />
@@ -80,6 +91,7 @@ function FormRegister() {
             name="emailInput"
             value={ email }
             placeholder="Digite seu endereço de e-mail"
+            data-testid={ `${ROUTE_ADMIN_MANAGE}__${INPUT_EMAIL_ADMIN}` }
             onChange={ handleEmailChange }
             required
           />
@@ -92,6 +104,7 @@ function FormRegister() {
             name="passwordInput"
             value={ password }
             placeholder="Digite sua senha"
+            data-testid={ `${ROUTE_ADMIN_MANAGE}__${INPUT_PASSWORD_ADMIN}` }
             onChange={ handlePasswordChange }
             required
           />
@@ -102,6 +115,7 @@ function FormRegister() {
           <select
             name="RoleInput"
             value={ selectedRole }
+            data-testid={ `${ROUTE_ADMIN_MANAGE}__${SELECT_ROLE_ADMIN}` }
             onChange={ handleRoleChange }
             required
           >
@@ -125,7 +139,14 @@ function FormRegister() {
           CADASTRAR
         </button>
       </form>
-      {registerError && <p className="">{registerError}</p>}
+      {registerError && (
+        <p
+          className=""
+          data-testid={ `${ROUTE_ADMIN_MANAGE}__${ERROR_REGISTER}` }
+        >
+          {registerError}
+        </p>
+      )}
     </fieldset>
   );
 }
