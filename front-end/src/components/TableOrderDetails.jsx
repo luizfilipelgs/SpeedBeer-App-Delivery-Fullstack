@@ -24,7 +24,6 @@ function TableOrderDetails({ products }) {
   const { pathname } = useLocation();
 
   const sumTotalPrice = () => {
-    console.log(listProducts);
     const total = listProducts?.reduce(
       (acc, curr) => acc + curr.price * curr.SalesProducts.quantity,
       0,
