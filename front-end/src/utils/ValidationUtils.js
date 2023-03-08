@@ -31,3 +31,25 @@ export function isAddressFormValid(selectedSeller, address, number) {
     && number !== ''
   );
 }
+
+export function textoSemAcento(text) {
+  return text
+    .replace(/[áàãâä]/gi, 'a')
+    .replace(/[éèêë]/gi, 'e')
+    .replace(/[íìîï]/gi, 'i')
+    .replace(/[óòõôö]/gi, 'o')
+    .replace(/[úùûü]/gi, 'u')
+    .replace(/[ç]/gi, 'c');
+}
+
+export function formatText(text) {
+  return text
+    .replace(/\s+/g, '-')
+    .toLowerCase();
+}
+
+export function formatTextClassName(text) {
+  const semAcento = textoSemAcento(text);
+  const formattedText = formatText(semAcento);
+  return formattedText;
+}

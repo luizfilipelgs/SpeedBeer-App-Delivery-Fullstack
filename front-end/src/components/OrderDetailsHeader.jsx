@@ -1,6 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import { formatTextClassName } from '../utils/ValidationUtils';
 import {
   ORDER_DETAILS_ID,
   ORDER_DETAILS_SELLER_NAME,
@@ -62,14 +63,20 @@ function OrderDetailsHeader({
       </span>
 
       <span
-        className="order-details-status"
+        className={ `order-details-status  ${formatTextClassName(status)}` }
         data-testid={ `${role}_order_details__${ORDER_DETAILS_STATUS}` }
       >
         {status || saleStatus}
       </span>
 
       { role === 'seller' ? (
-        <div>
+        <div
+          style={ {
+            display: 'flex',
+            width: '360px',
+            justifyContent: 'space-between',
+          } }
+        >
           <button
             className="btn-order-details"
             onClick={ () => handleClick('Preparando') }
