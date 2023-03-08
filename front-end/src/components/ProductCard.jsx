@@ -190,10 +190,10 @@ function ProductCard({ product, sumTotalPrice }) {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    price: PropTypes.string.isRequired,
-    urlImage: PropTypes.string.isRequired,
+    id: PropTypes.number,
+    name: PropTypes.string,
+    price: PropTypes.string,
+    urlImage: PropTypes.string,
   }).isRequired,
   sumTotalPrice: PropTypes.func.isRequired,
 };
