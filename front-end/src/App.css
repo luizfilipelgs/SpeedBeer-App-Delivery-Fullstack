@@ -876,3 +876,10 @@
 .text-align {
   text-align: center;
 }
+
+/* Checkout */
+.checkout-section-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
