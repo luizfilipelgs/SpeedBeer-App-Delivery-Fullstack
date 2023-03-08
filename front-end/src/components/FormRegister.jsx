@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import axios from 'axios';
+import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import LoginContext from '../context/LoginContext';
 
 function FormRegister() {
+  const { setUser } = useContext(LoginContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
+  const [registerError, setRegisterError] = useState('');
+
+  const navigate = useNavigate();
 
   const handleNameChange = ({ target: { value } }) => {
     setName(value);
@@ -22,11 +29,36 @@ function FormRegister() {
     setRole(value);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/register',
+        { name, email, password, role },
+        { headers: { 'Content-Type': 'application/json' } },
+      );
+      const { data } = response;
+      if (data.role) {
+        setUser(data);
+        navigate('/customer/products');
+      } else {
+        setRegisterError(data.message);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        setRegisterError('Já existe um usuário com este e-mail cadastrado');
+      } else {
+        setRegisterError('Ocorreu um erro ao tentar fazer registro');
+      }
+    }
+  };
+
   return (
     <div className="">
       <fieldset className="registro">
         <h2>Cadastrar novo usuário</h2>
-        <form>
+        <form onSubmit={ handleSubmit }>
           <label htmlFor="nameInput">
             Nome:
             <input
@@ -64,7 +96,7 @@ function FormRegister() {
           </label>
 
           <label htmlFor="roleInput">
-            Senha:
+            Tipo:
             <input
               type="text"
               name="roleInput"
@@ -77,8 +109,7 @@ function FormRegister() {
 
           <button type="submit">CADASTRAR</button>
         </form>
-
-        <p />
+        {registerError && <p className="">{registerError}</p>}
       </fieldset>
     </div>
   );
