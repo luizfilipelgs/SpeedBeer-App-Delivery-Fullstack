@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import NavBar from '../components/Navbar';
 import { getLocalStorage } from '../services/localStorage';
 
 function AdminManage() {
@@ -27,8 +28,8 @@ function AdminManage() {
   }, []);
 
   return (
-
     <div>
+      <NavBar />
       <h1>Admin Manage</h1>
     </div>
   );
