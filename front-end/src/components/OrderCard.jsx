@@ -33,9 +33,9 @@ function OrderCard({ id, status, date, totalPrice }) {
 
         <span
           data-testid={ `${verifyRoute(pathname)}__${ORDER_STATUS}-${id}` }
-          className={ `status-content id-content-text-medium-size ${formatTextClassName(
+          className={ `order-card-status-content status-${formatTextClassName(
             status,
-          )}` }
+          )} id-content-text-medium-size ` }
         >
           {status}
         </span>

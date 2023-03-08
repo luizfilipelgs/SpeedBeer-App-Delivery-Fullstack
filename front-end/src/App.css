@@ -673,6 +673,51 @@
   text-align: center;
 }
 
+.order-card-status-content {
+  align-items: center;
+  display: flex;
+  max-width: 100%;
+  text-align: center;
+}
+
+.pendente {
+  align-items: center;
+  background-color: #ccb800;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.preparando {
+  align-items: center;
+  background-color: #6c0;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.em-transito {
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
 .id-content-text-medium-size {
   font-size: 1.5rem;
 }
@@ -699,6 +744,22 @@
   min-width: 100px;
   padding: 8px;
   text-align: center;
+}
+
+/* teste card */
+.order-card-container:nth-child( 1 ) {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.order-card-container:nth-child( 2 ) {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.order-card-container:nth-child( 3 ) {
+  grid-column: 3;
+  grid-row: 1;
 }
 
 /* OrderDetailsHeader */
@@ -766,51 +827,61 @@
   text-align: center;
 }
 
-.pendente {
+.status-pendente {
   align-items: center;
   background-color: #ccb800;
   border: none;
   border-radius: 5px;
   color: black;
   display: flex;
+  height: 40%;
   justify-content: center;
+  margin: auto 0;
   max-width: 100%;
   padding: 10px 20px;
   text-align: center;
 }
 
-.preparando {
+.status-preparando {
   align-items: center;
   background-color: #6c0;
   border: none;
   border-radius: 5px;
   color: black;
   display: flex;
+  font-size: 1.3rem;
+  height: 40%;
   justify-content: center;
+  margin: auto 0;
   max-width: 100%;
   padding: 10px 20px;
   text-align: center;
 }
 
-.em-transito {
+.status-em-transito {
   background-color: orange;
   border: none;
   border-radius: 5px;
   color: black;
   display: flex;
+  font-size: 1.3rem;
+  height: 40%;
   justify-content: center;
+  margin: auto 0;
   max-width: 100%;
   padding: 10px 20px;
   text-align: center;
 }
 
-.entregue {
+.status-entregue {
   background-color: #00cc9b;
   border: none;
   border-radius: 5px;
   color: black;
   display: flex;
+  height: 40%;
   justify-content: center;
+  margin: auto 0;
   max-width: 100%;
   padding: 10px 20px;
   text-align: center;
@@ -895,13 +966,13 @@
 
 /* CustomerOrder */
 .customer-article-container {
-  flex-flow: row wrap;
-  flex-direction: column;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto-fit, minmax(100px, auto));
   justify-content: center;
-  margin: 24px auto;
+  margin: 0 auto;
   max-width: 1344px;
-  min-width: 448px;
-  padding: 8px;
 }
 
 /* CustomerOrderDetails */
