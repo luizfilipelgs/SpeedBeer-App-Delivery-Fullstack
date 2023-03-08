@@ -16,6 +16,7 @@ function NavBar() {
 
   const handleLogout = () => {
     delLocalStorage('user');
+    delLocalStorage('products');
     navigate('/login');
   };
 
