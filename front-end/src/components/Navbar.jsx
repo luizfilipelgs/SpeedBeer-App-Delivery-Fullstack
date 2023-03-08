@@ -21,53 +21,16 @@ function NavBar() {
   };
 
   return (
-    <nav
-      className=""
-      style={ {
-        borderBottom: '1px solid black',
-        marginBottom: '25px',
-        // position: 'fixed',
-        // top: 0,
-        // left: 0,
-        width: '100%',
-        height: '50px',
-        padding: '8px 0',
-        backgroundColor: '#036B52',
-      } }
-    >
-      <ul
-        className=""
-        style={ {
-          display: 'flex',
-          listStyle: 'none',
-        } }
-      >
+    <nav className="navbar-container">
+      <ul>
         {user.role === 'customer' && (
-          <div
-            className=""
-            style={ {
-              display: 'flex',
-              textAlign: 'center',
-              justifyContent: 'space-around',
-              minWidth: '300px',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-            } }
-          >
+          <div className="navbar-user-container">
             <li>
               <NavLink
                 to="/customer/products"
                 activeclassname="active"
-                className="nav-link"
+                className="nav-link "
                 data-testid={ `${CUSTOMER_PRODUCTS}__${PRODUCTS_LINK}` }
-                style={ {
-                  display: 'flex',
-                  padding: '24px 48px',
-                  justifyContent: 'center',
-                  minWidth: '150px',
-                  textDecoration: 'none',
-                } }
               >
                 Produtos
               </NavLink>
@@ -79,13 +42,6 @@ function NavBar() {
                 activeclassname="active"
                 className="nav-link"
                 data-testid={ `${CUSTOMER_PRODUCTS}__${ORDERS_LINK}` }
-                style={ {
-                  display: 'flex',
-                  padding: '24px 48px',
-                  justifyContent: 'center',
-                  minWidth: '150px',
-                  textDecoration: 'none',
-                } }
               >
                 Meus Pedidos
               </NavLink>
@@ -93,59 +49,22 @@ function NavBar() {
           </div>
         )}
         {user.role === 'seller' && (
-          <li
-            style={ {
-              display: 'flex',
-              textAlign: 'center',
-              justifyContent: 'left',
-              minWidth: '300px',
-              position: 'absolute',
-              top: 0,
-              left: 0,
-            } }
-          >
+          <li className="navbar-seller-container">
             <NavLink
               to={ verifyRouteNav(user.role) }
               activeclassname="active"
               className="nav-link"
               data-testid={ `${CUSTOMER_PRODUCTS}__${ORDERS_LINK}` }
-              style={ {
-                display: 'flex',
-                padding: '24px 48px',
-                justifyContent: 'center',
-                minWidth: '150px',
-                textDecoration: 'none',
-              } }
             >
               Pedidos
             </NavLink>
           </li>
         )}
 
-        <div
-          className=""
-          style={ {
-            display: 'flex',
-            textDecoration: 'none',
-            justifyContent: 'space-around',
-            alignItems: 'center',
-            minWidth: '300px',
-            position: 'absolute',
-            top: 0,
-            right: 0,
-          } }
-        >
+        <div className="navbar-info-container">
           <li
             data-testid={ `${CUSTOMER_PRODUCTS}__${FULL_NAME}` }
-            style={ {
-              display: 'flex',
-              padding: '24px 48px',
-              justifyContent: 'center',
-              minWidth: '150px',
-              textDecoration: 'none',
-              color: 'white',
-              backgroundColor: '#421981',
-            } }
+            className="navbar-name-li"
           >
             {user.name}
           </li>
