@@ -44,17 +44,8 @@ function CustomerOrder() {
       <NavBar />
 
       <h3 className="title-page">Detalhes do Pedido</h3>
-      <section
-        style={ {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          maxWidth: '100%',
-
-        } }
-      >
-
-        { data && (
+      <section className="order-details-article-container">
+        {data && (
           <OrderDetailsHeader
             id={ info.id }
             sellerName={ info.seller?.name }
@@ -64,7 +55,7 @@ function CustomerOrder() {
           />
         )}
 
-        { data && <TableOrderDetails products={ data } /> }
+        {data && <TableOrderDetails products={ data } />}
       </section>
     </div>
   );
