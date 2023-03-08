@@ -11,6 +11,7 @@ import {
   SELLER,
   SUBMIT,
 } from '../utils/Types';
+import { isAddressFormValid } from '../utils/ValidationUtils';
 
 function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
@@ -71,11 +72,6 @@ function FormAddress({ products }) {
       });
   }, []);
 
-  const isRegisterFormValid = () => {
-    const isValid = address && number;
-    return isValid;
-  };
-
   return (
     <form className="form-address-container" onSubmit={ handleSubmit }>
       <h4 className="sub-title-page">Detalhes e Endereço para Entrega</h4>
@@ -129,7 +125,7 @@ function FormAddress({ products }) {
         className="btn-checkout-form-address"
         type="submit"
         data-testid={ `${CUSTOMER_CHECKOUT}__${SUBMIT}` }
-        disabled={ !isRegisterFormValid() }
+        disabled={ !isAddressFormValid(selectedSeller, address, number) }
       >
         FINALIZAR PEDIDO
       </button>
