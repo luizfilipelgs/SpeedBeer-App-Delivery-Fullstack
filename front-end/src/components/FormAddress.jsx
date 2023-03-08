@@ -89,7 +89,7 @@ function FormAddress({ products }) {
             value={ selectedSeller }
             required
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               -- Selecione o vendedor --
             </option>
             {sellers.map((seller) => (
