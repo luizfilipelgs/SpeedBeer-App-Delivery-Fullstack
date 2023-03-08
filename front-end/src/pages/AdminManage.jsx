@@ -1,20 +1,21 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
+import LoginContext from '../context/LoginContext';
+import FormRegister from '../components/FormRegister';
 import NavBar from '../components/Navbar';
 import { getLocalStorage } from '../services/localStorage';
 
 function AdminManage() {
-  const [users, setUsers] = useState([]);
+  const { setUser } = useContext(LoginContext);
   const user = getLocalStorage('user');
 
   const getAllUser = async () => {
     try {
       const response = await axios.get('http://localhost:3001/login/users');
-
       const dataFiltered = response.data.filter((d) => d.id !== user.id);
-      console.log(dataFiltered, 'dataFiltered');
+
       if (dataFiltered) {
-        setUsers(dataFiltered);
+        setUser(dataFiltered);
       } else {
         console.log('Ocorreu um erro');
       }
@@ -31,6 +32,7 @@ function AdminManage() {
     <div>
       <NavBar />
       <h1>Admin Manage</h1>
+      <FormRegister />
     </div>
   );
 }
