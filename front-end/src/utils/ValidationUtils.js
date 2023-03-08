@@ -11,6 +11,11 @@ export const isValidPassword = (password) => password.length >= MIN_NUMBER_PASSW
 
 export const isValidName = (validName) => validName.length >= MIN_NUMBER_NAME;
 
+function isValidRole(role) {
+  const regex = /^(customer|seller|administrator)$/;
+  return regex.test(role);
+}
+
 export const isLoginFormValid = (email, password) => {
   const isEmailValid = isValidEmail(email);
   const isPasswordValid = isValidPassword(password);
@@ -22,6 +27,14 @@ export const isRegisterFormValid = (name, email, password) => {
   const isEmailValid = isValidEmail(email);
   const isPasswordValid = isValidPassword(password);
   return isNameValid && isEmailValid && isPasswordValid;
+};
+
+export const isRegisterFormValidByAdm = (name, email, password, role) => {
+  const isNameValid = isValidName(name);
+  const isEmailValid = isValidEmail(email);
+  const isPasswordValid = isValidPassword(password);
+  const isRoleValid = isValidRole(role);
+  return isNameValid && isEmailValid && isPasswordValid && isRoleValid;
 };
 
 export function isAddressFormValid(selectedSeller, address, number) {
