@@ -128,11 +128,11 @@ function TableOrderDetails({ products }) {
 TableOrderDetails.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      totalPrice: PropTypes.number.isRequired,
+      id: PropTypes.number,
+      quantity: PropTypes.number,
+      name: PropTypes.string,
+      price: PropTypes.string,
+      totalPrice: PropTypes.number,
     }),
   ).isRequired,
 };
