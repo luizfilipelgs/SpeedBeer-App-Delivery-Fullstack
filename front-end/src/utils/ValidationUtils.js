@@ -23,3 +23,11 @@ export const isRegisterFormValid = (name, email, password) => {
   const isPasswordValid = isValidPassword(password);
   return isNameValid && isEmailValid && isPasswordValid;
 };
+
+export function isAddressFormValid(selectedSeller, address, number) {
+  return (
+    selectedSeller !== ''
+    && address.trim() !== ''
+    && number !== ''
+  );
+}
