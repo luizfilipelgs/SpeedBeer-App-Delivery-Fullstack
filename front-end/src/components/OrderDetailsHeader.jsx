@@ -37,7 +37,6 @@ function OrderDetailsHeader({
 
   return (
     <div className="order-details-container">
-
       <span
         className="order-details-order "
         data-testid={ `${role}_order_details__${ORDER_DETAILS_ID}${id}` }
@@ -50,7 +49,9 @@ function OrderDetailsHeader({
 
       <span className="order-details-seller">
         <span className="order-details-seller-p">P. Venda: </span>
-        <span data-testid={ `${role}_order_details__${ORDER_DETAILS_SELLER_NAME}` }>
+        <span
+          data-testid={ `${role}_order_details__${ORDER_DETAILS_SELLER_NAME}` }
+        >
           {sellerName}
         </span>
       </span>
@@ -69,14 +70,8 @@ function OrderDetailsHeader({
         {status || saleStatus}
       </span>
 
-      { role === 'seller' ? (
-        <div
-          style={ {
-            display: 'flex',
-            width: '360px',
-            justifyContent: 'space-between',
-          } }
-        >
+      {role === 'seller' ? (
+        <div className="order-details-container-seller">
           <button
             className="btn-order-details"
             onClick={ () => handleClick('Preparando') }
@@ -108,7 +103,6 @@ function OrderDetailsHeader({
           MARCAR COMO ENTREGUE
         </button>
       )}
-
     </div>
   );
 }

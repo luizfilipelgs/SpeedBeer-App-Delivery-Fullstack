@@ -701,6 +701,12 @@
   width: 90%;
 }
 
+.order-details-container-seller {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .btn-order-details {
   align-items: center;
   background-color: #036b52;
