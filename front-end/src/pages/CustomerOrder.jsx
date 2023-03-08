@@ -31,7 +31,7 @@ function CustomerOrder() {
     <div>
       <NavBar />
 
-      <article className="checkout-article-container">
+      <article className="customer-article-container">
         {orders.map((order) => (
           <OrderCard
             key={ order.id }

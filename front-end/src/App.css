@@ -649,6 +649,7 @@
   display: flex;
   justify-content: flex-start;
   margin: 8px;
+  width: 416px;
 }
 
 .order-container {
@@ -893,7 +894,7 @@
 }
 
 /* CustomerOrder */
-.checkout-article-container {
+.customer-article-container {
   flex-flow: row wrap;
   flex-direction: column;
   justify-content: center;
