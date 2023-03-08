@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getLocalStorage } from '../services/localStorage';
+import { delLocalStorage, getLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 import {
   CUSTOMER_CHECKOUT,
@@ -60,6 +60,7 @@ function FormAddress({ products }) {
     } catch (error) {
       console.error(error);
     }
+    delLocalStorage('products');
   };
 
   useEffect(() => {
