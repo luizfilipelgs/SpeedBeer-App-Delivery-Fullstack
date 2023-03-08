@@ -20,6 +20,8 @@ function App() {
         <Route path="/customer/checkout" element={ <Checkout /> } />
         <Route path="/customer/orders" element={ <CustomerOrder /> } />
         <Route path="/customer/orders/:id" element={ <CustomerOrderDetails /> } />
+        <Route path="/seller/orders" element={ <CustomerOrder /> } />
+        <Route path="/seller/orders/:id" element={ <CustomerOrderDetails /> } />
       </Routes>
     </LoginProvider>
   );

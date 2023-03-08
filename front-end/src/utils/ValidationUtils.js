@@ -23,3 +23,33 @@ export const isRegisterFormValid = (name, email, password) => {
   const isPasswordValid = isValidPassword(password);
   return isNameValid && isEmailValid && isPasswordValid;
 };
+
+export function isAddressFormValid(selectedSeller, address, number) {
+  return (
+    selectedSeller !== ''
+    && address.trim() !== ''
+    && number !== ''
+  );
+}
+
+export function textoSemAcento(text) {
+  return text
+    .replace(/[áàãâä]/gi, 'a')
+    .replace(/[éèêë]/gi, 'e')
+    .replace(/[íìîï]/gi, 'i')
+    .replace(/[óòõôö]/gi, 'o')
+    .replace(/[úùûü]/gi, 'u')
+    .replace(/[ç]/gi, 'c');
+}
+
+export function formatText(text) {
+  return text
+    .replace(/\s+/g, '-')
+    .toLowerCase();
+}
+
+export function formatTextClassName(text) {
+  const semAcento = textoSemAcento(text);
+  const formattedText = formatText(semAcento);
+  return formattedText;
+}
