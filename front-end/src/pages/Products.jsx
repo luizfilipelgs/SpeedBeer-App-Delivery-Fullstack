@@ -10,7 +10,6 @@ import { CUSTOMER_PRODUCTS, CHECKOUT_PRICE } from '../utils/Types';
 function Products() {
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-  const { role } = getLocalStorage('user');
   const navigate = useNavigate();
 
   const getAllProducts = async () => {
@@ -75,21 +74,19 @@ function Products() {
         ))}
       </section>
 
-      {role === 'customer' && (
-        <button
-          className="ver-carrinho"
-          type="button"
-          data-testid="customer_products__button-cart"
-          onClick={ handleClick }
-          disabled={ totalPrice === 0 || totalPrice === undefined }
-        >
-          Ver Carrinho:
-          <span> Total: R$ </span>
-          <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
-            {totalPrice ? formattedNumber(totalPrice) : '0,00'}
-          </span>
-        </button>
-      )}
+      <button
+        className="ver-carrinho"
+        type="button"
+        data-testid="customer_products__button-cart"
+        onClick={ handleClick }
+        disabled={ totalPrice === 0 || totalPrice === undefined }
+      >
+        Ver Carrinho:
+        <span> Total: R$ </span>
+        <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
+          {totalPrice ? formattedNumber(totalPrice) : '0,00'}
+        </span>
+      </button>
 
     </div>
   );
