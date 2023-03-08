@@ -14,7 +14,7 @@ import {
 
 function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState('');
   const [address, setAddress] = useState('');
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState('');
