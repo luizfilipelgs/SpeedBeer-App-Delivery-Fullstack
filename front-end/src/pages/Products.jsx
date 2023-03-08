@@ -56,15 +56,7 @@ function Products() {
   return (
     <div>
       <NavBar />
-      <section
-        style={ {
-          display: 'flex',
-          flexFlow: 'row wrap',
-          justifyContent: 'center',
-          minHeight: '10px',
-          alignItems: 'center',
-        } }
-      >
+      <section className="products-section-container">
         {products.map((product) => (
           <ProductCard
             key={ product.id }
@@ -87,7 +79,6 @@ function Products() {
           {totalPrice ? formattedNumber(totalPrice) : '0,00'}
         </span>
       </button>
-
     </div>
   );
 }

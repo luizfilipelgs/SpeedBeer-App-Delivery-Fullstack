@@ -911,3 +911,12 @@
   flex-direction: column;
   max-width: 100%;
 }
+
+/* Products */
+.products-section-container {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  min-height: 10px;
+}
