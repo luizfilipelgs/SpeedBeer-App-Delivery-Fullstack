@@ -31,17 +31,7 @@ function CustomerOrder() {
     <div>
       <NavBar />
 
-      <article
-        style={ {
-          display: 'flex',
-          margin: '24px auto',
-          justifyContent: 'center',
-          padding: '8px',
-          flexFlow: 'row wrap',
-          minWidth: '448px',
-          maxWidth: '1344px',
-        } }
-      >
+      <article className="checkout-article-container">
         {orders.map((order) => (
           <OrderCard
             key={ order.id }
