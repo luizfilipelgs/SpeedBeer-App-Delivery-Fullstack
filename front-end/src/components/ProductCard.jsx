@@ -85,71 +85,26 @@ function ProductCard({ product, sumTotalPrice }) {
   };
 
   return (
-    <div
-      className="card"
-      style={ {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '200px',
-        height: '300px',
-        margin: '20px',
-        padding: '10px',
-        border: '1px solid #ccc',
-        borderRadius: '5px',
-        boxShadow: '0 0 5px rgba(0, 0, 0, 0.3)',
-      } }
-    >
-      <div
-        className=""
-        style={ {
-          display: 'flex',
-          justifyContent: 'center',
-          minHeight: '10px',
-        } }
-      >
+    <div className="product-card-container">
+      <div className="product-card-img-container">
         <img
           src={ product.urlImage }
           alt={ product.name }
           data-testid={ `${CUSTOMER_PRODUCTS}__${IMAGE}-${product.id}` }
-          style={ {
-            objectFit: 'cover',
-            width: '150px',
-            height: '150px',
-            marginBottom: '10px',
-          } }
         />
       </div>
 
-      <div
-        className=""
-        style={ {
-          display: 'flex',
-          padding: '8px',
-          alignItems: 'center',
-          flexDirection: 'column',
-          minWidth: '100%',
-          justifyContent: 'center',
-          textAlign: 'center',
-        } }
-      >
+      <div className="product-name-container">
         <p
           data-testid={ `${CUSTOMER_PRODUCTS}__${TITLE}-${product.id}` }
-          style={ {
-            fontSize: '1.2rem',
-            marginBottom: '10px',
-          } }
+          className="product-name-text"
         >
           {product.name}
         </p>
 
         <span
           data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_PRICE}-${product.id}` }
-          style={ {
-            fontSize: '1.4rem',
-            fontWeight: 'bold',
-            marginBottom: '10px',
-          } }
+          className="product-price-text"
         >
           {`R$ ${formattedNumber(product.price)}`}
         </span>
@@ -164,14 +119,11 @@ function ProductCard({ product, sumTotalPrice }) {
             <IoMdRemoveCircle />
           </button>
           <input
-            className="increment-button-number no-spinners"
+            className="increment-button-number no-spinners text-align"
             type="number"
             value={ count }
             data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_QUANTITY}-${product.id}` }
             onChange={ handleQuantity }
-            style={ {
-              textAlign: 'center',
-            } }
           />
           <button
             className="increment-button"
@@ -182,7 +134,6 @@ function ProductCard({ product, sumTotalPrice }) {
             <IoMdAddCircle />
           </button>
         </div>
-
       </div>
     </div>
   );

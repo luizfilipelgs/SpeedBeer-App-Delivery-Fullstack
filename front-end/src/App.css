@@ -824,3 +824,55 @@
 .logout-btn:hover {
   background-color: #c0392b;
 }
+
+/* ProductCard */
+.product-card-container {
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  margin: 20px;
+  padding: 10px;
+  width: 200px;
+}
+
+.product-card-img-container {
+  display: flex;
+  justify-content: center;
+  min-height: 10px;
+}
+
+.product-card-img {
+  height: 150px;
+  margin-bottom: 10px;
+  object-fit: cover;
+  width: 150px;
+}
+
+.product-name-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 100%;
+  padding: 8px;
+  text-align: center;
+}
+
+.product-name-text {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.product-price-text {
+  font-size: 1.4rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.text-align {
+  text-align: center;
+}
