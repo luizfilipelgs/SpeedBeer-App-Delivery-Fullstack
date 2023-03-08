@@ -15,9 +15,9 @@ import {
 
 function ProductCard({ product, sumTotalPrice }) {
   const [count, setCount] = useState(0);
-
   const quantity = 'quantity';
   const totalPrice = 'totalPrice';
+  const { role } = getLocalStorage('user');
   product[quantity] = 0;
   product[totalPrice] = 0;
 
@@ -153,36 +153,36 @@ function ProductCard({ product, sumTotalPrice }) {
         >
           {`R$ ${formattedNumber(product.price)}`}
         </span>
-
-        <div className="btns-container">
-          <button
-            className="increment-button"
-            type="button"
-            data-testid={ `${CUSTOMER_PRODUCTS}__${RM}-${product.id}` }
-            onClick={ subQuantity }
-          >
-            <IoMdRemoveCircle />
-
-          </button>
-          <input
-            className="increment-button-number no-spinners"
-            type="number"
-            value={ count }
-            data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_QUANTITY}-${product.id}` }
-            onChange={ handleQuantity }
-            style={ {
-              textAlign: 'center',
-            } }
-          />
-          <button
-            className="increment-button"
-            type="button"
-            data-testid={ `${CUSTOMER_PRODUCTS}__${ADD}-${product.id}` }
-            onClick={ sumQuantity }
-          >
-            <IoMdAddCircle />
-          </button>
-        </div>
+        {role === 'customer' && (
+          <div className="btns-container">
+            <button
+              className="increment-button"
+              type="button"
+              data-testid={ `${CUSTOMER_PRODUCTS}__${RM}-${product.id}` }
+              onClick={ subQuantity }
+            >
+              <IoMdRemoveCircle />
+            </button>
+            <input
+              className="increment-button-number no-spinners"
+              type="number"
+              value={ count }
+              data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_QUANTITY}-${product.id}` }
+              onChange={ handleQuantity }
+              style={ {
+                textAlign: 'center',
+              } }
+            />
+            <button
+              className="increment-button"
+              type="button"
+              data-testid={ `${CUSTOMER_PRODUCTS}__${ADD}-${product.id}` }
+              onClick={ sumQuantity }
+            >
+              <IoMdAddCircle />
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
