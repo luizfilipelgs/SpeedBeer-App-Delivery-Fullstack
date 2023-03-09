@@ -61,6 +61,19 @@ function NavBar() {
           </li>
         )}
 
+        {user.role === 'administrator' && (
+          <li className="navbar-seller-container">
+            <NavLink
+              to={ verifyRouteNav(user.role) }
+              activeclassname="active"
+              className="nav-link"
+              data-testid={ `${CUSTOMER_PRODUCTS}__${ORDERS_LINK}` }
+            >
+              Gerenciar Usuários
+            </NavLink>
+          </li>
+        )}
+
         <div className="navbar-info-container">
           <li
             data-testid={ `${CUSTOMER_PRODUCTS}__${FULL_NAME}` }
