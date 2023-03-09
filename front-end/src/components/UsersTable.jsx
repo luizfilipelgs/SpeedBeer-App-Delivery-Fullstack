@@ -1,4 +1,12 @@
 import React from 'react';
+import {
+  EMAIL_USERS,
+  NAME_USERS,
+  NUMBER_USERS,
+  REMOVE_USERS,
+  ROLE_USERS,
+  ROUTE_ADMIN_MANAGE,
+} from '../utils/Types';
 
 function UsersTable() {
   return (
@@ -14,12 +22,26 @@ function UsersTable() {
         </tr>
         {users.map((user, i) => (
           <tr key={ user.id }>
-            <td>{i + 1}</td>
-            <td>{user.name}</td>
-            <td>{user.email}</td>
-            <td>{user.role}</td>
+            <td data-testid={ `${ROUTE_ADMIN_MANAGE}__${NUMBER_USERS}-${i}` }>
+              {i + 1}
+            </td>
+            <td data-testid={ `${ROUTE_ADMIN_MANAGE}__${NAME_USERS}-${i}` }>
+              {user.name}
+            </td>
+            <td data-testid={ `${ROUTE_ADMIN_MANAGE}__${EMAIL_USERS}-${i}` }>
+              {user.email}
+            </td>
+            <td data-testid={ `${ROUTE_ADMIN_MANAGE}__${ROLE_USERS}-${i}` }>
+              {user.role}
+            </td>
             <td>
-              <button type="button">Excluir</button>
+              <button
+                data-testid={ `${ROUTE_ADMIN_MANAGE}__${REMOVE_USERS}-${i}` }
+                onClick={ () => deleteUser(user.id) }
+                type="button"
+              >
+                Excluir
+              </button>
             </td>
           </tr>
         ))}
