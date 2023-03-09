@@ -9,7 +9,7 @@ import {
   ROUTE_ADMIN_MANAGE,
 } from '../utils/Types';
 
-function UsersTable({ users }) {
+function UsersTable({ users, deleteUser }) {
   return (
     <div>
       <p>Lista de usuários</p>
@@ -57,6 +57,7 @@ function UsersTable({ users }) {
 
 UsersTable.propTypes = {
   users: PropTypes.array,
+  deleteUser: PropTypes.function,
 }.isRequired;
 
 export default UsersTable;

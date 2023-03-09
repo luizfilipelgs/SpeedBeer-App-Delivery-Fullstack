@@ -53,11 +53,26 @@ function AdminManage() {
     }
   };
 
+  const deleteUser = async (id) => {
+    try {
+      await axios.delete(`http://localhost:3001/login/users/remove/${id}`, {
+        headers: {
+          Authorization: user.token,
+        },
+      });
+
+      const newUsers = users.filter((d) => d.id !== id);
+      setUsers(newUsers);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div>
       <NavBar />
       <FormRegister handleSubmit={ handleSubmit } registerError={ registerError } />
-      <UsersTable users={ users } />
+      <UsersTable users={ users } deleteUser={ deleteUser } />
     </div>
   );
 }
