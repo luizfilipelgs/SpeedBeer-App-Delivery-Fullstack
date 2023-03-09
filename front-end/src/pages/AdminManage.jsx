@@ -29,7 +29,6 @@ function AdminManage() {
 
   const handleSubmit = async (e, { name, email, password, selectedRole }) => {
     e.preventDefault();
-
     try {
       const response = await axios.post(
         'http://localhost:3001/register',
@@ -39,8 +38,6 @@ function AdminManage() {
       const { data } = response;
       if (data.role) {
         setUser(data);
-        // navigate(`/${routesLogin[data.role]}`);
-        // navigate(pathname);
         getAllUser();
       } else {
         setRegisterError(data.message);

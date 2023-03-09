@@ -9,7 +9,6 @@ import {
   REGISTER_ADMIN,
   ROUTE_ADMIN_MANAGE,
   SELECT_ROLE_ADMIN,
-
 } from '../utils/Types';
 
 function FormRegister({ handleSubmit, registerError }) {
@@ -17,10 +16,7 @@ function FormRegister({ handleSubmit, registerError }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
-
   const roles = ['Customer', 'Seller', 'Administrator'];
-  // const { pathname } = useLocation();
-  // const navigate = useNavigate();
 
   const handleNameChange = ({ target: { value } }) => {
     setName(value);
@@ -50,7 +46,7 @@ function FormRegister({ handleSubmit, registerError }) {
     >
       <h2>Cadastrar novo usuário</h2>
       <form
-        onSubmit={ handleSubmit }
+        onSubmit={ (e) => handleSubmit(e, { name, email, password, selectedRole }) }
         style={ {
           margin: '0 auto',
         } }
