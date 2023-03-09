@@ -35,4 +35,14 @@ const getAllUsers = async () => {
   }
 };
 
-module.exports = { postLogin, getAllUsers };
+const remove = async (id) => {
+  try {
+    const destroyed = await User.destroy({ where: { id } });
+    return destroyed > 0;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Erro ao remover registro');
+  }
+};
+
+module.exports = { postLogin, getAllUsers, remove };

@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.post('/', validateLogin, loginController.postLogin);
 router.get('/users', loginController.getAllUsers);
+router.delete('/users/remove/:id', loginController.remove);
 
 module.exports = router;

@@ -24,4 +24,16 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { postLogin, getAllUsers };
+const remove = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { type, message } = await loginService.remove(id);
+
+    if (type) return res.status(type).json({ message });
+    return res.status(204).end();
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { postLogin, getAllUsers, remove };
