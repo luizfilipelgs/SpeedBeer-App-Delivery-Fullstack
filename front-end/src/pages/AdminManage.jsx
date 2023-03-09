@@ -9,12 +9,20 @@ import { STATUS_CODE_CONFLICT } from '../utils/Types';
 function AdminManage() {
   const { setUser } = useContext(LoginContext);
   const [registerError, setRegisterError] = useState('');
-
   const user = getLocalStorage('user');
 
   const getAllUser = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/login/users');
+      const response = await axios.get(
+        'http://localhost:3001/login/users',
+
+        {
+          headers: {
+            Authorization: user.token,
+          },
+        },
+      );
+
       const dataFiltered = response.data.filter((d) => d.id !== user.id);
 
       if (dataFiltered) {
@@ -27,21 +35,22 @@ function AdminManage() {
     }
   };
 
-  const handleSubmit = async (e, { name, email, password, selectedRole }) => {
+  const handleSubmit = async (e, { name, email, password, role }) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        'http://localhost:3001/register',
-        { name, email, password, selectedRole },
-        { headers: { 'Content-Type': 'application/json' } },
+      const { data } = await axios.post(
+        'http://localhost:3001/register/admin',
+        { name, email, password, role },
+        {
+          headers: {
+            Authorization: user.token,
+          },
+        },
       );
-      const { data } = response;
-      if (data.role) {
-        setUser(data);
-        getAllUser();
-      } else {
-        setRegisterError(data.message);
-      }
+
+      setUser(data);
+      getAllUser();
+      setRegisterError('');
     } catch (error) {
       if (error.response && error.response.status === STATUS_CODE_CONFLICT) {
         setRegisterError('Já existe um usuário com este e-mail cadastrado');
