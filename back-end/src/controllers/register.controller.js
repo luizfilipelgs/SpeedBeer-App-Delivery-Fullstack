@@ -1,4 +1,4 @@
-const registerService = require("../services/register.service");
+const registerService = require('../services/register.service');
 
 const createUser = async (req, res) => {
   try {
@@ -6,7 +6,7 @@ const createUser = async (req, res) => {
     const { message, type } = await registerService.createUser(
       name,
       email,
-      password
+      password,
     );
 
     if (type) return res.status(type).json({ message });
@@ -23,7 +23,7 @@ const createUserByAdm = async (req, res) => {
       name,
       email,
       password,
-      role
+      role,
     );
 
     if (type) return res.status(type).json({ message });
