@@ -14,7 +14,7 @@ function FormRegister({ handleSubmit, registerError }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('customer');
+  const [role, setRole] = useState('');
   const roles = ['Customer', 'Seller', 'Administrator'];
 
   const handleNameChange = ({ target: { value } }) => {
@@ -34,25 +34,16 @@ function FormRegister({ handleSubmit, registerError }) {
   };
 
   return (
-    <fieldset
-      className="form-address-container"
-      style={ {
-        margin: '0 auto',
-        maxWidth: '80%',
-        display: 'flex',
-        justifyContent: 'space-around',
-      } }
-    >
-      <h2>Cadastrar novo usuário</h2>
+    <fieldset className="form-register-adm-container">
+      <h2 className="sub-title-page">Cadastrar novo usuário</h2>
       <form
+        className="form-register-adm"
         onSubmit={ (e) => handleSubmit(e, { name, email, password, role }) }
-        style={ {
-          margin: '0 auto',
-        } }
       >
         <label htmlFor="nameInput">
           Nome:
           <input
+            className="input-select-form-register"
             type="text"
             name="nameInput"
             value={ name }
@@ -66,6 +57,7 @@ function FormRegister({ handleSubmit, registerError }) {
         <label htmlFor="emailInput">
           Email:
           <input
+            className="input-select-form-register"
             type="email"
             name="emailInput"
             value={ email }
@@ -79,6 +71,7 @@ function FormRegister({ handleSubmit, registerError }) {
         <label htmlFor="passwordInput">
           Senha:
           <input
+            className="input-select-form-register"
             type="password"
             name="passwordInput"
             value={ password }
@@ -89,9 +82,12 @@ function FormRegister({ handleSubmit, registerError }) {
           />
         </label>
 
-        <label htmlFor="roleInput">
+        <label
+          htmlFor="roleInput"
+        >
           Tipo:
           <select
+            className="input-select-form-register"
             name="RoleInput"
             value={ role }
             data-testid={ `${ROUTE_ADMIN_MANAGE}__${SELECT_ROLE_ADMIN}` }
@@ -111,6 +107,7 @@ function FormRegister({ handleSubmit, registerError }) {
 
         <button
           type="submit"
+          className="btn-login"
           data-testid={ `${ROUTE_ADMIN_MANAGE}__${REGISTER_ADMIN}` }
           disabled={ !isRegisterFormValidByAdm(name, email, password, role) }
         >

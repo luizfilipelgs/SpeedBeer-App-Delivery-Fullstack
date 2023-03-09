@@ -1,5 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { IoCloseCircleSharp } from 'react-icons/io5';
+
 import {
   EMAIL_USERS,
   NAME_USERS,
@@ -11,11 +13,11 @@ import {
 
 function UsersTable({ users, deleteUser }) {
   return (
-    <div>
-      <p>Lista de usuários</p>
+    <div className="user-table-container">
+      <p className="sub-title-page">Lista de usuários</p>
       <table>
         <thead>
-          <tr>
+          <tr className="user-table-adm">
             <th>Item</th>
             <th>Nome</th>
             <th>E-mail</th>
@@ -23,7 +25,7 @@ function UsersTable({ users, deleteUser }) {
             <th>Excluir</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="user-table-adm">
           {users?.map((user, i) => (
             <tr key={ user.id }>
               <td data-testid={ `${ROUTE_ADMIN_MANAGE}__${NUMBER_USERS}-${i}` }>
@@ -40,11 +42,12 @@ function UsersTable({ users, deleteUser }) {
               </td>
               <td>
                 <button
+                  className="remove-btn"
                   data-testid={ `${ROUTE_ADMIN_MANAGE}__${REMOVE_USERS}-${i}` }
                   onClick={ () => deleteUser(user.id) }
                   type="button"
                 >
-                  Excluir
+                  <IoCloseCircleSharp />
                 </button>
               </td>
             </tr>
