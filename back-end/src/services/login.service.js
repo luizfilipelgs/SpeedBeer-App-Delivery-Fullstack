@@ -7,7 +7,7 @@ const postLogin = async (email, password) => {
   try {
     const result = await User.findOne({ where: { email } });
     console.log(mapError.NOT_FOUND);
-    if (!result) { return { message: 'Usuario não cadastrado', type: mapError.NOT_FOUND }; }
+    if (!result) { return { message: 'Usuário não cadastrado', type: mapError.NOT_FOUND }; }
     const { dataValues } = result;
 
     const passwordDecoded = md5(password);
@@ -25,4 +25,24 @@ const postLogin = async (email, password) => {
   }
 };
 
-module.exports = { postLogin };
+const getAllUsers = async () => {
+  try {
+    const users = await User.findAll({ attributes: { exclude: ['password'] } });
+    return { message: users };
+  } catch (e) {
+    console.log(e);
+    return { type: mapError.INTERNAL_SERVER_ERROR, message: mapError.MSG_ERROR_500 };
+  }
+};
+
+const remove = async (id) => {
+  try {
+    const destroyed = await User.destroy({ where: { id } });
+    return destroyed > 0;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Erro ao remover registro');
+  }
+};
+
+module.exports = { postLogin, getAllUsers, remove };

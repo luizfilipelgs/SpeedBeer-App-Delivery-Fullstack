@@ -30,6 +30,7 @@ export function verifyRouteNav(dataRole) {
   const routes = {
     customer: '/customer/orders',
     seller: '/seller/orders',
+    administrator: '/admin/manage',
   };
 
   return routes[dataRole] || '';
