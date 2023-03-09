@@ -1,12 +1,15 @@
 import axios from 'axios';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import LoginContext from '../context/LoginContext';
 import FormRegister from '../components/FormRegister';
 import NavBar from '../components/Navbar';
 import { getLocalStorage } from '../services/localStorage';
+import { STATUS_CODE_CONFLICT } from '../utils/Types';
 
 function AdminManage() {
   const { setUser } = useContext(LoginContext);
+  const [registerError, setRegisterError] = useState('');
+
   const user = getLocalStorage('user');
 
   const getAllUser = async () => {
@@ -24,6 +27,33 @@ function AdminManage() {
     }
   };
 
+  const handleSubmit = async (e, { name, email, password, selectedRole }) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        'http://localhost:3001/register',
+        { name, email, password, selectedRole },
+        { headers: { 'Content-Type': 'application/json' } },
+      );
+      const { data } = response;
+      if (data.role) {
+        setUser(data);
+        // navigate(`/${routesLogin[data.role]}`);
+        // navigate(pathname);
+        getAllUser();
+      } else {
+        setRegisterError(data.message);
+      }
+    } catch (error) {
+      if (error.response && error.response.status === STATUS_CODE_CONFLICT) {
+        setRegisterError('Já existe um usuário com este e-mail cadastrado');
+      } else {
+        setRegisterError('Ocorreu um erro ao tentar fazer registro');
+      }
+    }
+  };
+
   useEffect(() => {
     getAllUser();
   }, []);
@@ -31,8 +61,7 @@ function AdminManage() {
   return (
     <div>
       <NavBar />
-      <h1>Admin Manage</h1>
-      <FormRegister />
+      <FormRegister handleSubmit={ handleSubmit } registerError={ registerError } />
     </div>
   );
 }

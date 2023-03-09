@@ -1,29 +1,26 @@
-import axios from 'axios';
-import React, { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import LoginContext from '../context/LoginContext';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { isRegisterFormValidByAdm } from '../utils/ValidationUtils';
 import {
   ERROR_REGISTER,
   INPUT_EMAIL_ADMIN,
   INPUT_NAME_ADMIN,
   INPUT_PASSWORD_ADMIN,
+  REGISTER_ADMIN,
   ROUTE_ADMIN_MANAGE,
   SELECT_ROLE_ADMIN,
-  STATUS_CODE_CONFLICT,
+
 } from '../utils/Types';
 
-function FormRegister() {
-  const { setUser } = useContext(LoginContext);
+function FormRegister({ handleSubmit, registerError }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState('');
-  const [registerError, setRegisterError] = useState('');
 
   const roles = ['Customer', 'Seller', 'Administrator'];
-
-  const navigate = useNavigate();
+  // const { pathname } = useLocation();
+  // const navigate = useNavigate();
 
   const handleNameChange = ({ target: { value } }) => {
     setName(value);
@@ -41,36 +38,23 @@ function FormRegister() {
     setSelectedRole(value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.post(
-        'http://localhost:3001/register',
-        { name, email, password, selectedRole },
-        { headers: { 'Content-Type': 'application/json' } },
-      );
-      const { data } = response;
-      if (data.role) {
-        setUser(data);
-        // navigate(`/${routesLogin[data.role]}`);
-        navigate('/customer/products');
-      } else {
-        setRegisterError(data.message);
-      }
-    } catch (error) {
-      if (error.response && error.response.status === STATUS_CODE_CONFLICT) {
-        setRegisterError('Já existe um usuário com este e-mail cadastrado');
-      } else {
-        setRegisterError('Ocorreu um erro ao tentar fazer registro');
-      }
-    }
-  };
-
   return (
-    <fieldset className="registro">
+    <fieldset
+      className="form-address-container"
+      style={ {
+        margin: '0 auto',
+        maxWidth: '80%',
+        display: 'flex',
+        justifyContent: 'space-around',
+      } }
+    >
       <h2>Cadastrar novo usuário</h2>
-      <form onSubmit={ handleSubmit }>
+      <form
+        onSubmit={ handleSubmit }
+        style={ {
+          margin: '0 auto',
+        } }
+      >
         <label htmlFor="nameInput">
           Nome:
           <input
@@ -132,6 +116,7 @@ function FormRegister() {
 
         <button
           type="submit"
+          data-testid={ `${ROUTE_ADMIN_MANAGE}__${REGISTER_ADMIN}` }
           disabled={
             !isRegisterFormValidByAdm(name, email, password, selectedRole)
           }
@@ -150,5 +135,9 @@ function FormRegister() {
     </fieldset>
   );
 }
+
+FormRegister.propTypes = {
+  handleSubmit: PropTypes.function,
+}.isRequired;
 
 export default FormRegister;
