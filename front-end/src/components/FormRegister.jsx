@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { isRegisterFormValidByAdm } from '../utils/ValidationUtils';
 import {
-  ERROR_REGISTER,
   INPUT_EMAIL_ADMIN,
   INPUT_NAME_ADMIN,
   INPUT_PASSWORD_ADMIN,
@@ -15,7 +14,7 @@ function FormRegister({ handleSubmit, registerError }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState('');
+  const [role, setRole] = useState('customer');
   const roles = ['Customer', 'Seller', 'Administrator'];
 
   const handleNameChange = ({ target: { value } }) => {
@@ -31,7 +30,7 @@ function FormRegister({ handleSubmit, registerError }) {
   };
 
   const handleRoleChange = ({ target: { value } }) => {
-    setSelectedRole(value);
+    setRole(value);
   };
 
   return (
@@ -46,7 +45,7 @@ function FormRegister({ handleSubmit, registerError }) {
     >
       <h2>Cadastrar novo usuário</h2>
       <form
-        onSubmit={ (e) => handleSubmit(e, { name, email, password, selectedRole }) }
+        onSubmit={ (e) => handleSubmit(e, { name, email, password, role }) }
         style={ {
           margin: '0 auto',
         } }
@@ -94,7 +93,7 @@ function FormRegister({ handleSubmit, registerError }) {
           Tipo:
           <select
             name="RoleInput"
-            value={ selectedRole }
+            value={ role }
             data-testid={ `${ROUTE_ADMIN_MANAGE}__${SELECT_ROLE_ADMIN}` }
             onChange={ handleRoleChange }
             required
@@ -102,9 +101,9 @@ function FormRegister({ handleSubmit, registerError }) {
             <option value="" disabled>
               -- Selecione o tipo --
             </option>
-            {roles.map((role) => (
-              <option key={ role } value={ role.toLowerCase() }>
-                {role}
+            {roles.map((value) => (
+              <option key={ value } value={ value.toLowerCase() }>
+                {value}
               </option>
             ))}
           </select>
@@ -113,20 +112,16 @@ function FormRegister({ handleSubmit, registerError }) {
         <button
           type="submit"
           data-testid={ `${ROUTE_ADMIN_MANAGE}__${REGISTER_ADMIN}` }
-          disabled={
-            !isRegisterFormValidByAdm(name, email, password, selectedRole)
-          }
+          disabled={ !isRegisterFormValidByAdm(name, email, password, role) }
         >
           CADASTRAR
         </button>
       </form>
+
       {registerError && (
-        <p
-          className=""
-          data-testid={ `${ROUTE_ADMIN_MANAGE}__${ERROR_REGISTER}` }
-        >
+        <span data-testid="admin_manage__element-invalid-register">
           {registerError}
-        </p>
+        </span>
       )}
     </fieldset>
   );
