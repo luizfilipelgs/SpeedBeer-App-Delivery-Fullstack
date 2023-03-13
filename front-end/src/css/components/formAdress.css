@@ -1,0 +1,138 @@
+.checkout-form-address {
+  align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  margin: 20px 0;
+  max-width: 100%;
+  padding: 0 48px;
+}
+
+.input-number-form-address {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 8%;
+}
+
+.input-number-form-address input {
+  margin-bottom: 10px;
+  max-width: 90%;
+  text-align: center;
+}
+
+.input-select-form-address {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 20%;
+}
+
+.input-select-form-address option {
+  align-items: center;
+  text-align: center;
+}
+
+.input-text-form-address {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 50%;
+}
+
+.input-text-form-address input {
+  margin-bottom: 10px;
+  max-width: 90%;
+  text-align: left;
+}
+
+.checkout-form-address select, .checkout-form-address input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-top: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.checkout-form-address select:focus, .checkout-form-address input:focus {
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.btn-checkout-form-address {
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+  color: #ffc800;
+  cursor: pointer;
+  font-size: 24px;
+  height: 100px;
+  margin: 0 auto;
+  padding: 10px 20px;
+  width: 300px;
+}
+
+.btn-checkout-form-address:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-checkout-form-address:hover {
+  opacity: 0.8;
+  background-color: #ffc800;
+  color: black;
+}
+
+.form-address-container {
+  /* align-items: center; */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.checkout-form-address-container {
+  max-width: 100%;
+}
+
+.btn-remove {
+  background-color: red;
+  border: none;
+  border-radius: 0.25rem;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  margin: 0 auto;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+}
+
+.btn-remove:hover {
+  background-color: #c00;
+}
+
+.btn-remove:focus {
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.5);
+  outline: none;
+}
+
+.btn-remove:active {
+  transform: translateY(2px);
+}
+
+.remove-btn {
+  background-color: rgba(255, 0, 0, 0);
+  border: none;
+  color: red;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.remove-btn:hover {
+  opacity: 0.7;
+}
