@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../css/pages/customerOrder.css';
 import axios from 'axios';
 import OrderCard from '../components/OrderCard';
 import NavBar from '../components/Navbar';
