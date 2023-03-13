@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import '../css/components/navBar.css';
 import { useNavigate, NavLink } from 'react-router-dom';
+import { IoCartSharp, IoLogOutOutline } from 'react-icons/io5';
+import LoginContext from '../context/LoginContext';
 import { getLocalStorage, delLocalStorage } from '../services/localStorage';
 import {
   CUSTOMER_PRODUCTS,
@@ -9,10 +12,14 @@ import {
   LOGOUT,
 } from '../utils/Types';
 import { verifyRouteNav } from '../utils/verifyRoute';
+import { formattedNumber } from '../utils/ValidationUtils';
 
 function NavBar() {
+  const { price } = useContext(LoginContext);
   const user = getLocalStorage('user');
+  const products = getLocalStorage('products');
   const navigate = useNavigate();
+  console.log(products);
 
   const handleLogout = () => {
     delLocalStorage('user');
@@ -75,22 +82,43 @@ function NavBar() {
         )}
 
         <div className="navbar-info-container">
+          {user.role === 'customer' && (
+            <li>
+              <NavLink
+                className="navbar-cart-li"
+                to="/customer/checkout"
+              >
+                { products?.length > 0 && (
+                  <span className="navbar-quantity">
+                    {products.length}
+                  </span>
+                ) }
+                <IoCartSharp style={ { width: '5vw', height: '4vh' } } />
+                <span className="navbar-price">
+                  R$
+                  {' '}
+                  { price ? formattedNumber(price) : formattedNumber(0) }
+                </span>
+              </NavLink>
+            </li>
+          )}
           <li
             data-testid={ `${CUSTOMER_PRODUCTS}__${FULL_NAME}` }
             className="navbar-name-li"
           >
             {user.name}
           </li>
-          <li>
-            <button
-              className="logout-btn"
-              type="button"
-              data-testid={ `${CUSTOMER_PRODUCTS}__${LOGOUT}` }
-              onClick={ handleLogout }
-            >
+          <button
+            className="logout-btn"
+            type="button"
+            data-testid={ `${CUSTOMER_PRODUCTS}__${LOGOUT}` }
+            onClick={ handleLogout }
+          >
+            <span className="logout">
               Sair
-            </button>
-          </li>
+            </span>
+            <IoLogOutOutline className="logout-icon" />
+          </button>
         </div>
       </ul>
     </nav>
