@@ -72,12 +72,12 @@ function TableOrderDetails({ products }) {
         <tbody>
           {listProducts?.map((product, i) => (
             <tr key={ product.id }>
-              <th
+              <td
+                style={ { backgroundColor: '#ffc800' } }
                 data-testid={ `${verifyRoute(pathname)}__${NUMBER}-${i}` }
-                scope="row"
               >
                 {i + 1}
-              </th>
+              </td>
               <td data-testid={ `${verifyRoute(pathname)}__${NAME}-${i}` }>
                 {product.name}
               </td>
