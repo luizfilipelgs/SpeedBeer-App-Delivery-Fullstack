@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import '../css/components/tableOrder.css';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { IoCloseCircleSharp } from 'react-icons/io5';
@@ -81,12 +82,12 @@ function TableOrder({ products }) {
         <tbody>
           {listProducts?.map((product, i) => (
             <tr key={ product.id }>
-              <th
+              <td
+                style={ { backgroundColor: '#ffc800' } }
                 data-testid={ `${verifyRoute(pathname)}__${NUMBER}-${i}` }
-                scope="row"
               >
                 {i + 1}
-              </th>
+              </td>
               <td data-testid={ `${verifyRoute(pathname)}__${NAME}-${i}` }>
                 {product.name}
               </td>
