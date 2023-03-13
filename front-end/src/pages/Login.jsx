@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import '../css/pages/login.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import LoginContext from '../context/LoginContext';
@@ -66,6 +67,7 @@ function Login() {
 
   return (
     <div className="login-div-container">
+      <img src="https://i.pinimg.com/600x315/76/f5/5f/76f55f75b829100bb07ae70f7951d4ca.jpg" alt="sla" />
       <fieldset className="login-container">
         <form className="login-form" onSubmit={ handleSubmit }>
           <h1 className="login-header">Login</h1>
