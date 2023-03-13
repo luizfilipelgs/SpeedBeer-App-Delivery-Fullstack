@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../css/components/formRegister.css';
 import PropTypes from 'prop-types';
 import { isRegisterFormValidByAdm } from '../utils/ValidationUtils';
 import {
