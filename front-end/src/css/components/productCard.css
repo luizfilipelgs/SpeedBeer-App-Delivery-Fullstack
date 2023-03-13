@@ -1,11 +1,11 @@
 .product-card-container {
-  display: flex;
   align-items: center;
-  flex-direction: column;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.629);
+  display: flex;
+  flex-direction: column;
   height: 300px;
   margin: 20px;
   padding: 10px;
@@ -14,7 +14,7 @@
 
 .product-card-container:hover {
   border: 1px solid #ffc800;
-  box-shadow: 0 0 5px #ffc800b8;;
+  box-shadow: 0 0 5px #ffc800b8;
 }
 
 .product-card-img-container {
@@ -58,13 +58,13 @@
 .btns-container {
   align-items: center;
   display: flex;
-  justify-content: center;
   flex-direction: row;
-  text-align: center;
+  height: 20px;
+  justify-content: center;
   margin-top: 8px;
   max-width: 30%;
-  height: 20px;
   padding: 8px;
+  text-align: center;
 }
 
 .increment-button {

@@ -12,7 +12,7 @@ body {
 
 .ver-carrinho {
   align-items: center;
-  background-color: #000;
+  background-color: black;
   border: none;
   border-radius: 15px;
   color: #ffc800;
@@ -32,7 +32,7 @@ body {
 }
 
 .ver-carrinho:hover {
-  opacity: 0.8;
   background-color: #ffc800;
-  color: #000;
+  color: black;
+  opacity: 0.8;
 }

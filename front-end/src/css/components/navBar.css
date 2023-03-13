@@ -58,7 +58,7 @@
   display: flex;
   justify-content: center;
   min-width: 150px;
-  padding: 13px 0px;
+  padding: 13px 0;
   position: relative;
   text-decoration: none;
 }
@@ -68,7 +68,7 @@
   justify-content: center;
   margin-left: -15px;
   margin-right: 15px;
-  padding: 10px 0px;
+  padding: 10px 0;
 }
 
 .navbar-quantity {
@@ -76,9 +76,9 @@
   border-radius: 50%;
   color: white;
   font-size: 12px;
-  right: 70px;
   padding: 2px 5px;
   position: absolute;
+  right: 70px;
   top: 5px;
 }
 
@@ -128,5 +128,5 @@
 .logout-icon {
   width: 1.7vw;
   height: 2.8vh;
-  padding: 0px
+  padding: 0;
 }
