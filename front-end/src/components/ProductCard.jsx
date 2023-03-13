@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../css/components/productCard.css';
 import PropTypes from 'prop-types';
 import { IoMdAddCircle, IoMdRemoveCircle } from 'react-icons/io';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
@@ -86,21 +87,27 @@ function ProductCard({ product, sumTotalPrice }) {
 
   return (
     <div className="product-card-container">
-      <div className="product-card-img-container">
+      <div>
         <img
           src={ product.urlImage }
           alt={ product.name }
+          minheight="100px"
+          width="100px"
           data-testid={ `${CUSTOMER_PRODUCTS}__${IMAGE}-${product.id}` }
         />
       </div>
 
       <div className="product-name-container">
-        <p
-          data-testid={ `${CUSTOMER_PRODUCTS}__${TITLE}-${product.id}` }
-          className="product-name-text"
+        <div
+          style={ { height: '100px' } }
         >
-          {product.name}
-        </p>
+          <p
+            data-testid={ `${CUSTOMER_PRODUCTS}__${TITLE}-${product.id}` }
+            className="product-name-text"
+          >
+            {product.name}
+          </p>
+        </div>
 
         <span
           data-testid={ `${CUSTOMER_PRODUCTS}__${CARD_PRICE}-${product.id}` }
@@ -108,7 +115,6 @@ function ProductCard({ product, sumTotalPrice }) {
         >
           {`R$ ${formattedNumber(product.price)}`}
         </span>
-
         <div className="btns-container">
           <button
             className="increment-button"
