@@ -1,0 +1,101 @@
+.order-card-container {
+  border: 1px solid black;
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px;
+  width: 416px;
+}
+
+.order-container {
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  max-width: 40px;
+  min-height: 100px;
+  min-width: 400px;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.id-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 4px auto;
+  min-width: 100px;
+  padding: 8px;
+  text-align: center;
+}
+
+.order-card-status-content {
+  align-items: center;
+  display: flex;
+  max-width: 100%;
+  text-align: center;
+}
+
+.pendente {
+  align-items: center;
+  background-color: #ccb800;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.preparando {
+  align-items: center;
+  background-color: #6c0;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.em-transito {
+  background-color: orange;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.id-content-text-medium-size {
+  font-size: 1.5rem;
+}
+
+.align-self {
+  align-self: center;
+}
+
+.status-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 4px auto;
+  min-width: 100px;
+  padding: 8px;
+  text-align: center;
+}
+
+.info-orders-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 4px auto;
+  min-width: 100px;
+  padding: 8px;
+  text-align: center;
+}

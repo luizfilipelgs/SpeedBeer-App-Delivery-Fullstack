@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import '../css/components/orderCard.css';
 import { Link, useLocation } from 'react-router-dom';
 import { formattedNumber, formatTextClassName } from '../utils/ValidationUtils';
 import {
