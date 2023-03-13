@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import '../css/pages/product.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import LoginContext from '../context/LoginContext';
 import NavBar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
@@ -8,6 +10,7 @@ import { formattedNumber } from '../utils/ValidationUtils';
 import { CUSTOMER_PRODUCTS, CHECKOUT_PRICE } from '../utils/Types';
 
 function Products() {
+  const { setPrice } = useContext(LoginContext);
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const navigate = useNavigate();
@@ -38,6 +41,7 @@ function Products() {
       0,
     );
     setTotalPrice(total);
+    setPrice(total);
   };
 
   useEffect(() => {
@@ -73,10 +77,13 @@ function Products() {
         onClick={ handleClick }
         disabled={ totalPrice === 0 || totalPrice === undefined }
       >
-        Ver Carrinho:
-        <span> Total: R$ </span>
-        <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
-          {totalPrice ? formattedNumber(totalPrice) : '0,00'}
+        <span>
+          Ver Carrinho
+          <br />
+          Total: R$
+          <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
+            {totalPrice ? formattedNumber(totalPrice) : '0,00'}
+          </span>
         </span>
       </button>
     </div>
