@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/components/usersTable.css';
 import { PropTypes } from 'prop-types';
 import { IoCloseCircleSharp } from 'react-icons/io5';
 
