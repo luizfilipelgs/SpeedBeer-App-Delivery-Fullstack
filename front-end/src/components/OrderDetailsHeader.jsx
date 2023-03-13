@@ -1,4 +1,5 @@
 import React from 'react';
+import '../css/components/orderDetailsHeader.css';
 import { PropTypes } from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { formatTextClassName } from '../utils/ValidationUtils';
