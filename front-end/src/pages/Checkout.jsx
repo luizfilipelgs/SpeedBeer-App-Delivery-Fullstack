@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import '../css/pages/checkout.css';
 import FormAddress from '../components/FormAddress';
 import NavBar from '../components/Navbar';
 import TableOrder from '../components/TableOrder';
