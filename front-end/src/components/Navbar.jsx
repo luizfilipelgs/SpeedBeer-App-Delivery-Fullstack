@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import '../css/components/navBar.css';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { IoCartSharp, IoLogOutOutline } from 'react-icons/io5';
+import logo from '../images/beeeeer.png';
 import LoginContext from '../context/LoginContext';
 import { getLocalStorage, delLocalStorage } from '../services/localStorage';
 import {
@@ -55,6 +56,7 @@ function NavBar() {
             </li>
           </div>
         )}
+
         {user.role === 'seller' && (
           <li className="navbar-seller-container">
             <NavLink
@@ -81,6 +83,10 @@ function NavBar() {
           </li>
         )}
 
+        <div className="logo-container">
+          <img src={ logo } alt="logo" className="logo" />
+        </div>
+
         <div className="navbar-info-container">
           {user.role === 'customer' && (
             <li>
@@ -102,6 +108,7 @@ function NavBar() {
               </NavLink>
             </li>
           )}
+
           <li
             data-testid={ `${CUSTOMER_PRODUCTS}__${FULL_NAME}` }
             className="navbar-name-li"
