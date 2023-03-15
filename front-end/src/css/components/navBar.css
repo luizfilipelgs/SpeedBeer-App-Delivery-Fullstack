@@ -1,5 +1,5 @@
 .navbar-container {
-  background-color: black;
+  background-color: #394240;
   border-bottom: 1px solid black;
   height: 50px;
   margin-bottom: 25px;
@@ -43,7 +43,7 @@
 }
 
 .navbar-name-li {
-  background-color: black;
+  background-color: #394240;
   color: white;
   display: flex;
   justify-content: center;
@@ -53,7 +53,7 @@
 }
 
 .navbar-cart-li {
-  background-color: black;
+  background-color: #394240;
   color: white;
   display: flex;
   justify-content: center;
