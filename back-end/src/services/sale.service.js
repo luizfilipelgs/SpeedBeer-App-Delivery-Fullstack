@@ -1,17 +1,17 @@
 const Sequelize = require('sequelize');
 const { Products, Sales, SalesProducts, User } = require('../database/models');
 const config = require('../database/config/config');
-const mapError = require('../utils/mapError');
+const statusCode = require('../utils/statusCode');
+const { processError } = require('../utils/handleError');
 
-const MSG_ERROR_500 = 'internal serve error';
 const env = process.env.NODE_ENV || 'development';
 
 const sequelize = new Sequelize(config[env]);
 
 const register = async (newSale) => {
-  const { userId, sellerId, deliveryAddress, deliveryNumber, products, totalPrice } = newSale;
   const t = await sequelize.transaction();
   try {
+    const { userId, sellerId, deliveryAddress, deliveryNumber, products, totalPrice } = newSale;
     const sale = await Sales.create(
       { userId, sellerId, deliveryAddress, deliveryNumber, status: 'Pendente', totalPrice }, 
       { transaction: t },
@@ -25,10 +25,10 @@ const register = async (newSale) => {
     await t.commit();
 
     return { message: sale };
-  } catch (e) {
+  } catch (error) {
     await t.rollback();
-    console.log(e);
-    return { type: mapError.INTERNAL_SERVER_ERROR, message: MSG_ERROR_500 };
+    const { type, message } = processError(error);
+    return { type, message };
   }
 };
 
@@ -36,9 +36,9 @@ const getOrder = async (userId) => {
   try {
     const orderUser = await Sales.findAll({ where: { userId } });
     return { message: orderUser };    
-  } catch (e) {
-    console.log(e);
-    return { type: mapError.INTERNAL_SERVER_ERROR, message: MSG_ERROR_500 };
+  } catch (error) {
+    const { type, message } = processError(error);
+    return { type, message };
   }
 };
 
@@ -52,18 +52,19 @@ const getDetails = async (saleId) => {
     });
   
     return { message: saleDetails };
-  } catch (e) {
-    console.log(e);
-    return { type: mapError.INTERNAL_SERVER_ERROR, message: MSG_ERROR_500 };
+  } catch (error) {
+    const { type, message } = processError(error);
+    return { type, message };
   }
 };
+
 const getAllSellers = async () => {
   try {
     const sellers = await User.findAll({ where: { role: 'seller' } });
     return { message: sellers };
-  } catch (e) {
-    console.log(e);
-    return { type: mapError.INTERNAL_SERVER_ERROR, message: MSG_ERROR_500 };
+  } catch (error) {
+    const { type, message } = processError(error);
+    return { type, message };
   }
 };
 
@@ -71,25 +72,25 @@ const getSeller = async (sellerId) => {
   try {
     const salesUser = await Sales.findAll({ where: { sellerId } });
     return { message: salesUser };
-  } catch (e) {
-    console.log(e);
-    return { type: mapError.INTERNAL_SERVER_ERROR, message: MSG_ERROR_500 };
+  } catch (error) {
+    const { type, message } = processError(error);
+    return { type, message };
   }
 };
 
 const update = async (saleId, newStatus) => {
   const allStatus = ['Pendente', 'Preparando', 'Em Trânsito', 'Entregue'];
   if (!allStatus.includes(newStatus)) {
-    return { type: mapError.INVALID_VALUE, message: 'Invalid status' };
+    return { type: statusCode.INVALID_VALUE, message: 'Invalid status' };
   }
   try {
     await Sales.update({ status: newStatus }, {
       where: { id: saleId },
     });
     return { message: 'Status updated' };
-  } catch (e) {
-    console.log(e);
-    return { type: mapError.INTERNAL_SERVER_ERROR, message: MSG_ERROR_500 };
+  } catch (error) {
+    const { type, message } = processError(error);
+    return { type, message };
   }
 };
 

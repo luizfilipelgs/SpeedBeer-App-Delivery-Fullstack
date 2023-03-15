@@ -10,7 +10,7 @@ const validateRegister = (req, res, next) => {
   if (!validName(name) || !validPass(password) || !validMail(email)) {
     return res
       .status(401)
-      .json({ message: 'Formato de Email ou senha Invalidos' });
+      .json('Formato de Email ou senha Invalidos');
   }
 
   next();

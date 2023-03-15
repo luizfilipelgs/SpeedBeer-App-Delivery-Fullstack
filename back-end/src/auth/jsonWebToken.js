@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-const mapError = require('../utils/mapError');
+const statusCode = require('../utils/statusCode');
 
 const secret = fs.readFileSync('./jwt.evaluation.key');
 
@@ -19,7 +19,7 @@ const verifyToken = (authorization) => {
     const payload = jwt.verify(authorization, secret);
     return { message: payload };
   } catch (e) {
-    return { type: mapError.UNAUTHORIZED, message: 'Expired or invalid token' };
+    return { type: statusCode.UNAUTHORIZED, message: 'Expired or invalid token' };
   }
 };
 
