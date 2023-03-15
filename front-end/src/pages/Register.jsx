@@ -1,18 +1,18 @@
 import React, { useContext, useState } from 'react';
-import '../css/pages/register.css';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginContext from '../context/LoginContext';
 import { setLocalStorage } from '../services/localStorage';
 import { isRegisterFormValid } from '../utils/ValidationUtils';
-import {
-  ROUTE_REGISTER,
-  EMAIL,
-  PASSWORD,
-  INPUT_NAME,
-  REGISTER,
-  ERROR_REGISTER,
-} from '../utils/Types';
+
+const theme = createTheme();
 
 const routesLogin = {
   customer: 'customer/products',
@@ -20,12 +20,11 @@ const routesLogin = {
   administrator: 'admin/manage',
 };
 
-function Register() {
+export default function FormRegister() {
   const { setUser } = useContext(LoginContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
-  const [registerError, setRegisterError] = useState('');
 
   const navigate = useNavigate();
 
@@ -65,65 +64,69 @@ function Register() {
   };
 
   return (
-    <div className="registro-container">
-
-      <fieldset className="registro">
-        <h2>
-          Cadastro
-        </h2>
-        <form onSubmit={ handleSubmit }>
-          <label htmlFor="nameInput">
-            Nome:
-            <input
-              type="text"
-              name="nameInput"
+    <ThemeProvider theme={ theme }>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={ {
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          } }
+        >
+          <Typography component="h1" variant="h5">
+            Cadastro
+          </Typography>
+          <Box component="form" onSubmit={ handleSubmit } noValidate sx={ { mt: 1 } }>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="name"
+              label="Nome"
+              name="name"
               value={ name }
-              placeholder="Digite o seu nome"
-              data-testid={ `${ROUTE_REGISTER}__${INPUT_NAME}` }
+              autoComplete="name"
+              autoFocus
               onChange={ handleNameChange }
-              required
             />
-          </label>
-          <label htmlFor="emailInput">
-            Email:
-            <input
-              type="email"
-              name="emailInput"
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email"
+              name="email"
               value={ email }
-              placeholder="Digite seu endereço de e-mail"
-              data-testid={ `${ROUTE_REGISTER}__${EMAIL}` }
+              autoComplete="email"
+              autoFocus
               onChange={ handleEmailChange }
-              required
             />
-          </label>
-          <label htmlFor="passwordInput">
-            Senha:
-            <input
-              type="password"
-              name="passwordInput"
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
               value={ password }
-              placeholder="Digite sua senha"
-              data-testid={ `${ROUTE_REGISTER}__${PASSWORD}` }
+              label="Senha"
+              type="password"
+              id="password"
+              autoComplete="current-password"
               onChange={ handlePasswordChange }
-              required
             />
-          </label>
-          <button
-            type="submit"
-            data-testid={ `${ROUTE_REGISTER}__${REGISTER}` }
-            disabled={ !isRegisterFormValid(name, email, password) }
-          >
-            CADASTRAR
-          </button>
-        </form>
-        {registerError && (
-          <p data-testid={ `${ROUTE_REGISTER}__${ERROR_REGISTER}` }>
-            {registerError}
-          </p>
-        )}
-      </fieldset>
-    </div>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={ { mt: 3, mb: 2 } }
+              disabled={ !isRegisterFormValid(name, email, password) }
+            >
+              Cadastrar
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </ThemeProvider>
   );
 }
-
-export default Register;
