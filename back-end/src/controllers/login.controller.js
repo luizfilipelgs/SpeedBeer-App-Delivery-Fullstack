@@ -14,7 +14,7 @@ const getAllUsers = async (_req, res) => {
   return res.status(200).json(message);
 };
 
-const remove = async (req, res, next) => {
+const remove = async (req, res) => {
   const { id } = req.params;
   const { type, message } = await loginService.remove(id);
 
