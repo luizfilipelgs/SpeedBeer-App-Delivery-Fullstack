@@ -79,11 +79,20 @@ export default function FormLogin() {
             alignItems: 'center',
           } }
         >
-          <img src={ logo } alt="sla" style={ { height: '30vh' } } />
+          <img
+            className="img-logo"
+            src={ logo }
+            alt="logo-speed-beer"
+          />
           <Typography component="h1" variant="h5">
             Entrar
           </Typography>
-          <Box component="form" onSubmit={ handleSubmit } noValidate sx={ { mt: 1 } }>
+          <Box
+            component="form"
+            onSubmit={ handleSubmit }
+            noValidate
+            sx={ { mt: 1 } }
+          >
             <TextField
               margin="normal"
               required
@@ -119,8 +128,12 @@ export default function FormLogin() {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2" onClick={ () => navigate('/register') } >
-                  {"Cadastre-se"}
+                <Link
+                  href="#"
+                  variant="body2"
+                  onClick={ () => navigate('/register') }
+                >
+                  Cadastre-se
                 </Link>
               </Grid>
             </Grid>
