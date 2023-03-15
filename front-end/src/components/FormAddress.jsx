@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getLocalStorage } from '../services/localStorage';
+import { delLocalStorage, getLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 import {
   CUSTOMER_CHECKOUT,
@@ -11,10 +11,11 @@ import {
   SELLER,
   SUBMIT,
 } from '../utils/Types';
+import { isAddressFormValid } from '../utils/ValidationUtils';
 
 function FormAddress({ products }) {
   const { price } = useContext(totalPriceContext);
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState('');
   const [address, setAddress] = useState('');
   const [sellers, setSellers] = useState([]);
   const [selectedSeller, setSelectedSeller] = useState('');
@@ -60,6 +61,7 @@ function FormAddress({ products }) {
     } catch (error) {
       console.error(error);
     }
+    delLocalStorage('products');
   };
 
   useEffect(() => {
@@ -69,11 +71,6 @@ function FormAddress({ products }) {
         setSellers(data);
       });
   }, []);
-
-  const isRegisterFormValid = () => {
-    const isValid = address && number;
-    return isValid;
-  };
 
   return (
     <form className="form-address-container" onSubmit={ handleSubmit }>
@@ -88,7 +85,7 @@ function FormAddress({ products }) {
             value={ selectedSeller }
             required
           >
-            <option value="" disabled selected>
+            <option value="" disabled>
               -- Selecione o vendedor --
             </option>
             {sellers.map((seller) => (
@@ -128,7 +125,7 @@ function FormAddress({ products }) {
         className="btn-checkout-form-address"
         type="submit"
         data-testid={ `${CUSTOMER_CHECKOUT}__${SUBMIT}` }
-        disabled={ !isRegisterFormValid() }
+        disabled={ !isAddressFormValid(selectedSeller, address, number) }
       >
         FINALIZAR PEDIDO
       </button>
@@ -139,11 +136,11 @@ function FormAddress({ products }) {
 FormAddress.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      quantity: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      totalPrice: PropTypes.number.isRequired,
+      id: PropTypes.number,
+      quantity: PropTypes.number,
+      name: PropTypes.string,
+      price: PropTypes.string,
+      totalPrice: PropTypes.number,
     }),
   ).isRequired,
 };

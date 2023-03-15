@@ -23,6 +23,8 @@ export const ORDER_DETAILS_SELLER_NAME = 'element-order-details-label-seller-nam
 export const ORDER_DETAILS_DATE = 'element-order-details-label-order-date';
 export const ORDER_DETAILS_STATUS = 'element-order-details-label-delivery-status';
 export const ORDER_DETAILS_BUTTON_CHECK = 'button-delivery-check';
+export const ORDER_DETAILS_BUTTON_PREPARE = 'button-preparing-check';
+export const ORDER_DETAILS_BUTTON_DISPATCH = 'button-dispatch-check';
 export const QUATRO = 4;
 
 // FormAddress.jsx
@@ -42,7 +44,7 @@ export const LOGOUT = 'element-navbar-link-logout';
 // OrderCard.jsx
 export const CUSTOMER_ORDERS = 'customer_orders';
 export const ORDER_ID = 'element-order-id';
-export const ORDER_DATE = 'element-order-date-';
+export const ORDER_DATE = 'element-order-date';
 export const ORDER_STATUS = 'element-delivery-status';
 export const ORDER_CARD_PRICE = 'element-card-price';
 
@@ -63,3 +65,20 @@ export const INPUT_NAME = 'input-name';
 export const REGISTER = 'button-register';
 export const ERROR_REGISTER = 'element-invalid_register';
 export const MIN_NUMBER_NAME = 12;
+
+// FormRegister.jsx
+export const ROUTE_ADMIN_MANAGE = 'admin_manage';
+export const INPUT_NAME_ADMIN = 'input-name';
+export const INPUT_EMAIL_ADMIN = 'input-email';
+export const INPUT_PASSWORD_ADMIN = 'input-password';
+export const SELECT_ROLE_ADMIN = 'select-role';
+export const REGISTER_ADMIN = 'button-register';
+export const STATUS_CODE_CONFLICT = 409;
+
+// UsersTable.jsx
+
+export const NUMBER_USERS = 'element-user-table-item-number';
+export const NAME_USERS = 'element-user-table-name';
+export const EMAIL_USERS = 'element-user-table-email';
+export const ROLE_USERS = 'element-user-table-role';
+export const REMOVE_USERS = 'element-user-table-remove';

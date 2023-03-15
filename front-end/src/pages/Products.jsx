@@ -5,15 +5,11 @@ import NavBar from '../components/Navbar';
 import ProductCard from '../components/ProductCard';
 import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import { formattedNumber } from '../utils/ValidationUtils';
-import {
-  CUSTOMER_PRODUCTS,
-  CHECKOUT_PRICE,
-} from '../utils/Types';
+import { CUSTOMER_PRODUCTS, CHECKOUT_PRICE } from '../utils/Types';
 
 function Products() {
   const [products, setProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
-
   const navigate = useNavigate();
 
   const getAllProducts = async () => {
@@ -44,12 +40,6 @@ function Products() {
     setTotalPrice(total);
   };
 
-  const quantSave = (id) => {
-    const storage = getLocalStorage('products');
-    const prod = storage.filter((s) => s.id === id);
-    return prod.quantity;
-  };
-
   useEffect(() => {
     sumTotalPrice();
     getAllProducts();
@@ -66,24 +56,16 @@ function Products() {
   return (
     <div>
       <NavBar />
-      <section
-        style={ {
-          display: 'flex',
-          flexFlow: 'row wrap',
-          justifyContent: 'center',
-          minHeight: '10px',
-          alignItems: 'center',
-        } }
-      >
+      <section className="products-section-container">
         {products.map((product) => (
           <ProductCard
             key={ product.id }
             product={ product }
             sumTotalPrice={ sumTotalPrice }
-            quantSave={ quantSave }
           />
         ))}
       </section>
+
       <button
         className="ver-carrinho"
         type="button"
@@ -94,7 +76,7 @@ function Products() {
         Ver Carrinho:
         <span> Total: R$ </span>
         <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
-          {formattedNumber(totalPrice)}
+          {totalPrice ? formattedNumber(totalPrice) : '0,00'}
         </span>
       </button>
     </div>

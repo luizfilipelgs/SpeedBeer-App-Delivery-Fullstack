@@ -9,6 +9,21 @@ const userMocks = {
   }
 };
 
+const mockUsers = [
+  {
+    id: 1,
+    name: 'Nome Qualquer',
+    email: 'email@qualquer.com',
+    password: md5('apenasUmaSenha')
+  },
+  {
+    id: 2,
+    name: 'Nome Qualquer2',
+    email: 'email2@qualquer.com',
+    password: md5('apenasUmaOutraSenha')
+  }
+]
+
 const validLogin = {
   email: "email@qualquer.com",
   password: "apenasUmaSenha"
@@ -51,4 +66,5 @@ module.exports = {
   loginInvalidPass,
   wrongPass,
   wrongEmail,
+  mockUsers,
 }

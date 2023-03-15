@@ -25,4 +25,24 @@ const postLogin = async (email, password) => {
   }
 };
 
-module.exports = { postLogin };
+const getAllUsers = async () => {
+  try {
+    const users = await User.findAll({ attributes: { exclude: ['password'] } });
+    return { message: users };
+  } catch (error) {
+    const { type, message } = processError(error);
+    return { type, message };
+  }
+};
+
+const remove = async (id) => {
+  try {
+    const destroyed = await User.destroy({ where: { id } });
+    return destroyed > 0;
+  } catch (error) {
+    const { type, message } = processError(error);
+    return { type, message };
+  }
+};
+
+module.exports = { postLogin, getAllUsers, remove };

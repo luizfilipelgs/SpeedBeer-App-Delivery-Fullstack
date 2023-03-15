@@ -3,44 +3,19 @@ import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import NavBar from '../components/Navbar';
 import OrderDetailsHeader from '../components/OrderDetailsHeader';
-import TableOrder from '../components/TableOrder';
-import { getLocalStorage } from '../services/localStorage';
+import TableOrderDetails from '../components/TableOrderDetails';
 
 function CustomerOrder() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
+  const [info, setInfo] = useState({});
   const [status, setStatus] = useState('Pendente');
-  const [products, setProducts] = useState([]);
 
   const location = useLocation();
 
-  const getStorage = () => {
-    const storage = getLocalStorage('products');
-    setProducts(storage);
-  };
-
-  useEffect(() => {
-    getStorage();
-  }, []);
-
-  useEffect(() => {
-    try {
-      const saleId = location.pathname.split('/')[3];
-
-      axios
-        .get(`http://localhost:3001/sales/orders/details/${saleId}`)
-        .then((response) => {
-          setData(response.data);
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  }, [location.pathname]);
-
-  const updateStatus = () => {
-    const newStatus = status === 'Pendente' ? 'Entregue' : 'Pendente';
+  const updateStatus = async (newStatus) => {
     const saleId = location.pathname.split('/')[3];
 
-    axios
+    return axios
       .put(`http://localhost:3001/sales/status/${saleId}`, { newStatus })
       .then(() => {
         setStatus(newStatus);
@@ -50,30 +25,37 @@ function CustomerOrder() {
       });
   };
 
+  useEffect(() => {
+    try {
+      const saleId = location.pathname.split('/')[3];
+      axios
+        .get(`http://localhost:3001/sales/orders/details/${saleId}`)
+        .then((response) => {
+          setInfo(response.data);
+          setData(response.data.products);
+          setStatus(response.data.status);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  }, [location.pathname]);
   return (
     <div>
       <NavBar />
 
       <h3 className="title-page">Detalhes do Pedido</h3>
-      <section
-        style={ {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          maxWidth: '100%',
+      <section className="order-details-article-container">
+        {data && (
+          <OrderDetailsHeader
+            id={ info.id }
+            sellerName={ info.seller?.name }
+            saleDate={ new Date(Date.parse(info.saleDate)) }
+            updateStatus={ updateStatus }
+            status={ status }
+          />
+        )}
 
-        } }
-      >
-
-        <OrderDetailsHeader
-          id={ data.id }
-          sellerName={ data.seller?.name }
-          saleDate={ new Date(Date.parse(data.saleDate)) }
-          saleStatus={ data.status }
-          newStatus={ updateStatus }
-        />
-
-        <TableOrder products={ products } />
+        {data && <TableOrderDetails products={ data } />}
       </section>
     </div>
   );

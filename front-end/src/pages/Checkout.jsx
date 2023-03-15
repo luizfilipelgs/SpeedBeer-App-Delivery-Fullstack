@@ -19,17 +19,8 @@ function Checkout() {
   return (
     <div>
       <NavBar />
-      <h3 className="title-page">
-        Finalizar Pedido
-
-      </h3>
-      <section
-        style={ {
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-        } }
-      >
+      <h3 className="title-page">Finalizar Pedido</h3>
+      <section className="checkout-section-container">
         <TableOrder products={ products } />
         <FormAddress products={ products } />
       </section>

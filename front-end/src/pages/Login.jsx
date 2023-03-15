@@ -65,15 +65,7 @@ function Login() {
   };
 
   return (
-    <div
-      style={ {
-        alignItems: 'center',
-        display: 'flex',
-        height: '100vh',
-        justifyContent: 'center',
-        flexDirection: 'column',
-      } }
-    >
+    <div className="login-div-container">
       <fieldset className="login-container">
         <form className="login-form" onSubmit={ handleSubmit }>
           <h1 className="login-header">Login</h1>

@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import { IoCloseCircleSharp } from 'react-icons/io5';
-import { getLocalStorage, setLocalStorage } from '../services/localStorage';
 import totalPriceContext from '../context/LoginContext';
 import { verifyRoute, verifyRouteInTotalPrice } from '../utils/verifyRoute';
 import { formattedNumber } from '../utils/ValidationUtils';
@@ -18,7 +17,7 @@ import {
   REMOVE,
 } from '../utils/Types';
 
-function TableOrder({ products }) {
+function TableOrderDetails({ products }) {
   const { setPrice } = useContext(totalPriceContext);
   const [listProducts, setListProducts] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -26,19 +25,11 @@ function TableOrder({ products }) {
 
   const sumTotalPrice = () => {
     const total = listProducts?.reduce(
-      (acc, curr) => (curr.totalPrice ? curr.totalPrice + acc : curr.price + acc),
+      (acc, curr) => acc + curr.price * curr.SalesProducts.quantity,
       0,
     );
-    setTotalPrice(total.toFixed(2));
-    setPrice(total.toFixed(2));
-  };
-
-  const removeProduct = (id) => {
-    const storage = getLocalStorage('products');
-    const newStorage = storage.filter((s) => s.id !== Number(id));
-
-    setLocalStorage('products', newStorage);
-    setListProducts(newStorage);
+    setTotalPrice(total);
+    setPrice(total);
   };
 
   useEffect(() => {
@@ -93,13 +84,13 @@ function TableOrder({ products }) {
               <td
                 data-testid={ `${verifyRoute(pathname)}__${ORDER_QUANTITY}-${i}` }
               >
-                {product.quantity}
+                {product.SalesProducts.quantity}
               </td>
               <td data-testid={ `${verifyRoute(pathname)}__${ORDER_PRICE}-${i}` }>
                 {formattedNumber(product.price)}
               </td>
               <td data-testid={ `${verifyRoute(pathname)}__${SUB_TOTAL}-${i}` }>
-                {formattedNumber(product.totalPrice)}
+                {formattedNumber(product.price * product.SalesProducts.quantity)}
               </td>
               {pathname === PATH_CHECKOUT && (
                 <td>
@@ -133,7 +124,7 @@ function TableOrder({ products }) {
   );
 }
 
-TableOrder.propTypes = {
+TableOrderDetails.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,
@@ -145,4 +136,4 @@ TableOrder.propTypes = {
   ).isRequired,
 };
 
-export default TableOrder;
+export default TableOrderDetails;

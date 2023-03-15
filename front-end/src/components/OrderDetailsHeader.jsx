@@ -1,12 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { useLocation } from 'react-router-dom';
+import { formatTextClassName } from '../utils/ValidationUtils';
 import {
-  ROUTE_DETAILS,
   ORDER_DETAILS_ID,
   ORDER_DETAILS_SELLER_NAME,
   ORDER_DETAILS_DATE,
   ORDER_DETAILS_STATUS,
   ORDER_DETAILS_BUTTON_CHECK,
+  ORDER_DETAILS_BUTTON_PREPARE,
+  ORDER_DETAILS_BUTTON_DISPATCH,
   QUATRO,
 } from '../utils/Types';
 
@@ -14,20 +17,29 @@ function OrderDetailsHeader({
   id,
   sellerName,
   saleDate,
-  saleStatus,
-  newStatus,
+  updateStatus,
+  status,
 }) {
   const formattedNum = id ? id.toString().padStart(QUATRO, 0) : '';
   const formattedDate = new Date(Date.parse(saleDate)).toLocaleDateString(
     'pt-BR',
   );
+  const { pathname } = useLocation();
+  const role = pathname.includes('customer') ? 'customer' : 'seller';
+
+  const handleClick = async (click) => {
+    try {
+      await updateStatus(click);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="order-details-container">
-
       <span
         className="order-details-order "
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_ID}${id}` }
+        data-testid={ `${role}_order_details__${ORDER_DETAILS_ID}${id}` }
       >
         PEDIDO
         {' '}
@@ -37,35 +49,60 @@ function OrderDetailsHeader({
 
       <span className="order-details-seller">
         <span className="order-details-seller-p">P. Venda: </span>
-        <span data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_SELLER_NAME}` }>
+        <span
+          data-testid={ `${role}_order_details__${ORDER_DETAILS_SELLER_NAME}` }
+        >
           {sellerName}
         </span>
       </span>
 
       <span
         className="order-details-date"
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_DATE}` }
+        data-testid={ `${role}_order_details__${ORDER_DETAILS_DATE}` }
       >
         {formattedDate}
       </span>
 
       <span
-        className="order-details-status"
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_STATUS}` }
+        className={ `order-details-status  ${formatTextClassName(status)}` }
+        data-testid={ `${role}_order_details__${ORDER_DETAILS_STATUS}` }
       >
-        {saleStatus}
+        {status || saleStatus}
       </span>
 
-      <button
-        className="btn-order-details"
-        onClick={ () => newStatus('Entregue') }
-        data-testid={ `${ROUTE_DETAILS}__${ORDER_DETAILS_BUTTON_CHECK}` }
-        disabled={ saleStatus !== 'Em Trânsito' }
-        type="button"
-      >
-        MARCAR COMO ENTREGUE
-      </button>
+      {role === 'seller' ? (
+        <div className="order-details-container-seller">
+          <button
+            className="btn-order-details"
+            onClick={ () => handleClick('Preparando') }
+            data-testid={ `${role}_order_details__${ORDER_DETAILS_BUTTON_PREPARE}` }
+            disabled={ status !== 'Pendente' }
+            type="button"
+          >
+            PREPARAR PEDIDO
+          </button>
 
+          <button
+            className="btn-order-details"
+            onClick={ () => handleClick('Em Trânsito') }
+            data-testid={ `${role}_order_details__${ORDER_DETAILS_BUTTON_DISPATCH}` }
+            disabled={ status !== 'Preparando' }
+            type="button"
+          >
+            SAIU PARA ENTREGA
+          </button>
+        </div>
+      ) : (
+        <button
+          className="btn-order-details"
+          onClick={ () => handleClick('Entregue') }
+          data-testid={ `${role}_order_details__${ORDER_DETAILS_BUTTON_CHECK}` }
+          disabled={ status !== 'Em Trânsito' }
+          type="button"
+        >
+          MARCAR COMO ENTREGUE
+        </button>
+      )}
     </div>
   );
 }

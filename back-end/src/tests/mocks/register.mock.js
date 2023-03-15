@@ -4,6 +4,13 @@ const validRegister = {
   password: 'senhaQualquer',
 };
 
+const validRegisterAdm = {
+  name: 'Nome Qualquer',
+  email: 'email@qualquer.com',
+  password: 'senhaQualquer',
+  role: 'customer',
+};
+
 const registerWithoutName = {
   email: 'email@qualquer.com',
   password: 'senhaQualquer',
@@ -44,6 +51,13 @@ const registerDuplicate = {
   },
 }
 
+const registerDuplicateAdm = {
+  name: 'Fulana Pereira ',
+  email: 'fulana@deliveryapp.com',
+  password: 'senhaQualquer',
+  role: 'customer',
+}
+
 module.exports = {
   validRegister,
   registerWithoutName,
@@ -52,4 +66,6 @@ module.exports = {
   registerMocks,
   newUserMock,
   registerDuplicate,
+  validRegisterAdm,
+  registerDuplicateAdm,
 };
