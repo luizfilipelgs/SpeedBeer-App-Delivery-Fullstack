@@ -119,6 +119,7 @@ export default function FormLogin() {
             />
             <Button
               type="submit"
+              color="warning"
               fullWidth
               variant="contained"
               sx={ { mt: 3, mb: 2 } }
