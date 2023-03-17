@@ -18,7 +18,7 @@ const validateRegisterByAdm = (req, res, next) => {
   const isValidRole = validarRole(role);
 
   if (!isValidName || !isValidPassword || !isValidEmail || !isValidRole) {
-    return res.status(401).json({ message: 'Formato dos campos Inválidos' });
+    return res.status(401).json('Formato dos campos Inválidos');
   }
 
   next();
@@ -30,7 +30,7 @@ const validateRegister = (req, res, next) => {
   if (!validName(name) || !validPass(password) || !validMail(email)) {
     return res
       .status(401)
-      .json({ message: 'Formato de Email ou senha Inválidos' });
+      .json('Formato de Email ou senha Invalidos');
   }
 
   next();

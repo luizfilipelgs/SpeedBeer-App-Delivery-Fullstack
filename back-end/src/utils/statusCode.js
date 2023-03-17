@@ -1,10 +1,11 @@
-const mapError = {
+const statusCode = {
   INVALID_VALUE: 400,
   UNMATCHED_FIELDS: 400,
+  BAD_REQUEST: 400,
   NOT_FOUND: 404,
   CONFLICT: 409,
   UNAUTHORIZED: 401,
   INTERNAL_SERVER_ERROR: 500,
 };
 
-module.exports = mapError;
+module.exports = statusCode;
