@@ -8,6 +8,7 @@ import Container from '@mui/material/Container';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import logo from '../images/beer_logo_text_2.png';
 import LoginContext from '../context/LoginContext';
 import { setLocalStorage } from '../services/localStorage';
 import { isRegisterFormValid } from '../utils/ValidationUtils';
@@ -75,6 +76,11 @@ export default function FormRegister() {
             alignItems: 'center',
           } }
         >
+          <img
+            className="img-logo"
+            src={ logo }
+            alt="logo-speed-beer"
+          />
           <Typography component="h1" variant="h5">
             Cadastro
           </Typography>
@@ -116,6 +122,7 @@ export default function FormRegister() {
               onChange={ handlePasswordChange }
             />
             <Button
+              color="warning"
               type="submit"
               fullWidth
               variant="contained"
