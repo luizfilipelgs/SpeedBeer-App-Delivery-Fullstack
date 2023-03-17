@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import LoginProvider from './context/LoginProvider';
-import Login from './pages/FormLogin';
+import Login from './pages/login';
 import Register from './pages/Register';
 import Products from './pages/Products';
 import CustomerOrder from './pages/CustomerOrder';
