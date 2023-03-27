@@ -4,9 +4,7 @@
 
   SpeedBeer é um projeto fullstack de uma plataforma de delivery de bebidas que visa oferecer para os empresarios do ramo uma plataforma de vendas online para aumentar o alcance de seus negócios e facilitar o processo de venda, assim como oferecer para os clientes uma ampla variedade de bebidas em um único app, permitindo que eles naveguem facilmente pelo catálogo, selecionem seus produtos favoritos e façam pedidos em poucos cliques, podendo visualizar o status do pedido a qualquer momento.
 
-  <video autoplay="autoplay" loop="loop" controls src="/SpeedBeer-Vídeo.mp4" type="video/mp4 controls" height="180%"width="100%">  
-  </video>
-  
+  ![Speed Beer Apresentação](/SpeedBeer-Vídeo.gif)
  
   ---
 
