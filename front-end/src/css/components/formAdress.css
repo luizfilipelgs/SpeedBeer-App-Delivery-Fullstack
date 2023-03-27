@@ -135,3 +135,14 @@
 .remove-btn:hover {
   opacity: 0.7;
 }
+
+.card-price-checkout-form-address {
+  background-color: #ffc800;
+  border: none;
+  border-radius: 15px;
+  color: black;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 1rem;
+  margin: 2rem;
+}

@@ -12,10 +12,10 @@ body {
 
 .ver-carrinho {
   align-items: center;
-  background-color: black;
+  background-color: #ffc800;
   border: none;
   border-radius: 15px;
-  color: #ffc800;
+  color: black;
   cursor: pointer;
   display: flex;
   font-size: 1.4rem;
@@ -32,7 +32,7 @@ body {
 }
 
 .ver-carrinho:hover {
-  background-color: #ffc800;
-  color: black;
+  background-color: black;
+  color: #ffc800;
   opacity: 0.8;
 }

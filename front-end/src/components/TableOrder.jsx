@@ -125,10 +125,12 @@ function TableOrder({ products }) {
         </tbody>
       </table>
       <div className="total-label">
-        <span> Total: R$ </span>
-        <span data-testid={ verifyRouteInTotalPrice(pathname) }>
-          {formattedNumber(totalPrice)}
-        </span>
+        <div className="card-price-checkout-form-address">
+          <span> Total: R$ </span>
+          <span data-testid={ verifyRouteInTotalPrice(pathname) }>
+            {formattedNumber(totalPrice)}
+          </span>
+        </div>
       </div>
     </div>
   );

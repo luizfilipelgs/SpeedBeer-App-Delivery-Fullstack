@@ -80,9 +80,8 @@ function Products() {
         <span>
           Ver Carrinho
           <br />
-          Total: R$
           <span data-testid={ `${CUSTOMER_PRODUCTS}__${CHECKOUT_PRICE}` }>
-            {totalPrice ? formattedNumber(totalPrice) : '0,00'}
+            {`Total: R$ ${totalPrice ? formattedNumber(totalPrice) : '0,00'}`}
           </span>
         </span>
       </button>
