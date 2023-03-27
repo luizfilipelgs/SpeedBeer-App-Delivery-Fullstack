@@ -1,8 +1,9 @@
 # Boas vindas ao repositório do projeto Car-Shop
  # O que foi desenvolvido  👨‍💻 
 
+  Com o Speed Beer, a diversão não espera! Entregamos sua bebida geladinha na velocidade da sede.
 
-  SpeedBeer é um projeto fullstack de uma plataforma de delivery de bebidas que visa oferecer para os empresarios do ramo uma plataforma de vendas online para aumentar o alcance de seus negócios e facilitar o processo de venda, assim como oferecer para os clientes uma ampla variedade de bebidas em um único app, permitindo que eles naveguem facilmente pelo catálogo, selecionem seus produtos favoritos e façam pedidos em poucos cliques, podendo visualizar o status do pedido a qualquer momento.
+  SpeedBeer é um projeto fullstack de delivery de bebidas que visa oferecer para os empresários do ramo uma plataforma de vendas online para aumentar o alcance de seus negócios e facilitar o processo de venda, assim como oferecer para os clientes uma ampla variedade de bebidas em um único app, permitindo que eles naveguem facilmente pelo catálogo, selecionem seus produtos favoritos e façam pedidos em poucos cliques, podendo visualizar o status do pedido a qualquer momento.
 
   ![Speed Beer Apresentação](/SpeedBeer-Vídeo.gif)
  
