@@ -60,7 +60,7 @@
   2. Entre na pasta do repositório que você acabou de clonar:
   * `cd SpeedBeer-App-Delivery-Fullstack`
 
-  3. Instalar as dependências e roda o Sequelize (Isso ja ira instalar tanto o front quanto o backend).
+  3. Instale as dependências e rode o Sequelize.
   * `npm run dev:prestart`
 
   * dev:prestart: A partir da raiz, esse comando faz o processo de instalação de dependências (npm i) nos dois projetos (./front-end e ./back-end) e roda o Sequelize no ./back-end (lembrar de configurar o .env no mesmo);
@@ -69,24 +69,22 @@
   * Dentro do projeto, vá para a pasta do back-end `cd back-end/`
   * Execute `npm run dev` para inicializar o servidor 
   * Aparecerá no terminal a mensagem `Api rodando na porta 3001`
+  * Porta Back-End - http://localhost:3001
 
   5. Inicialize a aplicação.
   * Dentro do projeto, vá para a pasta do Front-end `cd front-end/`
   * Execute `npm start` 
   * Uma aba será aberta em seu navegador com a aplicação rodando na porta 3000.
+  * Porta Front-End - http://localhost:3000
 
-  6. Portas.
-   - Porta Front-End - http://localhost:3000
-   - Porta Back-End - http://localhost:3001
-
-  7. Resetando Banco de Dados.
+  6. Resetando Banco de Dados.
    
   * `npm run db:reset`
   * db:reset: Roda os scripts do Sequelize restaurando o banco de dados de desenvolvimento (final -dev). Utilize esse script caso ocorra algum problema no seu banco local;
 
   * `npm run db:reset:debug`
   * db:reset:debug: Roda os scripts do Sequelize restaurando o banco de dados de desenvolvimento (final -dev). Utilize esse script caso ocorra algum problema no seu banco local. Esse comando também é capaz de retornar informações detalhadas de erros (quando ocorrerem no processo);
-
+  -
 </details>
 
 <details>
