@@ -84,10 +84,11 @@
 
   * `npm run db:reset:debug`
   * db:reset:debug: Roda os scripts do Sequelize restaurando o banco de dados de desenvolvimento (final -dev). Utilize esse script caso ocorra algum problema no seu banco local. Esse comando também é capaz de retornar informações detalhadas de erros (quando ocorrerem no processo);
-  -
+  
 </details>
 
 <details>
+
   <summary><strong>🛠 Execução de testes localmente</strong></summary>
 
   Para executar os testes localmente, basta executar na pasta de back-end o comando `npm run test:coverage`.
