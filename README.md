@@ -89,7 +89,7 @@
 
 <details>
 
-  <summary><strong>🛠 Execução de testes localmente</strong></summary>
+  <summary><strong>🛠 Execução de testes localmente</strong></summary><br />
 
   Para executar os testes localmente, basta executar na pasta de back-end o comando `npm run test:coverage`.
 
