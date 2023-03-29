@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do projeto Car-Shop
+# Boas vindas ao repositório do projeto Speed Beer - delivery
  # O que foi desenvolvido  👨‍💻 
 
   Com o Speed Beer, a diversão não espera! Entregamos sua bebida geladinha na velocidade da sede.
